@@ -495,19 +495,19 @@ void local_lookahead() :
 	  emptyLA = false;
 	}
   ]
-  [ LOOKAHEAD(0, { !emptyLA && (getToken(1).kind != RPAREN) } )
+  [ LOOKAHEAD(0, { !emptyLA && (getTokenType(1) != RPAREN) } )
     ","
 	{
 	  commaAtEnd = true;
 	}
   ]
-  [ LOOKAHEAD(0, { getToken(1).kind != RPAREN && getToken(1).kind != LBRACE } )
+  [ LOOKAHEAD(0, { getTokenType(1) != RPAREN && getTokenType(1) != LBRACE } )
     expansion_choices()
 	{
 	  emptyLA = false; commaAtEnd = false;
 	}
   ]
-  [ LOOKAHEAD(0, { !emptyLA && !commaAtEnd && (getToken(1).kind != RPAREN) } )
+  [ LOOKAHEAD(0, { !emptyLA && !commaAtEnd && (getTokenType(1) != RPAREN) } )
     ","
 	{
 	  commaAtEnd = true;
