@@ -26,12 +26,15 @@
  * THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/* adapted for jj2IntelliJ by gark87 (c) 2011 */
 
 options {
   JAVA_UNICODE_ESCAPE = true;
 }
 
 PARSER_BEGIN(JavaCCParser)
+
+package org.gark87.idea.javacc.generated;
 
 public class JavaCCParser {
 
