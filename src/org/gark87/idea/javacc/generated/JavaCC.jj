@@ -335,6 +335,7 @@ TOKEN :
 | < ORASSIGN: "|=" >
 | < XORASSIGN: "^=" >
 | < REMASSIGN: "%=" >
+| < SHARP: "#" >
 //	| < LSHIFTASSIGN: "<<=" >
 //	| < RSIGNEDSHIFTASSIGN: ">>=" >
 //	| < RUNSIGNEDSHIFTASSIGN: ">>>=" >
