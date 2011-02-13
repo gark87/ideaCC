@@ -33,11 +33,11 @@ options {
   JAVA_UNICODE_ESCAPE = true;
 }
 
-PARSER_BEGIN(JavaCCParser)
+PARSER_BEGIN(JavaCC)
 
 package org.gark87.idea.javacc.generated;
 
-public class JavaCCParser/*@bgen(jjtree)*/implements JavaCCParserTreeConstants/*@egen*/ {/*@bgen(jjtree)*/
+public class JavaCC/*@bgen(jjtree)*/implements JavaCCTreeConstants/*@egen*/ {/*@bgen(jjtree)*/
 
 /*@egen*/
 
@@ -55,7 +55,7 @@ public class JavaCCParser/*@bgen(jjtree)*/implements JavaCCParserTreeConstants/*
 
 }
 
-PARSER_END(JavaCCParser)
+PARSER_END(JavaCC)
 
 
 /**********************************************

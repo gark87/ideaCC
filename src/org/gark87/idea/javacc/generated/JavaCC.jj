@@ -32,11 +32,11 @@ options {
   JAVA_UNICODE_ESCAPE = true;
 }
 
-PARSER_BEGIN(JavaCCParser)
+PARSER_BEGIN(JavaCC)
 
 package org.gark87.idea.javacc.generated;
 
-public class JavaCCParser {
+public class JavaCC {
 
   /*
    * Returns true if the next token is not in the FOLLOW list of "expansion".
@@ -52,7 +52,7 @@ public class JavaCCParser {
 
 }
 
-PARSER_END(JavaCCParser)
+PARSER_END(JavaCC)
 
 
 /**********************************************
