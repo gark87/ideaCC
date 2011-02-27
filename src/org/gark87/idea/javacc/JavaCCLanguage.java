@@ -1,6 +1,5 @@
 package org.gark87.idea.javacc;
 
-import com.intellij.ide.highlighter.JavaFileHighlighter;
 import com.intellij.lang.Language;
 import com.intellij.openapi.fileTypes.SyntaxHighlighter;
 import com.intellij.openapi.fileTypes.SyntaxHighlighterFactory;
@@ -14,12 +13,6 @@ public class JavaCCLanguage extends Language {
 
     public JavaCCLanguage() {
     super("JavaCC", "text/javaCC");
-    SyntaxHighlighterFactory.LANGUAGE_FACTORY.addExplicitExtension(this, new SyntaxHighlighterFactory() {
-      @NotNull
-      public SyntaxHighlighter getSyntaxHighlighter(final Project project, final VirtualFile virtualFile) {
-        return new JavaCCFileHighlighter( virtualFile != null ? LanguageLevelUtil.getLanguageLevelForFile(virtualFile) : LanguageLevel.HIGHEST);
-      }
-    });
   }
 
   public String getDisplayName() {
