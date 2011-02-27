@@ -22,7 +22,8 @@ public void goTo(int offset) {
 }
 public IElementType advance() throws java.io.IOException {
   IElementType result = internalAdvance();
-  while(result != null && result == JavaCCConstants.MORE)
+  while(result != null && (result == JavaCCConstants.MORE || result == 
+JavaCCConstants.SKIP))
     result = internalAdvance();
   return result;
 }
@@ -107,8 +108,8 @@ HEX_LITERAL="0"[xX]([0-9a-fA-F])+
 OCTAL_LITERAL="0"([0-7])*
 FLOATING_POINT_LITERAL=((([0-9])+"\u002e"([0-9])*({EXPONENT})?([fFdD])?)|("\u002e"([0-9])+({EXPONENT})?([fFdD])?)|(([0-9])+{EXPONENT}([fFdD])?)|(([0-9])+({EXPONENT})?[fFdD]))
 EXPONENT=[eE]([\u002b\u002d])?([0-9])+
-CHARACTER_LITERAL="\u0027"(([^\u0027\u005c\u000a\u000d])|("\u005c"(([ntbrf\u005c\u0027\u0022])|([0-7]([0-7])?)|([0-3][0-7][0-7]))))"\u0027"
-STRING_LITERAL="\u0022"((([^\u0022\u005c\u000a\u000d])|("\u005c"(([ntbrf\u005c\u0027\u0022])|([0-7]([0-7])?)|([0-3][0-7][0-7])))))*"\u0022"
+CHARACTER_LITERAL="\u0027"(([^\u0027\u005c\u000a\u000d])|("\u005c"(([ntbrf\u005c\u0027\u0022])|([0-7]([0-7])?)|([0-3][0-7][0-7])|("u"([0-9aAbBcCdDeEfF])+))))"\u0027"
+STRING_LITERAL="\u0022"((([^\u0022\u005c\u000a\u000d])|("\u005c"(([ntbrf\u005c\u0027\u0022])|([0-7]([0-7])?)|([0-3][0-7][0-7])|("u"([0-9aAbBcCdDeEfF])+)))))*"\u0022"
 IDENTIFIER={LETTER}((({LETTER})|({DIGIT})))*
 LETTER=[\u0024A-Z\u005fa-zÀ-ÖØ-öø-ÿĀ-\u1fff\u3040-\u318f\u3300-\u337f㐀-㴭一-\u9fff豈-\ufaff]
 DIGIT=[0-9٠-٩۰-۹०-९০-৯੦-੯૦-૯୦-୯௧-௯౦-౯೦-೯൦-൯๐-๙໐-໙၀-၉]
@@ -276,14 +277,14 @@ FORMAL_COMMENT="\u002a\u002f"
 <YYINITIAL> {REMASSIGN} { return org.gark87.idea.javacc.generated.JavaCCConstants.REMASSIGN; }
 <YYINITIAL> {SHARP} { return org.gark87.idea.javacc.generated.JavaCCConstants.SHARP; }
 <IN_MULTI_LINE_COMMENT> {MULTI_LINE_COMMENT} { yybegin(YYINITIAL);return org.gark87.idea.javacc.generated.JavaCCConstants.MULTI_LINE_COMMENT; }
-<IN_SINGLE_LINE_COMMENT> . { return org.gark87.idea.javacc.generated.JavaCCConstants.MORE; }
-<IN_FORMAL_COMMENT> . { return org.gark87.idea.javacc.generated.JavaCCConstants.MORE; }
-<IN_MULTI_LINE_COMMENT> . { return org.gark87.idea.javacc.generated.JavaCCConstants.MORE; }
+<IN_SINGLE_LINE_COMMENT> (.|\n) { return org.gark87.idea.javacc.generated.JavaCCConstants.MORE; }
+<IN_FORMAL_COMMENT> (.|\n) { return org.gark87.idea.javacc.generated.JavaCCConstants.MORE; }
+<IN_MULTI_LINE_COMMENT> (.|\n) { return org.gark87.idea.javacc.generated.JavaCCConstants.MORE; }
 <IN_SINGLE_LINE_COMMENT> {SINGLE_LINE_COMMENT} { yybegin(YYINITIAL);return org.gark87.idea.javacc.generated.JavaCCConstants.SINGLE_LINE_COMMENT; }
-<IN_SINGLE_LINE_COMMENT> . { return org.gark87.idea.javacc.generated.JavaCCConstants.MORE; }
-<IN_FORMAL_COMMENT> . { return org.gark87.idea.javacc.generated.JavaCCConstants.MORE; }
-<IN_MULTI_LINE_COMMENT> . { return org.gark87.idea.javacc.generated.JavaCCConstants.MORE; }
+<IN_SINGLE_LINE_COMMENT> (.|\n) { return org.gark87.idea.javacc.generated.JavaCCConstants.MORE; }
+<IN_FORMAL_COMMENT> (.|\n) { return org.gark87.idea.javacc.generated.JavaCCConstants.MORE; }
+<IN_MULTI_LINE_COMMENT> (.|\n) { return org.gark87.idea.javacc.generated.JavaCCConstants.MORE; }
 <IN_FORMAL_COMMENT> {FORMAL_COMMENT} { yybegin(YYINITIAL);return org.gark87.idea.javacc.generated.JavaCCConstants.FORMAL_COMMENT; }
-<IN_SINGLE_LINE_COMMENT> . { return org.gark87.idea.javacc.generated.JavaCCConstants.MORE; }
-<IN_FORMAL_COMMENT> . { return org.gark87.idea.javacc.generated.JavaCCConstants.MORE; }
-<IN_MULTI_LINE_COMMENT> . { return org.gark87.idea.javacc.generated.JavaCCConstants.MORE; }
+<IN_SINGLE_LINE_COMMENT> (.|\n) { return org.gark87.idea.javacc.generated.JavaCCConstants.MORE; }
+<IN_FORMAL_COMMENT> (.|\n) { return org.gark87.idea.javacc.generated.JavaCCConstants.MORE; }
+<IN_MULTI_LINE_COMMENT> (.|\n) { return org.gark87.idea.javacc.generated.JavaCCConstants.MORE; }

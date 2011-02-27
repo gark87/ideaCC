@@ -10,6 +10,8 @@ public interface JavaCCConstants {
 
  /* MORE */
  IElementType MORE = new JavaCCElementType("|MORE|");
+ /* SKIP */
+ IElementType SKIP = new JavaCCElementType("|SKIP|");
   /** RegularExpression Id. */
   IElementType _OPTIONS = new JavaCCElementType("options");
   /** RegularExpression Id. */
