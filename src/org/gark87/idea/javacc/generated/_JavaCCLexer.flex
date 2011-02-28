@@ -15,18 +15,23 @@ import com.intellij.psi.tree.IElementType;
 %%
 
 %{
-public void goTo(int offset) {
-  zzCurrentPos = zzMarkedPos = zzStartRead = offset;
-  zzPushbackPos = 0;
-  zzAtEOF = offset < zzEndRead;
-}
-public IElementType advance() throws java.io.IOException {
-  IElementType result = internalAdvance();
-  while(result != null && (result == JavaCCConstants.MORE || result == 
-JavaCCConstants.SKIP))
-    result = internalAdvance();
-  return result;
-}
+  public void goTo(int offset) {
+    zzCurrentPos = zzMarkedPos = zzStartRead = offset;
+    zzPushbackPos = 0;
+    zzAtEOF = offset < zzEndRead;
+  }
+
+  public IElementType advance() throws java.io.IOException {
+    IElementType result = internalAdvance();
+    int start = zzStartRead;
+    while(result != null && (result == JavaCCConstants.MORE || result == JavaCCConstants.SKIP)) {
+      result = internalAdvance();
+      if (result == JavaCCConstants.SKIP)
+        start = zzStartRead;
+    }
+    zzStartRead = start;
+    return result;
+  }
 %}
 %unicode
 %class _JavaCCLexer
