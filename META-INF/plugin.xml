@@ -21,6 +21,11 @@
   </actions>
 
   <extensions defaultExtensionNs="com.intellij">
-    <!-- Add your extensions here -->
+      <colorSettingsPage implementation="org.gark87.idea.javacc.JavaCCColorsPage" />
+      <lang.parserDefinition language="JAVACC"
+            implementationClass=
+                "org.gark87.idea.javacc.JavaCCParserDefinition"
+         />
+
   </extensions>
 </idea-plugin>
