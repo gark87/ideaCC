@@ -10,6 +10,7 @@ public interface JavaCCTreeConstants
   public IElementType JJTPRODUCTION = new JavaCCElementType("production");
   public IElementType JJTJAVACODE_PRODUCTION = new JavaCCElementType("javacode_production");
   public IElementType JJTBNF_PRODUCTION = new JavaCCElementType("bnf_production");
+  public IElementType JJTACCESSMODIFIER = new JavaCCElementType("AccessModifier");
   public IElementType JJTREGULAR_EXPR_PRODUCTION = new JavaCCElementType("regular_expr_production");
   public IElementType JJTTOKEN_MANAGER_DECLS = new JavaCCElementType("token_manager_decls");
   public IElementType JJTREGEXPR_KIND = new JavaCCElementType("regexpr_kind");
@@ -25,26 +26,23 @@ public interface JavaCCTreeConstants
   public IElementType JJTCHARACTER_LIST = new JavaCCElementType("character_list");
   public IElementType JJTCHARACTER_DESCRIPTOR = new JavaCCElementType("character_descriptor");
   public IElementType JJTIDENTIFIER = new JavaCCElementType("identifier");
-  public IElementType JJTNODE_DESCRIPTOR = new JavaCCElementType("node_descriptor");
-  public IElementType JJTNODE_DESCRIPTOR_EXPRESSION = new JavaCCElementType("node_descriptor_expression");
   public IElementType JJTJAVAIDENTIFIER = new JavaCCElementType("JavaIdentifier");
-  public IElementType JJTSHIFTOPS = new JavaCCElementType("ShiftOps");
-  public IElementType JJTOTHERASSIGNMENTOPS = new JavaCCElementType("OtherAssignmentOps");
   public IElementType JJTCOMPILATIONUNIT = new JavaCCElementType("CompilationUnit");
-  public IElementType JJTJAVACOMPILATIONUNIT = new JavaCCElementType("JavaCompilationUnit");
   public IElementType JJTPACKAGEDECLARATION = new JavaCCElementType("PackageDeclaration");
   public IElementType JJTIMPORTDECLARATION = new JavaCCElementType("ImportDeclaration");
+  public IElementType JJTMODIFIERS = new JavaCCElementType("Modifiers");
   public IElementType JJTTYPEDECLARATION = new JavaCCElementType("TypeDeclaration");
-  public IElementType JJTCLASSDECLARATION = new JavaCCElementType("ClassDeclaration");
-  public IElementType JJTUNMODIFIEDCLASSDECLARATION = new JavaCCElementType("UnmodifiedClassDeclaration");
-  public IElementType JJTCLASSBODY = new JavaCCElementType("ClassBody");
-  public IElementType JJTNESTEDCLASSDECLARATION = new JavaCCElementType("NestedClassDeclaration");
-  public IElementType JJTCLASSBODYDECLARATION = new JavaCCElementType("ClassBodyDeclaration");
-  public IElementType JJTMETHODDECLARATIONLOOKAHEAD = new JavaCCElementType("MethodDeclarationLookahead");
-  public IElementType JJTINTERFACEDECLARATION = new JavaCCElementType("InterfaceDeclaration");
-  public IElementType JJTNESTEDINTERFACEDECLARATION = new JavaCCElementType("NestedInterfaceDeclaration");
-  public IElementType JJTUNMODIFIEDINTERFACEDECLARATION = new JavaCCElementType("UnmodifiedInterfaceDeclaration");
-  public IElementType JJTINTERFACEMEMBERDECLARATION = new JavaCCElementType("InterfaceMemberDeclaration");
+  public IElementType JJTCLASSORINTERFACEDECLARATION = new JavaCCElementType("ClassOrInterfaceDeclaration");
+  public IElementType JJTEXTENDSLIST = new JavaCCElementType("ExtendsList");
+  public IElementType JJTIMPLEMENTSLIST = new JavaCCElementType("ImplementsList");
+  public IElementType JJTENUMDECLARATION = new JavaCCElementType("EnumDeclaration");
+  public IElementType JJTENUMBODY = new JavaCCElementType("EnumBody");
+  public IElementType JJTENUMCONSTANT = new JavaCCElementType("EnumConstant");
+  public IElementType JJTTYPEPARAMETERS = new JavaCCElementType("TypeParameters");
+  public IElementType JJTTYPEPARAMETER = new JavaCCElementType("TypeParameter");
+  public IElementType JJTTYPEBOUND = new JavaCCElementType("TypeBound");
+  public IElementType JJTCLASSORINTERFACEBODY = new JavaCCElementType("ClassOrInterfaceBody");
+  public IElementType JJTCLASSORINTERFACEBODYDECLARATION = new JavaCCElementType("ClassOrInterfaceBodyDeclaration");
   public IElementType JJTFIELDDECLARATION = new JavaCCElementType("FieldDeclaration");
   public IElementType JJTVARIABLEDECLARATOR = new JavaCCElementType("VariableDeclarator");
   public IElementType JJTVARIABLEDECLARATORID = new JavaCCElementType("VariableDeclaratorId");
@@ -58,6 +56,11 @@ public interface JavaCCTreeConstants
   public IElementType JJTEXPLICITCONSTRUCTORINVOCATION = new JavaCCElementType("ExplicitConstructorInvocation");
   public IElementType JJTINITIALIZER = new JavaCCElementType("Initializer");
   public IElementType JJTTYPE = new JavaCCElementType("Type");
+  public IElementType JJTREFERENCETYPE = new JavaCCElementType("ReferenceType");
+  public IElementType JJTCLASSORINTERFACETYPE = new JavaCCElementType("ClassOrInterfaceType");
+  public IElementType JJTTYPEARGUMENTS = new JavaCCElementType("TypeArguments");
+  public IElementType JJTTYPEARGUMENT = new JavaCCElementType("TypeArgument");
+  public IElementType JJTWILDCARDBOUNDS = new JavaCCElementType("WildcardBounds");
   public IElementType JJTPRIMITIVETYPE = new JavaCCElementType("PrimitiveType");
   public IElementType JJTRESULTTYPE = new JavaCCElementType("ResultType");
   public IElementType JJTNAME = new JavaCCElementType("Name");
@@ -84,6 +87,7 @@ public interface JavaCCTreeConstants
   public IElementType JJTPOSTFIXEXPRESSION = new JavaCCElementType("PostfixExpression");
   public IElementType JJTCASTEXPRESSION = new JavaCCElementType("CastExpression");
   public IElementType JJTPRIMARYEXPRESSION = new JavaCCElementType("PrimaryExpression");
+  public IElementType JJTMEMBERSELECTOR = new JavaCCElementType("MemberSelector");
   public IElementType JJTPRIMARYPREFIX = new JavaCCElementType("PrimaryPrefix");
   public IElementType JJTPRIMARYSUFFIX = new JavaCCElementType("PrimarySuffix");
   public IElementType JJTLITERAL = new JavaCCElementType("Literal");
@@ -96,6 +100,7 @@ public interface JavaCCTreeConstants
   public IElementType JJTALLOCATIONEXPRESSION = new JavaCCElementType("AllocationExpression");
   public IElementType JJTARRAYDIMSANDINITS = new JavaCCElementType("ArrayDimsAndInits");
   public IElementType JJTSTATEMENT = new JavaCCElementType("Statement");
+  public IElementType JJTASSERTSTATEMENT = new JavaCCElementType("AssertStatement");
   public IElementType JJTLABELEDSTATEMENT = new JavaCCElementType("LabeledStatement");
   public IElementType JJTBLOCK = new JavaCCElementType("Block");
   public IElementType JJTBLOCKSTATEMENT = new JavaCCElementType("BlockStatement");
@@ -117,7 +122,21 @@ public interface JavaCCTreeConstants
   public IElementType JJTTHROWSTATEMENT = new JavaCCElementType("ThrowStatement");
   public IElementType JJTSYNCHRONIZEDSTATEMENT = new JavaCCElementType("SynchronizedStatement");
   public IElementType JJTTRYSTATEMENT = new JavaCCElementType("TryStatement");
+  public IElementType JJTRUNSIGNEDSHIFT = new JavaCCElementType("RUNSIGNEDSHIFT");
+  public IElementType JJTRSIGNEDSHIFT = new JavaCCElementType("RSIGNEDSHIFT");
+  public IElementType JJTANNOTATION = new JavaCCElementType("Annotation");
+  public IElementType JJTNORMALANNOTATION = new JavaCCElementType("NormalAnnotation");
+  public IElementType JJTMARKERANNOTATION = new JavaCCElementType("MarkerAnnotation");
+  public IElementType JJTSINGLEMEMBERANNOTATION = new JavaCCElementType("SingleMemberAnnotation");
+  public IElementType JJTMEMBERVALUEPAIRS = new JavaCCElementType("MemberValuePairs");
+  public IElementType JJTMEMBERVALUEPAIR = new JavaCCElementType("MemberValuePair");
+  public IElementType JJTMEMBERVALUE = new JavaCCElementType("MemberValue");
+  public IElementType JJTMEMBERVALUEARRAYINITIALIZER = new JavaCCElementType("MemberValueArrayInitializer");
+  public IElementType JJTANNOTATIONTYPEDECLARATION = new JavaCCElementType("AnnotationTypeDeclaration");
+  public IElementType JJTANNOTATIONTYPEBODY = new JavaCCElementType("AnnotationTypeBody");
+  public IElementType JJTANNOTATIONTYPEMEMBERDECLARATION = new JavaCCElementType("AnnotationTypeMemberDeclaration");
+  public IElementType JJTDEFAULTVALUE = new JavaCCElementType("DefaultValue");
 
 
 }
-/* JavaCC - OriginalChecksum=3d4bf87bc8e1bd00cb2a08dc20a1e40c (do not edit this line) */
+/* JavaCC - OriginalChecksum=dd47cd08308038dcaf5d46c208314323 (do not edit this line) */

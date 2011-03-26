@@ -45,6 +45,8 @@ public interface JavaCCConstants {
   /** RegularExpression Id. */
   IElementType ABSTRACT = new JavaCCElementType("abstract");
   /** RegularExpression Id. */
+  IElementType ASSERT = new JavaCCElementType("assert");
+  /** RegularExpression Id. */
   IElementType BOOLEAN = new JavaCCElementType("boolean");
   /** RegularExpression Id. */
   IElementType BREAK = new JavaCCElementType("break");
@@ -70,6 +72,8 @@ public interface JavaCCConstants {
   IElementType DOUBLE = new JavaCCElementType("double");
   /** RegularExpression Id. */
   IElementType ELSE = new JavaCCElementType("else");
+  /** RegularExpression Id. */
+  IElementType ENUM = new JavaCCElementType("enum");
   /** RegularExpression Id. */
   IElementType EXTENDS = new JavaCCElementType("extends");
   /** RegularExpression Id. */
@@ -119,6 +123,8 @@ public interface JavaCCConstants {
   /** RegularExpression Id. */
   IElementType STATIC = new JavaCCElementType("static");
   /** RegularExpression Id. */
+  IElementType STRICTFP = new JavaCCElementType("strictfp");
+  /** RegularExpression Id. */
   IElementType SUPER = new JavaCCElementType("super");
   /** RegularExpression Id. */
   IElementType SWITCH = new JavaCCElementType("switch");
@@ -153,7 +159,13 @@ public interface JavaCCConstants {
   /** RegularExpression Id. */
   IElementType FLOATING_POINT_LITERAL = new JavaCCElementType("<FLOATING_POINT_LITERAL>");
   /** RegularExpression Id. */
-  IElementType EXPONENT = new JavaCCElementType("<EXPONENT>");
+  IElementType DECIMAL_FLOATING_POINT_LITERAL = new JavaCCElementType("<DECIMAL_FLOATING_POINT_LITERAL>");
+  /** RegularExpression Id. */
+  IElementType DECIMAL_EXPONENT = new JavaCCElementType("<DECIMAL_EXPONENT>");
+  /** RegularExpression Id. */
+  IElementType HEXADECIMAL_FLOATING_POINT_LITERAL = new JavaCCElementType("<HEXADECIMAL_FLOATING_POINT_LITERAL>");
+  /** RegularExpression Id. */
+  IElementType HEXADECIMAL_EXPONENT = new JavaCCElementType("<HEXADECIMAL_EXPONENT>");
   /** RegularExpression Id. */
   IElementType CHARACTER_LITERAL = new JavaCCElementType("<CHARACTER_LITERAL>");
   /** RegularExpression Id. */
@@ -163,7 +175,7 @@ public interface JavaCCConstants {
   /** RegularExpression Id. */
   IElementType LETTER = new JavaCCElementType("<LETTER>");
   /** RegularExpression Id. */
-  IElementType DIGIT = new JavaCCElementType("<DIGIT>");
+  IElementType PART_LETTER = new JavaCCElementType("<PART_LETTER>");
   /** RegularExpression Id. */
   IElementType LPAREN = new JavaCCElementType("(");
   /** RegularExpression Id. */
@@ -246,6 +258,12 @@ public interface JavaCCConstants {
   IElementType REMASSIGN = new JavaCCElementType("%=");
   /** RegularExpression Id. */
   IElementType SHARP = new JavaCCElementType("#");
+  /** RegularExpression Id. */
+  IElementType ELLIPSIS = new JavaCCElementType("...");
+  /** RegularExpression Id. */
+  IElementType AT = new JavaCCElementType("@");
+  /** RegularExpression Id. */
+  IElementType ERROR = new JavaCCElementType("<ERROR>");
 
 
 }

@@ -13,8 +13,7 @@ public class JavaCC/*@bgen(jjtree)*/implements JavaCCTreeConstants, JavaCCConsta
   private boolean notTailOfExpansionUnit() {
     IElementType t;
     t = getTokenType(1);
-    if (t == BIT_OR || t == COMMA || t == RPAREN || t == RBRACE || t == RBRACKET)
-      return false;
+    if (t == BIT_OR || t == COMMA || t == RPAREN || t == RBRACE || t == RBRACKET) return false;
     return true;
   }
 
@@ -39,7 +38,7 @@ public class JavaCC/*@bgen(jjtree)*/implements JavaCCTreeConstants, JavaCCConsta
     while (true) {
       production();
       IElementType type_2 = getType();
-      if ( type_2 == _OPTIONS || type_2 == _LOOKAHEAD || type_2 == _IGNORE_CASE || type_2 == _PARSER_BEGIN || type_2 == _PARSER_END || type_2 == _JAVACODE || type_2 == _TOKEN || type_2 == _SPECIAL_TOKEN || type_2 == _MORE || type_2 == _SKIP || type_2 == _TOKEN_MGR_DECLS || type_2 == _EOF || type_2 == BOOLEAN || type_2 == BYTE || type_2 == CHAR || type_2 == DOUBLE || type_2 == FLOAT || type_2 == INT || type_2 == LONG || type_2 == SHORT || type_2 == VOID || type_2 == IDENTIFIER || type_2 == LT) { 
+      if ( type_2 == _JAVACODE || type_2 == _TOKEN || type_2 == _SPECIAL_TOKEN || type_2 == _MORE || type_2 == _SKIP || type_2 == _TOKEN_MGR_DECLS || type_2 == BOOLEAN || type_2 == BYTE || type_2 == CHAR || type_2 == DOUBLE || type_2 == FLOAT || type_2 == INT || type_2 == LONG || type_2 == PRIVATE || type_2 == PROTECTED || type_2 == PUBLIC || type_2 == SHORT || type_2 == VOID || type_2 == IDENTIFIER || type_2 == LT) { 
 ;} else 
 {
 break label_1;
@@ -64,13 +63,13 @@ assert (builder.eof());
   jj_consume_token(LBRACE);
   label_3:
   while (true) {
-    option_binding();
     IElementType type_4 = getType();
     if ( type_4 == _LOOKAHEAD || type_4 == _IGNORE_CASE || type_4 == STATIC || type_4 == IDENTIFIER) { 
 ;} else 
 {
 break label_3;
 }
+option_binding();
 }
 jj_consume_token(RBRACE);} else 
 {
@@ -136,7 +135,7 @@ jj_consume_token(SEMICOLON);
     if ( type_8 == _JAVACODE) { 
   javacode_production();} else if ( type_8 == _TOKEN || type_8 == _SPECIAL_TOKEN || type_8 == _MORE || type_8 == _SKIP || type_8 == LT) { 
 regular_expr_production();} else if ( type_8 == _TOKEN_MGR_DECLS) { 
-token_manager_decls();} else if ( type_8 == _OPTIONS || type_8 == _LOOKAHEAD || type_8 == _IGNORE_CASE || type_8 == _PARSER_BEGIN || type_8 == _PARSER_END || type_8 == _EOF || type_8 == BOOLEAN || type_8 == BYTE || type_8 == CHAR || type_8 == DOUBLE || type_8 == FLOAT || type_8 == INT || type_8 == LONG || type_8 == SHORT || type_8 == VOID || type_8 == IDENTIFIER) { 
+token_manager_decls();} else if ( type_8 == BOOLEAN || type_8 == BYTE || type_8 == CHAR || type_8 == DOUBLE || type_8 == FLOAT || type_8 == INT || type_8 == LONG || type_8 == PRIVATE || type_8 == PROTECTED || type_8 == PUBLIC || type_8 == SHORT || type_8 == VOID || type_8 == IDENTIFIER) { 
 bnf_production();} else 
 {
 builder.error("Unexpected type " + builder.getTokenType());
@@ -159,6 +158,7 @@ break;
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     jj_consume_token(_JAVACODE);
+    AccessModifier();
     ResultType();
     identifier();
     FormalParameters();
@@ -180,12 +180,6 @@ Name();
 {
 ;
 }
-IElementType type_12 = getType();
-if ( type_12 == SHARP) { 
-node_descriptor();} else 
-{
-;
-}
 Block();
       {
         if (jjtc000) {
@@ -199,30 +193,25 @@ Block();
  /*@bgen(jjtree) bnf_production */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
+    AccessModifier();
     ResultType();
     identifier();
     FormalParameters();
-    IElementType type_15 = getType();
-    if ( type_15 == THROWS) { 
+    IElementType type_14 = getType();
+    if ( type_14 == THROWS) { 
   jj_consume_token(THROWS);
   Name();
-  label_13:
+  label_12:
   while (true) {
-    IElementType type_14 = getType();
-    if ( type_14 == COMMA) { 
+    IElementType type_13 = getType();
+    if ( type_13 == COMMA) { 
   ;} else 
 {
-  break label_13;
+  break label_12;
 }
 jj_consume_token(COMMA);
 Name();
 }} else 
-{
-;
-}
-IElementType type_16 = getType();
-if ( type_16 == SHARP) { 
-node_descriptor();} else 
 {
 ;
 }
@@ -235,6 +224,37 @@ jj_consume_token(RBRACE);
         if (jjtc000) {
           jjtc000 = false;
           {jjtn000.done(JJTBNF_PRODUCTION); }
+        }
+      }
+  }
+
+  final public void AccessModifier()  {
+ /*@bgen(jjtree) AccessModifier */
+  boolean jjtc000 = true;
+  PsiBuilder.Marker jjtn000 = builder.mark();
+    IElementType type_16 = getType();
+    if ( type_16 == PRIVATE || type_16 == PROTECTED || type_16 == PUBLIC) { 
+do {
+IElementType type_15 = getType();
+if ( type_15 == PUBLIC) { 
+jj_consume_token(PUBLIC);} else if ( type_15 == PROTECTED) { 
+jj_consume_token(PROTECTED);} else if ( type_15 == PRIVATE) { 
+jj_consume_token(PRIVATE);} else 
+{
+builder.error("Unexpected type " + builder.getTokenType());
+builder.advanceLexer();
+continue;
+}
+break;
+} while(true);
+} else 
+{
+;
+}
+      {
+        if (jjtc000) {
+          jjtc000 = false;
+          {jjtn000.done(JJTACCESSMODIFIER); }
         }
       }
   }
@@ -317,7 +337,7 @@ jj_consume_token(RBRACE);
   PsiBuilder.Marker jjtn000 = builder.mark();
     jj_consume_token(_TOKEN_MGR_DECLS);
     jj_consume_token(COLON);
-    ClassBody();
+    ClassOrInterfaceBody();
       {
         if (jjtc000) {
           jjtc000 = false;
@@ -419,17 +439,11 @@ jj_consume_token(IDENTIFIER);} else
 label_30:
 while (true) {
   expansion_unit();
-  IElementType type_31 = getType();
-  if ( type_31 == SHARP) { 
-node_descriptor();} else 
-{
-;
-}
-if (notTailOfExpansionUnit()) {
-;
-} else {
-break label_30;
-}
+  if (notTailOfExpansionUnit()) {
+    ;
+  } else {
+    break label_30;
+  }
 }
       {
         if (jjtc000) {
@@ -443,8 +457,8 @@ break label_30;
          /*@bgen(jjtree) local_lookahead */
           boolean jjtc000 = true;
           PsiBuilder.Marker jjtn000 = builder.mark();boolean commaAtEnd = false, emptyLA = true;
-    IElementType type_32 = getType();
-    if ( type_32 == INTEGER_LITERAL) { 
+    IElementType type_31 = getType();
+    if ( type_31 == INTEGER_LITERAL) { 
   IntegerLiteral();
           emptyLA = false;} else 
 {
@@ -502,13 +516,13 @@ jj_consume_token(TRY);
 jj_consume_token(LBRACE);
 expansion_choices();
 jj_consume_token(RBRACE);
-label_33:
+label_32:
 while (true) {
-IElementType type_34 = getType();
-if ( type_34 == CATCH) { 
+IElementType type_33 = getType();
+if ( type_33 == CATCH) { 
 ;} else 
 {
-break label_33;
+break label_32;
 }
 jj_consume_token(CATCH);
 jj_consume_token(LPAREN);
@@ -517,15 +531,15 @@ jj_consume_token(IDENTIFIER);
 jj_consume_token(RPAREN);
 Block();
 }
-IElementType type_35 = getType();
-if ( type_35 == FINALLY) { 
+IElementType type_34 = getType();
+if ( type_34 == FINALLY) { 
 jj_consume_token(FINALLY);
 Block();} else 
 {
 ;
 }} else 
 {
-if (jj_2_3(2147483647)) {
+if (jj_2_4(2147483647)) {
 if (jj_2_2(2147483647)) {
 PrimaryExpression();
 jj_consume_token(ASSIGN);
@@ -533,15 +547,25 @@ jj_consume_token(ASSIGN);
 ;
 }
 do {
+if (jj_2_3(2147483647)) {
+identifier();
+Arguments();
+} else {
 IElementType type_36 = getType();
 if ( type_36 == STRING_LITERAL || type_36 == LT) { 
-regular_expression();} else if ( type_36 == IDENTIFIER) { 
-identifier();
-Arguments();} else 
+regular_expression();
+IElementType type_35 = getType();
+if ( type_35 == DOT) { 
+jj_consume_token(DOT);
+jj_consume_token(IDENTIFIER);} else 
+{
+;
+}} else 
 {
 builder.error("Unexpected type " + builder.getTokenType());
 builder.advanceLexer();
 continue;
+}
 }
 break;
 } while(true);
@@ -598,10 +622,10 @@ break;
     if ( type_43 == STRING_LITERAL) { 
   StringLiteral();} else 
 {
-  if (jj_2_4(3)) {
+  if (jj_2_5(3)) {
     jj_consume_token(LT);
     IElementType type_42 = getType();
-    if ( type_42 == IDENTIFIER || type_42 == SHARP) { 
+    if ( type_42 == _OPTIONS || type_42 == IDENTIFIER || type_42 == SHARP) { 
 IElementType type_41 = getType();
 if ( type_41 == SHARP) { 
 jj_consume_token(SHARP);} else 
@@ -615,7 +639,7 @@ jj_consume_token(COLON);} else
 }
 complex_regular_expression_choices();
 jj_consume_token(GT);
-} else if (jj_2_5(2)) {
+} else if (jj_2_6(2)) {
 jj_consume_token(LT);
 identifier();
 jj_consume_token(GT);
@@ -694,24 +718,39 @@ break label_47;
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     do {
-    IElementType type_51 = getType();
-    if ( type_51 == STRING_LITERAL) { 
-  StringLiteral();} else if ( type_51 == LT) { 
+    IElementType type_53 = getType();
+    if ( type_53 == STRING_LITERAL) { 
+  StringLiteral();} else if ( type_53 == LT) { 
 jj_consume_token(LT);
 identifier();
-jj_consume_token(GT);} else if ( type_51 == LBRACKET || type_51 == TILDE) { 
-character_list();} else if ( type_51 == LPAREN) { 
+jj_consume_token(GT);} else if ( type_53 == LBRACKET || type_53 == TILDE) { 
+character_list();} else if ( type_53 == LPAREN) { 
 jj_consume_token(LPAREN);
 complex_regular_expression_choices();
 jj_consume_token(RPAREN);
-IElementType type_50 = getType();
-if ( type_50 == HOOK || type_50 == PLUS || type_50 == STAR) { 
+IElementType type_52 = getType();
+if ( type_52 == LBRACE || type_52 == HOOK || type_52 == PLUS || type_52 == STAR) { 
 do {
+IElementType type_51 = getType();
+if ( type_51 == PLUS) { 
+jj_consume_token(PLUS);} else if ( type_51 == STAR) { 
+jj_consume_token(STAR);} else if ( type_51 == HOOK) { 
+jj_consume_token(HOOK);} else if ( type_51 == LBRACE) { 
+jj_consume_token(LBRACE);
+IntegerLiteral();
+IElementType type_50 = getType();
+if ( type_50 == COMMA) { 
+jj_consume_token(COMMA);
 IElementType type_49 = getType();
-if ( type_49 == PLUS) { 
-jj_consume_token(PLUS);} else if ( type_49 == STAR) { 
-jj_consume_token(STAR);} else if ( type_49 == HOOK) { 
-jj_consume_token(HOOK);} else 
+if ( type_49 == INTEGER_LITERAL) { 
+IntegerLiteral();} else 
+{
+;
+}} else 
+{
+;
+}
+jj_consume_token(RBRACE);} else 
 {
 builder.error("Unexpected type " + builder.getTokenType());
 builder.advanceLexer();
@@ -743,23 +782,23 @@ break;
  /*@bgen(jjtree) character_list */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    IElementType type_52 = getType();
-    if ( type_52 == TILDE) { 
+    IElementType type_54 = getType();
+    if ( type_54 == TILDE) { 
   jj_consume_token(TILDE);} else 
 {
   ;
 }
 jj_consume_token(LBRACKET);
-IElementType type_55 = getType();
-if ( type_55 == STRING_LITERAL) { 
+IElementType type_57 = getType();
+if ( type_57 == STRING_LITERAL) { 
 character_descriptor();
-label_53:
+label_55:
 while (true) {
-IElementType type_54 = getType();
-if ( type_54 == COMMA) { 
+IElementType type_56 = getType();
+if ( type_56 == COMMA) { 
 ;} else 
 {
-break label_53;
+break label_55;
 }
 jj_consume_token(COMMA);
 character_descriptor();
@@ -781,8 +820,8 @@ jj_consume_token(RBRACKET);
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     StringLiteral();
-    IElementType type_56 = getType();
-    if ( type_56 == MINUS) { 
+    IElementType type_58 = getType();
+    if ( type_58 == MINUS) { 
   jj_consume_token(MINUS);
   StringLiteral();} else 
 {
@@ -800,28 +839,11 @@ jj_consume_token(RBRACKET);
  /*@bgen(jjtree) identifier */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    jj_consume_token(IDENTIFIER);
-      {
-        if (jjtc000) {
-          jjtc000 = false;
-          {jjtn000.done(JJTIDENTIFIER); }
-        }
-      }
-  }
-
-/**********************************************
- * THE JJTREE PRODUCTIONS START HERE          *
- **********************************************/
-  final public void node_descriptor()  {
- /*@bgen(jjtree) node_descriptor */
-  boolean jjtc000 = true;
-  PsiBuilder.Marker jjtn000 = builder.mark();
-    jj_consume_token(SHARP);
     do {
-    IElementType type_57 = getType();
-    if ( type_57 == IDENTIFIER) { 
-  jj_consume_token(IDENTIFIER);} else if ( type_57 == VOID) { 
-jj_consume_token(VOID);} else 
+    IElementType type_59 = getType();
+    if ( type_59 == IDENTIFIER) { 
+  jj_consume_token(IDENTIFIER);} else if ( type_59 == _OPTIONS) { 
+jj_consume_token(_OPTIONS);} else 
 {
 builder.error("Unexpected type " + builder.getTokenType());
 builder.advanceLexer();
@@ -830,56 +852,12 @@ continue;
 break;
 } while(true);
 
-IElementType type_59 = getType();
-if ( type_59 == LPAREN) { 
-jj_consume_token(LPAREN);
-IElementType type_58 = getType();
-if ( type_58 == GT) { 
-jj_consume_token(GT);} else 
-{
-;
-}
-node_descriptor_expression();
-jj_consume_token(RPAREN);} else 
-{
-;
-}
       {
         if (jjtc000) {
           jjtc000 = false;
-          {jjtn000.done(JJTNODE_DESCRIPTOR); }
+          {jjtn000.done(JJTIDENTIFIER); }
         }
       }
-  }
-
-  void node_descriptor_expression()  {
- /*@bgen(jjtree) node_descriptor_expression */
-boolean jjtc000 = true;
-PsiBuilder.Marker jjtn000 = builder.mark();
-try {IElementType tok;
-  int nesting = 1;
-  while (true) {
-    tok = getTokenType(1);
-    if (builder.eof()) {
-      break;
-    }
-    if (tok == LPAREN) nesting++;
-    if (tok == RPAREN) {
-      nesting--;
-      if (nesting == 0) break;
-    }
-    builder.advanceLexer();
-  }/*@bgen(jjtree)*/
-} finally {
-  if (jjtc000) {
-    {
-      if (jjtc000) {
-        jjtc000 = false;
-        {jjtn000.done(JJTNODE_DESCRIPTOR_EXPRESSION); }
-      }
-    }
-  }
-}
   }
 
 /**********************************************
@@ -902,8 +880,7 @@ try {IElementType tok;
     do {
     IElementType type_60 = getType();
     if ( type_60 == IDENTIFIER) { 
-  jj_consume_token(IDENTIFIER);} else if ( type_60 == _OPTIONS) { 
-jj_consume_token(_OPTIONS);} else if ( type_60 == _LOOKAHEAD) { 
+  jj_consume_token(IDENTIFIER);} else if ( type_60 == _LOOKAHEAD) { 
 jj_consume_token(_LOOKAHEAD);} else if ( type_60 == _IGNORE_CASE) { 
 jj_consume_token(_IGNORE_CASE);} else if ( type_60 == _PARSER_BEGIN) { 
 jj_consume_token(_PARSER_BEGIN);} else if ( type_60 == _PARSER_END) { 
@@ -932,106 +909,34 @@ break;
   }
 
 /*
- * The productions for the missing code follows.  Obviously
- * these productions accept more than what is legal in Java,
- * but that is OK for our purposes.
- */
-  final public void ShiftOps()  {
- /*@bgen(jjtree) ShiftOps */
-  boolean jjtc000 = true;
-  PsiBuilder.Marker jjtn000 = builder.mark();
-    do {
-    IElementType type_62 = getType();
-    if ( type_62 == LT) { 
-  jj_consume_token(LT);
-  jj_consume_token(LT);} else if ( type_62 == GT) { 
-jj_consume_token(GT);
-jj_consume_token(GT);
-IElementType type_61 = getType();
-if ( type_61 == GT) { 
-jj_consume_token(GT);} else 
-{
-;
-}} else 
-{
-builder.error("Unexpected type " + builder.getTokenType());
-builder.advanceLexer();
-continue;
-}
-break;
-} while(true);
-
-      {
-        if (jjtc000) {
-          jjtc000 = false;
-          {jjtn000.done(JJTSHIFTOPS); }
-        }
-      }
-  }
-
-  final public void OtherAssignmentOps()  {
- /*@bgen(jjtree) OtherAssignmentOps */
-  boolean jjtc000 = true;
-  PsiBuilder.Marker jjtn000 = builder.mark();
-    do {
-    IElementType type_64 = getType();
-    if ( type_64 == LT) { 
-  jj_consume_token(LT);
-  jj_consume_token(LE);} else if ( type_64 == GT) { 
-jj_consume_token(GT);
-IElementType type_63 = getType();
-if ( type_63 == GT) { 
-jj_consume_token(GT);} else 
-{
-;
-}
-jj_consume_token(GE);} else 
-{
-builder.error("Unexpected type " + builder.getTokenType());
-builder.advanceLexer();
-continue;
-}
-break;
-} while(true);
-
-      {
-        if (jjtc000) {
-          jjtc000 = false;
-          {jjtn000.done(JJTOTHERASSIGNMENTOPS); }
-        }
-      }
-  }
-
-/*
  * Program structuring syntax follows.
  */
   final public void CompilationUnit()  {
  /*@bgen(jjtree) CompilationUnit */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    IElementType type_65 = getType();
-    if ( type_65 == PACKAGE) { 
-  PackageDeclaration();} else 
-{
-  ;
+    if (jj_2_7(2147483647)) {
+      PackageDeclaration();
+    } else {
+      ;
+    }
+    label_61:
+    while (true) {
+      IElementType type_62 = getType();
+      if ( type_62 == IMPORT) { 
+    ;} else 
+  {
+    break label_61;
+  }
+  ImportDeclaration();
 }
-label_66:
+label_63:
 while (true) {
-  IElementType type_67 = getType();
-  if ( type_67 == IMPORT) { 
+  IElementType type_64 = getType();
+  if ( type_64 == ABSTRACT || type_64 == CLASS || type_64 == ENUM || type_64 == FINAL || type_64 == INTERFACE || type_64 == NATIVE || type_64 == PRIVATE || type_64 == PROTECTED || type_64 == PUBLIC || type_64 == STATIC || type_64 == STRICTFP || type_64 == SYNCHRONIZED || type_64 == TRANSIENT || type_64 == VOLATILE || type_64 == SEMICOLON || type_64 == AT) { 
 ;} else 
 {
-break label_66;
-}
-ImportDeclaration();
-}
-label_68:
-while (true) {
-IElementType type_69 = getType();
-if ( type_69 == ABSTRACT || type_69 == CLASS || type_69 == FINAL || type_69 == INTERFACE || type_69 == PUBLIC || type_69 == SEMICOLON) { 
-;} else 
-{
-break label_68;
+break label_63;
 }
 TypeDeclaration();
 }
@@ -1043,24 +948,11 @@ TypeDeclaration();
       }
   }
 
-  final public void JavaCompilationUnit()  {
- /*@bgen(jjtree) JavaCompilationUnit */
-  boolean jjtc000 = true;
-  PsiBuilder.Marker jjtn000 = builder.mark();
-    CompilationUnit();
-    assert (builder.eof());
-      {
-        if (jjtc000) {
-          jjtc000 = false;
-          {jjtn000.done(JJTJAVACOMPILATIONUNIT); }
-        }
-      }
-  }
-
   final public void PackageDeclaration()  {
  /*@bgen(jjtree) PackageDeclaration */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
+    Modifiers();
     jj_consume_token(PACKAGE);
     Name();
     jj_consume_token(SEMICOLON);
@@ -1077,13 +969,19 @@ TypeDeclaration();
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     jj_consume_token(IMPORT);
-    Name();
-    IElementType type_70 = getType();
-    if ( type_70 == DOT) { 
-  jj_consume_token(DOT);
-  jj_consume_token(STAR);} else 
+    IElementType type_65 = getType();
+    if ( type_65 == STATIC) { 
+  jj_consume_token(STATIC);} else 
 {
   ;
+}
+Name();
+IElementType type_66 = getType();
+if ( type_66 == DOT) { 
+jj_consume_token(DOT);
+jj_consume_token(STAR);} else 
+{
+;
 }
 jj_consume_token(SEMICOLON);
       {
@@ -1094,17 +992,419 @@ jj_consume_token(SEMICOLON);
       }
   }
 
+/*
+ * Modifiers. We match all modifiers in a single rule to reduce the chances of
+ * syntax errors for simple modifier mistakes. It will also enable us to give
+ * better error messages.
+ */
+  final public void Modifiers()  {
+ /*@bgen(jjtree) Modifiers */
+  boolean jjtc000 = true;
+  PsiBuilder.Marker jjtn000 = builder.mark();
+    label_67:
+    while (true) {
+      if (jj_2_8(2)) {
+        ;
+      } else {
+        break label_67;
+      }
+      do {
+      IElementType type_68 = getType();
+      if ( type_68 == PUBLIC) { 
+    jj_consume_token(PUBLIC);} else if ( type_68 == STATIC) { 
+  jj_consume_token(STATIC);} else if ( type_68 == PROTECTED) { 
+jj_consume_token(PROTECTED);} else if ( type_68 == PRIVATE) { 
+jj_consume_token(PRIVATE);} else if ( type_68 == FINAL) { 
+jj_consume_token(FINAL);} else if ( type_68 == ABSTRACT) { 
+jj_consume_token(ABSTRACT);} else if ( type_68 == SYNCHRONIZED) { 
+jj_consume_token(SYNCHRONIZED);} else if ( type_68 == NATIVE) { 
+jj_consume_token(NATIVE);} else if ( type_68 == TRANSIENT) { 
+jj_consume_token(TRANSIENT);} else if ( type_68 == VOLATILE) { 
+jj_consume_token(VOLATILE);} else if ( type_68 == STRICTFP) { 
+jj_consume_token(STRICTFP);} else if ( type_68 == AT) { 
+Annotation();} else 
+{
+builder.error("Unexpected type " + builder.getTokenType());
+builder.advanceLexer();
+continue;
+}
+break;
+} while(true);
+
+}
+     {
+       if (jjtc000) {
+         jjtc000 = false;
+         {jjtn000.done(JJTMODIFIERS); }
+       }
+     }
+  }
+
+/*
+ * Declaration syntax follows.
+ */
   final public void TypeDeclaration()  {
  /*@bgen(jjtree) TypeDeclaration */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     do {
-    if (jj_2_6(2147483647)) {
-      ClassDeclaration();
+    IElementType type_70 = getType();
+    if ( type_70 == SEMICOLON) { 
+  jj_consume_token(SEMICOLON);} else if ( type_70 == ABSTRACT || type_70 == CLASS || type_70 == ENUM || type_70 == FINAL || type_70 == INTERFACE || type_70 == NATIVE || type_70 == PRIVATE || type_70 == PROTECTED || type_70 == PUBLIC || type_70 == STATIC || type_70 == STRICTFP || type_70 == SYNCHRONIZED || type_70 == TRANSIENT || type_70 == VOLATILE || type_70 == AT) { 
+Modifiers();
+do {
+IElementType type_69 = getType();
+if ( type_69 == CLASS || type_69 == INTERFACE) { 
+ClassOrInterfaceDeclaration();} else if ( type_69 == ENUM) { 
+EnumDeclaration();} else if ( type_69 == AT) { 
+AnnotationTypeDeclaration();} else 
+{
+builder.error("Unexpected type " + builder.getTokenType());
+builder.advanceLexer();
+continue;
+}
+break;
+} while(true);
+} else 
+{
+builder.error("Unexpected type " + builder.getTokenType());
+builder.advanceLexer();
+continue;
+}
+break;
+} while(true);
+
+      {
+        if (jjtc000) {
+          jjtc000 = false;
+          {jjtn000.done(JJTTYPEDECLARATION); }
+        }
+      }
+  }
+
+  final public void ClassOrInterfaceDeclaration()  {
+ /*@bgen(jjtree) ClassOrInterfaceDeclaration */
+  boolean jjtc000 = true;
+  PsiBuilder.Marker jjtn000 = builder.mark();
+    do {
+    IElementType type_71 = getType();
+    if ( type_71 == CLASS) { 
+  jj_consume_token(CLASS);} else if ( type_71 == INTERFACE) { 
+jj_consume_token(INTERFACE);} else 
+{
+builder.error("Unexpected type " + builder.getTokenType());
+builder.advanceLexer();
+continue;
+}
+break;
+} while(true);
+
+jj_consume_token(IDENTIFIER);
+IElementType type_72 = getType();
+if ( type_72 == LT) { 
+TypeParameters();} else 
+{
+;
+}
+IElementType type_73 = getType();
+if ( type_73 == EXTENDS) { 
+ExtendsList();} else 
+{
+;
+}
+IElementType type_74 = getType();
+if ( type_74 == IMPLEMENTS) { 
+ImplementsList();} else 
+{
+;
+}
+ClassOrInterfaceBody();
+      {
+        if (jjtc000) {
+          jjtc000 = false;
+          {jjtn000.done(JJTCLASSORINTERFACEDECLARATION); }
+        }
+      }
+  }
+
+  final public void ExtendsList()  {
+ /*@bgen(jjtree) ExtendsList */
+  boolean jjtc000 = true;
+  PsiBuilder.Marker jjtn000 = builder.mark();
+    jj_consume_token(EXTENDS);
+    ClassOrInterfaceType();
+    label_75:
+    while (true) {
+      IElementType type_76 = getType();
+      if ( type_76 == COMMA) { 
+    ;} else 
+  {
+    break label_75;
+  }
+  jj_consume_token(COMMA);
+  ClassOrInterfaceType();
+}
+       {
+         if (jjtc000) {
+           jjtc000 = false;
+           {jjtn000.done(JJTEXTENDSLIST); }
+         }
+       }
+  }
+
+  final public void ImplementsList()  {
+ /*@bgen(jjtree) ImplementsList */
+  boolean jjtc000 = true;
+  PsiBuilder.Marker jjtn000 = builder.mark();
+    jj_consume_token(IMPLEMENTS);
+    ClassOrInterfaceType();
+    label_77:
+    while (true) {
+      IElementType type_78 = getType();
+      if ( type_78 == COMMA) { 
+    ;} else 
+  {
+    break label_77;
+  }
+  jj_consume_token(COMMA);
+  ClassOrInterfaceType();
+}
+       {
+         if (jjtc000) {
+           jjtc000 = false;
+           {jjtn000.done(JJTIMPLEMENTSLIST); }
+         }
+       }
+  }
+
+  final public void EnumDeclaration()  {
+ /*@bgen(jjtree) EnumDeclaration */
+  boolean jjtc000 = true;
+  PsiBuilder.Marker jjtn000 = builder.mark();
+    jj_consume_token(ENUM);
+    jj_consume_token(IDENTIFIER);
+    IElementType type_79 = getType();
+    if ( type_79 == IMPLEMENTS) { 
+  ImplementsList();} else 
+{
+  ;
+}
+EnumBody();
+      {
+        if (jjtc000) {
+          jjtc000 = false;
+          {jjtn000.done(JJTENUMDECLARATION); }
+        }
+      }
+  }
+
+  final public void EnumBody()  {
+ /*@bgen(jjtree) EnumBody */
+  boolean jjtc000 = true;
+  PsiBuilder.Marker jjtn000 = builder.mark();
+    jj_consume_token(LBRACE);
+    IElementType type_81 = getType();
+    if ( type_81 == ABSTRACT || type_81 == FINAL || type_81 == NATIVE || type_81 == PRIVATE || type_81 == PROTECTED || type_81 == PUBLIC || type_81 == STATIC || type_81 == STRICTFP || type_81 == SYNCHRONIZED || type_81 == TRANSIENT || type_81 == VOLATILE || type_81 == IDENTIFIER || type_81 == AT) { 
+EnumConstant();
+label_80:
+while (true) {
+if (jj_2_9(2)) {
+;
+} else {
+break label_80;
+}
+jj_consume_token(COMMA);
+EnumConstant();
+}} else 
+{
+;
+}
+IElementType type_82 = getType();
+if ( type_82 == COMMA) { 
+jj_consume_token(COMMA);} else 
+{
+;
+}
+IElementType type_85 = getType();
+if ( type_85 == SEMICOLON) { 
+jj_consume_token(SEMICOLON);
+label_83:
+while (true) {
+IElementType type_84 = getType();
+if ( type_84 == ABSTRACT || type_84 == BOOLEAN || type_84 == BYTE || type_84 == CHAR || type_84 == CLASS || type_84 == DOUBLE || type_84 == ENUM || type_84 == FINAL || type_84 == FLOAT || type_84 == INT || type_84 == INTERFACE || type_84 == LONG || type_84 == NATIVE || type_84 == PRIVATE || type_84 == PROTECTED || type_84 == PUBLIC || type_84 == SHORT || type_84 == STATIC || type_84 == STRICTFP || type_84 == SYNCHRONIZED || type_84 == TRANSIENT || type_84 == VOID || type_84 == VOLATILE || type_84 == IDENTIFIER || type_84 == LBRACE || type_84 == SEMICOLON || type_84 == LT || type_84 == AT) { 
+;} else 
+{
+break label_83;
+}
+ClassOrInterfaceBodyDeclaration();
+}} else 
+{
+;
+}
+jj_consume_token(RBRACE);
+       {
+         if (jjtc000) {
+           jjtc000 = false;
+           {jjtn000.done(JJTENUMBODY); }
+         }
+       }
+  }
+
+  final public void EnumConstant()  {
+ /*@bgen(jjtree) EnumConstant */
+  boolean jjtc000 = true;
+  PsiBuilder.Marker jjtn000 = builder.mark();
+    Modifiers();
+    jj_consume_token(IDENTIFIER);
+    IElementType type_86 = getType();
+    if ( type_86 == LPAREN) { 
+  Arguments();} else 
+{
+  ;
+}
+IElementType type_87 = getType();
+if ( type_87 == LBRACE) { 
+ClassOrInterfaceBody();} else 
+{
+;
+}
+      {
+        if (jjtc000) {
+          jjtc000 = false;
+          {jjtn000.done(JJTENUMCONSTANT); }
+        }
+      }
+  }
+
+  final public void TypeParameters()  {
+ /*@bgen(jjtree) TypeParameters */
+  boolean jjtc000 = true;
+  PsiBuilder.Marker jjtn000 = builder.mark();
+    jj_consume_token(LT);
+    TypeParameter();
+    label_88:
+    while (true) {
+      IElementType type_89 = getType();
+      if ( type_89 == COMMA) { 
+    ;} else 
+  {
+    break label_88;
+  }
+  jj_consume_token(COMMA);
+  TypeParameter();
+}
+jj_consume_token(GT);
+       {
+         if (jjtc000) {
+           jjtc000 = false;
+           {jjtn000.done(JJTTYPEPARAMETERS); }
+         }
+       }
+  }
+
+  final public void TypeParameter()  {
+ /*@bgen(jjtree) TypeParameter */
+  boolean jjtc000 = true;
+  PsiBuilder.Marker jjtn000 = builder.mark();
+    jj_consume_token(IDENTIFIER);
+    IElementType type_90 = getType();
+    if ( type_90 == EXTENDS) { 
+  TypeBound();} else 
+{
+  ;
+}
+       {
+         if (jjtc000) {
+           jjtc000 = false;
+           {jjtn000.done(JJTTYPEPARAMETER); }
+         }
+       }
+  }
+
+  final public void TypeBound()  {
+ /*@bgen(jjtree) TypeBound */
+  boolean jjtc000 = true;
+  PsiBuilder.Marker jjtn000 = builder.mark();
+    jj_consume_token(EXTENDS);
+    ClassOrInterfaceType();
+    label_91:
+    while (true) {
+      IElementType type_92 = getType();
+      if ( type_92 == BIT_AND) { 
+    ;} else 
+  {
+    break label_91;
+  }
+  jj_consume_token(BIT_AND);
+  ClassOrInterfaceType();
+}
+       {
+         if (jjtc000) {
+           jjtc000 = false;
+           {jjtn000.done(JJTTYPEBOUND); }
+         }
+       }
+  }
+
+  final public void ClassOrInterfaceBody()  {
+ /*@bgen(jjtree) ClassOrInterfaceBody */
+  boolean jjtc000 = true;
+  PsiBuilder.Marker jjtn000 = builder.mark();
+    jj_consume_token(LBRACE);
+    label_93:
+    while (true) {
+      IElementType type_94 = getType();
+      if ( type_94 == ABSTRACT || type_94 == BOOLEAN || type_94 == BYTE || type_94 == CHAR || type_94 == CLASS || type_94 == DOUBLE || type_94 == ENUM || type_94 == FINAL || type_94 == FLOAT || type_94 == INT || type_94 == INTERFACE || type_94 == LONG || type_94 == NATIVE || type_94 == PRIVATE || type_94 == PROTECTED || type_94 == PUBLIC || type_94 == SHORT || type_94 == STATIC || type_94 == STRICTFP || type_94 == SYNCHRONIZED || type_94 == TRANSIENT || type_94 == VOID || type_94 == VOLATILE || type_94 == IDENTIFIER || type_94 == LBRACE || type_94 == SEMICOLON || type_94 == LT || type_94 == AT) { 
+;} else 
+{
+break label_93;
+}
+ClassOrInterfaceBodyDeclaration();
+}
+jj_consume_token(RBRACE);
+      {
+        if (jjtc000) {
+          jjtc000 = false;
+          {jjtn000.done(JJTCLASSORINTERFACEBODY); }
+        }
+      }
+  }
+
+  final public void ClassOrInterfaceBodyDeclaration()  {
+ /*@bgen(jjtree) ClassOrInterfaceBodyDeclaration */
+  boolean jjtc000 = true;
+  PsiBuilder.Marker jjtn000 = builder.mark();
+    do {
+    if (jj_2_12(2)) {
+      Initializer();
     } else {
-      IElementType type_71 = getType();
-      if ( type_71 == ABSTRACT || type_71 == INTERFACE || type_71 == PUBLIC) { 
-InterfaceDeclaration();} else if ( type_71 == SEMICOLON) { 
+      IElementType type_97 = getType();
+      if ( type_97 == ABSTRACT || type_97 == BOOLEAN || type_97 == BYTE || type_97 == CHAR || type_97 == CLASS || type_97 == DOUBLE || type_97 == ENUM || type_97 == FINAL || type_97 == FLOAT || type_97 == INT || type_97 == INTERFACE || type_97 == LONG || type_97 == NATIVE || type_97 == PRIVATE || type_97 == PROTECTED || type_97 == PUBLIC || type_97 == SHORT || type_97 == STATIC || type_97 == STRICTFP || type_97 == SYNCHRONIZED || type_97 == TRANSIENT || type_97 == VOID || type_97 == VOLATILE || type_97 == IDENTIFIER || type_97 == LT || type_97 == AT) { 
+Modifiers();
+do {
+IElementType type_95 = getType();
+if ( type_95 == CLASS || type_95 == INTERFACE) { 
+ClassOrInterfaceDeclaration();} else if ( type_95 == ENUM) { 
+EnumDeclaration();} else 
+{
+if (jj_2_10(2147483647)) {
+ConstructorDeclaration();
+} else if (jj_2_11(2147483647)) {
+FieldDeclaration();
+} else {
+IElementType type_96 = getType();
+if ( type_96 == BOOLEAN || type_96 == BYTE || type_96 == CHAR || type_96 == DOUBLE || type_96 == FLOAT || type_96 == INT || type_96 == LONG || type_96 == SHORT || type_96 == VOID || type_96 == IDENTIFIER || type_96 == LT) { 
+MethodDeclaration();} else 
+{
+builder.error("Unexpected type " + builder.getTokenType());
+builder.advanceLexer();
+continue;
+}
+}
+}
+break;
+} while(true);
+} else if ( type_97 == SEMICOLON) { 
 jj_consume_token(SEMICOLON);} else 
 {
 builder.error("Unexpected type " + builder.getTokenType());
@@ -1118,357 +1418,7 @@ break;
       {
         if (jjtc000) {
           jjtc000 = false;
-          {jjtn000.done(JJTTYPEDECLARATION); }
-        }
-      }
-  }
-
-/*
- * Declaration syntax follows.
- */
-  final public void ClassDeclaration()  {
- /*@bgen(jjtree) ClassDeclaration */
-  boolean jjtc000 = true;
-  PsiBuilder.Marker jjtn000 = builder.mark();
-    label_72:
-    while (true) {
-      IElementType type_73 = getType();
-      if ( type_73 == ABSTRACT || type_73 == FINAL || type_73 == PUBLIC) { 
-;} else 
-{
-break label_72;
-}
-do {
-IElementType type_74 = getType();
-if ( type_74 == ABSTRACT) { 
-jj_consume_token(ABSTRACT);} else if ( type_74 == FINAL) { 
-jj_consume_token(FINAL);} else if ( type_74 == PUBLIC) { 
-jj_consume_token(PUBLIC);} else 
-{
-builder.error("Unexpected type " + builder.getTokenType());
-builder.advanceLexer();
-continue;
-}
-break;
-} while(true);
-
-}
-UnmodifiedClassDeclaration();
-      {
-        if (jjtc000) {
-          jjtc000 = false;
-          {jjtn000.done(JJTCLASSDECLARATION); }
-        }
-      }
-  }
-
-  final public void UnmodifiedClassDeclaration()  {
- /*@bgen(jjtree) UnmodifiedClassDeclaration */
-  boolean jjtc000 = true;
-  PsiBuilder.Marker jjtn000 = builder.mark();
-    jj_consume_token(CLASS);
-    JavaIdentifier();
-    IElementType type_75 = getType();
-    if ( type_75 == EXTENDS) { 
-  jj_consume_token(EXTENDS);
-  Name();} else 
-{
-  ;
-}
-IElementType type_76 = getType();
-if ( type_76 == IMPLEMENTS) { 
-jj_consume_token(IMPLEMENTS);
-NameList();} else 
-{
-;
-}
-ClassBody();
-      {
-        if (jjtc000) {
-          jjtc000 = false;
-          {jjtn000.done(JJTUNMODIFIEDCLASSDECLARATION); }
-        }
-      }
-  }
-
-  final public void ClassBody()  {
- /*@bgen(jjtree) ClassBody */
-  boolean jjtc000 = true;
-  PsiBuilder.Marker jjtn000 = builder.mark();
-    jj_consume_token(LBRACE);
-    label_77:
-    while (true) {
-      IElementType type_78 = getType();
-      if ( type_78 == _OPTIONS || type_78 == _LOOKAHEAD || type_78 == _IGNORE_CASE || type_78 == _PARSER_BEGIN || type_78 == _PARSER_END || type_78 == _JAVACODE || type_78 == _TOKEN || type_78 == _SPECIAL_TOKEN || type_78 == _MORE || type_78 == _SKIP || type_78 == _TOKEN_MGR_DECLS || type_78 == _EOF || type_78 == ABSTRACT || type_78 == BOOLEAN || type_78 == BYTE || type_78 == CHAR || type_78 == CLASS || type_78 == DOUBLE || type_78 == FINAL || type_78 == FLOAT || type_78 == INT || type_78 == INTERFACE || type_78 == LONG || type_78 == NATIVE || type_78 == PRIVATE || type_78 == PROTECTED || type_78 == PUBLIC || type_78 == SHORT || type_78 == STATIC || type_78 == SYNCHRONIZED || type_78 == TRANSIENT || type_78 == VOID || type_78 == VOLATILE || type_78 == IDENTIFIER || type_78 == LBRACE) { 
-;} else 
-{
-break label_77;
-}
-ClassBodyDeclaration();
-}
-jj_consume_token(RBRACE);
-      {
-        if (jjtc000) {
-          jjtc000 = false;
-          {jjtn000.done(JJTCLASSBODY); }
-        }
-      }
-  }
-
-  final public void NestedClassDeclaration()  {
- /*@bgen(jjtree) NestedClassDeclaration */
-  boolean jjtc000 = true;
-  PsiBuilder.Marker jjtn000 = builder.mark();
-    label_79:
-    while (true) {
-      IElementType type_80 = getType();
-      if ( type_80 == ABSTRACT || type_80 == FINAL || type_80 == PRIVATE || type_80 == PROTECTED || type_80 == PUBLIC || type_80 == STATIC) { 
-;} else 
-{
-break label_79;
-}
-do {
-IElementType type_81 = getType();
-if ( type_81 == STATIC) { 
-jj_consume_token(STATIC);} else if ( type_81 == ABSTRACT) { 
-jj_consume_token(ABSTRACT);} else if ( type_81 == FINAL) { 
-jj_consume_token(FINAL);} else if ( type_81 == PUBLIC) { 
-jj_consume_token(PUBLIC);} else if ( type_81 == PROTECTED) { 
-jj_consume_token(PROTECTED);} else if ( type_81 == PRIVATE) { 
-jj_consume_token(PRIVATE);} else 
-{
-builder.error("Unexpected type " + builder.getTokenType());
-builder.advanceLexer();
-continue;
-}
-break;
-} while(true);
-
-}
-UnmodifiedClassDeclaration();
-      {
-        if (jjtc000) {
-          jjtc000 = false;
-          {jjtn000.done(JJTNESTEDCLASSDECLARATION); }
-        }
-      }
-  }
-
-  final public void ClassBodyDeclaration()  {
- /*@bgen(jjtree) ClassBodyDeclaration */
-  boolean jjtc000 = true;
-  PsiBuilder.Marker jjtn000 = builder.mark();
-    do {
-    if (jj_2_7(2)) {
-      Initializer();
-    } else if (jj_2_8(2147483647)) {
-      NestedClassDeclaration();
-    } else if (jj_2_9(2147483647)) {
-      NestedInterfaceDeclaration();
-    } else if (jj_2_10(2147483647)) {
-      ConstructorDeclaration();
-    } else if (jj_2_11(2147483647)) {
-      MethodDeclaration();
-    } else {
-      IElementType type_82 = getType();
-      if ( type_82 == _OPTIONS || type_82 == _LOOKAHEAD || type_82 == _IGNORE_CASE || type_82 == _PARSER_BEGIN || type_82 == _PARSER_END || type_82 == _JAVACODE || type_82 == _TOKEN || type_82 == _SPECIAL_TOKEN || type_82 == _MORE || type_82 == _SKIP || type_82 == _TOKEN_MGR_DECLS || type_82 == _EOF || type_82 == BOOLEAN || type_82 == BYTE || type_82 == CHAR || type_82 == DOUBLE || type_82 == FINAL || type_82 == FLOAT || type_82 == INT || type_82 == LONG || type_82 == PRIVATE || type_82 == PROTECTED || type_82 == PUBLIC || type_82 == SHORT || type_82 == STATIC || type_82 == TRANSIENT || type_82 == VOLATILE || type_82 == IDENTIFIER) { 
-FieldDeclaration();} else 
-{
-builder.error("Unexpected type " + builder.getTokenType());
-builder.advanceLexer();
-continue;
-}
-}
-break;
-} while(true);
-
-      {
-        if (jjtc000) {
-          jjtc000 = false;
-          {jjtn000.done(JJTCLASSBODYDECLARATION); }
-        }
-      }
-  }
-
-// This production is to determine lookahead only.
-  final public void MethodDeclarationLookahead()  {
- /*@bgen(jjtree) MethodDeclarationLookahead */
-  boolean jjtc000 = true;
-  PsiBuilder.Marker jjtn000 = builder.mark();
-    label_83:
-    while (true) {
-      IElementType type_84 = getType();
-      if ( type_84 == ABSTRACT || type_84 == FINAL || type_84 == NATIVE || type_84 == PRIVATE || type_84 == PROTECTED || type_84 == PUBLIC || type_84 == STATIC || type_84 == SYNCHRONIZED) { 
-;} else 
-{
-break label_83;
-}
-do {
-IElementType type_85 = getType();
-if ( type_85 == PUBLIC) { 
-jj_consume_token(PUBLIC);} else if ( type_85 == PROTECTED) { 
-jj_consume_token(PROTECTED);} else if ( type_85 == PRIVATE) { 
-jj_consume_token(PRIVATE);} else if ( type_85 == STATIC) { 
-jj_consume_token(STATIC);} else if ( type_85 == ABSTRACT) { 
-jj_consume_token(ABSTRACT);} else if ( type_85 == FINAL) { 
-jj_consume_token(FINAL);} else if ( type_85 == NATIVE) { 
-jj_consume_token(NATIVE);} else if ( type_85 == SYNCHRONIZED) { 
-jj_consume_token(SYNCHRONIZED);} else 
-{
-builder.error("Unexpected type " + builder.getTokenType());
-builder.advanceLexer();
-continue;
-}
-break;
-} while(true);
-
-}
-ResultType();
-JavaIdentifier();
-jj_consume_token(LPAREN);
-      {
-        if (jjtc000) {
-          jjtc000 = false;
-          {jjtn000.done(JJTMETHODDECLARATIONLOOKAHEAD); }
-        }
-      }
-  }
-
-  final public void InterfaceDeclaration()  {
- /*@bgen(jjtree) InterfaceDeclaration */
-  boolean jjtc000 = true;
-  PsiBuilder.Marker jjtn000 = builder.mark();
-    label_86:
-    while (true) {
-      IElementType type_87 = getType();
-      if ( type_87 == ABSTRACT || type_87 == PUBLIC) { 
-  ;} else 
-{
-  break label_86;
-}
-do {
-IElementType type_88 = getType();
-if ( type_88 == ABSTRACT) { 
-jj_consume_token(ABSTRACT);} else if ( type_88 == PUBLIC) { 
-jj_consume_token(PUBLIC);} else 
-{
-builder.error("Unexpected type " + builder.getTokenType());
-builder.advanceLexer();
-continue;
-}
-break;
-} while(true);
-
-}
-UnmodifiedInterfaceDeclaration();
-      {
-        if (jjtc000) {
-          jjtc000 = false;
-          {jjtn000.done(JJTINTERFACEDECLARATION); }
-        }
-      }
-  }
-
-  final public void NestedInterfaceDeclaration()  {
- /*@bgen(jjtree) NestedInterfaceDeclaration */
-  boolean jjtc000 = true;
-  PsiBuilder.Marker jjtn000 = builder.mark();
-    label_89:
-    while (true) {
-      IElementType type_90 = getType();
-      if ( type_90 == ABSTRACT || type_90 == FINAL || type_90 == PRIVATE || type_90 == PROTECTED || type_90 == PUBLIC || type_90 == STATIC) { 
-;} else 
-{
-break label_89;
-}
-do {
-IElementType type_91 = getType();
-if ( type_91 == STATIC) { 
-jj_consume_token(STATIC);} else if ( type_91 == ABSTRACT) { 
-jj_consume_token(ABSTRACT);} else if ( type_91 == FINAL) { 
-jj_consume_token(FINAL);} else if ( type_91 == PUBLIC) { 
-jj_consume_token(PUBLIC);} else if ( type_91 == PROTECTED) { 
-jj_consume_token(PROTECTED);} else if ( type_91 == PRIVATE) { 
-jj_consume_token(PRIVATE);} else 
-{
-builder.error("Unexpected type " + builder.getTokenType());
-builder.advanceLexer();
-continue;
-}
-break;
-} while(true);
-
-}
-UnmodifiedInterfaceDeclaration();
-      {
-        if (jjtc000) {
-          jjtc000 = false;
-          {jjtn000.done(JJTNESTEDINTERFACEDECLARATION); }
-        }
-      }
-  }
-
-  final public void UnmodifiedInterfaceDeclaration()  {
- /*@bgen(jjtree) UnmodifiedInterfaceDeclaration */
-  boolean jjtc000 = true;
-  PsiBuilder.Marker jjtn000 = builder.mark();
-    jj_consume_token(INTERFACE);
-    JavaIdentifier();
-    IElementType type_92 = getType();
-    if ( type_92 == EXTENDS) { 
-  jj_consume_token(EXTENDS);
-  NameList();} else 
-{
-  ;
-}
-jj_consume_token(LBRACE);
-label_93:
-while (true) {
-  IElementType type_94 = getType();
-  if ( type_94 == _OPTIONS || type_94 == _LOOKAHEAD || type_94 == _IGNORE_CASE || type_94 == _PARSER_BEGIN || type_94 == _PARSER_END || type_94 == _JAVACODE || type_94 == _TOKEN || type_94 == _SPECIAL_TOKEN || type_94 == _MORE || type_94 == _SKIP || type_94 == _TOKEN_MGR_DECLS || type_94 == _EOF || type_94 == ABSTRACT || type_94 == BOOLEAN || type_94 == BYTE || type_94 == CHAR || type_94 == CLASS || type_94 == DOUBLE || type_94 == FINAL || type_94 == FLOAT || type_94 == INT || type_94 == INTERFACE || type_94 == LONG || type_94 == NATIVE || type_94 == PRIVATE || type_94 == PROTECTED || type_94 == PUBLIC || type_94 == SHORT || type_94 == STATIC || type_94 == SYNCHRONIZED || type_94 == TRANSIENT || type_94 == VOID || type_94 == VOLATILE || type_94 == IDENTIFIER) { 
-;} else 
-{
-break label_93;
-}
-InterfaceMemberDeclaration();
-}
-jj_consume_token(RBRACE);
-      {
-        if (jjtc000) {
-          jjtc000 = false;
-          {jjtn000.done(JJTUNMODIFIEDINTERFACEDECLARATION); }
-        }
-      }
-  }
-
-  final public void InterfaceMemberDeclaration()  {
- /*@bgen(jjtree) InterfaceMemberDeclaration */
-  boolean jjtc000 = true;
-  PsiBuilder.Marker jjtn000 = builder.mark();
-    do {
-    if (jj_2_12(2147483647)) {
-      NestedClassDeclaration();
-    } else if (jj_2_13(2147483647)) {
-      NestedInterfaceDeclaration();
-    } else if (jj_2_14(2147483647)) {
-      MethodDeclaration();
-    } else {
-      IElementType type_95 = getType();
-      if ( type_95 == _OPTIONS || type_95 == _LOOKAHEAD || type_95 == _IGNORE_CASE || type_95 == _PARSER_BEGIN || type_95 == _PARSER_END || type_95 == _JAVACODE || type_95 == _TOKEN || type_95 == _SPECIAL_TOKEN || type_95 == _MORE || type_95 == _SKIP || type_95 == _TOKEN_MGR_DECLS || type_95 == _EOF || type_95 == BOOLEAN || type_95 == BYTE || type_95 == CHAR || type_95 == DOUBLE || type_95 == FINAL || type_95 == FLOAT || type_95 == INT || type_95 == LONG || type_95 == PRIVATE || type_95 == PROTECTED || type_95 == PUBLIC || type_95 == SHORT || type_95 == STATIC || type_95 == TRANSIENT || type_95 == VOLATILE || type_95 == IDENTIFIER) { 
-FieldDeclaration();} else 
-{
-builder.error("Unexpected type " + builder.getTokenType());
-builder.advanceLexer();
-continue;
-}
-}
-break;
-} while(true);
-
-      {
-        if (jjtc000) {
-          jjtc000 = false;
-          {jjtn000.done(JJTINTERFACEMEMBERDECLARATION); }
+          {jjtn000.done(JJTCLASSORINTERFACEBODYDECLARATION); }
         }
       }
   }
@@ -1477,45 +1427,18 @@ break;
  /*@bgen(jjtree) FieldDeclaration */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    label_96:
+    Type();
+    VariableDeclarator();
+    label_98:
     while (true) {
-      IElementType type_97 = getType();
-      if ( type_97 == FINAL || type_97 == PRIVATE || type_97 == PROTECTED || type_97 == PUBLIC || type_97 == STATIC || type_97 == TRANSIENT || type_97 == VOLATILE) { 
-;} else 
-{
-break label_96;
-}
-do {
-IElementType type_98 = getType();
-if ( type_98 == PUBLIC) { 
-jj_consume_token(PUBLIC);} else if ( type_98 == PROTECTED) { 
-jj_consume_token(PROTECTED);} else if ( type_98 == PRIVATE) { 
-jj_consume_token(PRIVATE);} else if ( type_98 == STATIC) { 
-jj_consume_token(STATIC);} else if ( type_98 == FINAL) { 
-jj_consume_token(FINAL);} else if ( type_98 == TRANSIENT) { 
-jj_consume_token(TRANSIENT);} else if ( type_98 == VOLATILE) { 
-jj_consume_token(VOLATILE);} else 
-{
-builder.error("Unexpected type " + builder.getTokenType());
-builder.advanceLexer();
-continue;
-}
-break;
-} while(true);
-
-}
-Type();
-VariableDeclarator();
-label_99:
-while (true) {
-IElementType type_100 = getType();
-if ( type_100 == COMMA) { 
-;} else 
-{
-break label_99;
-}
-jj_consume_token(COMMA);
-VariableDeclarator();
+      IElementType type_99 = getType();
+      if ( type_99 == COMMA) { 
+    ;} else 
+  {
+    break label_98;
+  }
+  jj_consume_token(COMMA);
+  VariableDeclarator();
 }
 jj_consume_token(SEMICOLON);
       {
@@ -1531,8 +1454,8 @@ jj_consume_token(SEMICOLON);
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     VariableDeclaratorId();
-    IElementType type_101 = getType();
-    if ( type_101 == ASSIGN) { 
+    IElementType type_100 = getType();
+    if ( type_100 == ASSIGN) { 
   jj_consume_token(ASSIGN);
   VariableInitializer();} else 
 {
@@ -1550,14 +1473,14 @@ jj_consume_token(SEMICOLON);
  /*@bgen(jjtree) VariableDeclaratorId */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    JavaIdentifier();
-    label_102:
+    jj_consume_token(IDENTIFIER);
+    label_101:
     while (true) {
-      IElementType type_103 = getType();
-      if ( type_103 == LBRACKET) { 
+      IElementType type_102 = getType();
+      if ( type_102 == LBRACKET) { 
     ;} else 
   {
-    break label_102;
+    break label_101;
   }
   jj_consume_token(LBRACKET);
   jj_consume_token(RBRACKET);
@@ -1575,9 +1498,9 @@ jj_consume_token(SEMICOLON);
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     do {
-    IElementType type_104 = getType();
-    if ( type_104 == LBRACE) { 
-  ArrayInitializer();} else if ( type_104 == _OPTIONS || type_104 == _LOOKAHEAD || type_104 == _IGNORE_CASE || type_104 == _PARSER_BEGIN || type_104 == _PARSER_END || type_104 == _JAVACODE || type_104 == _TOKEN || type_104 == _SPECIAL_TOKEN || type_104 == _MORE || type_104 == _SKIP || type_104 == _TOKEN_MGR_DECLS || type_104 == _EOF || type_104 == BOOLEAN || type_104 == BYTE || type_104 == CHAR || type_104 == DOUBLE || type_104 == FALSE || type_104 == FLOAT || type_104 == INT || type_104 == LONG || type_104 == NEW || type_104 == NULL || type_104 == SHORT || type_104 == SUPER || type_104 == THIS || type_104 == TRUE || type_104 == VOID || type_104 == INTEGER_LITERAL || type_104 == FLOATING_POINT_LITERAL || type_104 == CHARACTER_LITERAL || type_104 == STRING_LITERAL || type_104 == IDENTIFIER || type_104 == LPAREN || type_104 == BANG || type_104 == TILDE || type_104 == INCR || type_104 == DECR || type_104 == PLUS || type_104 == MINUS) { 
+    IElementType type_103 = getType();
+    if ( type_103 == LBRACE) { 
+  ArrayInitializer();} else if ( type_103 == _LOOKAHEAD || type_103 == _IGNORE_CASE || type_103 == _PARSER_BEGIN || type_103 == _PARSER_END || type_103 == _JAVACODE || type_103 == _TOKEN || type_103 == _SPECIAL_TOKEN || type_103 == _MORE || type_103 == _SKIP || type_103 == _TOKEN_MGR_DECLS || type_103 == _EOF || type_103 == BOOLEAN || type_103 == BYTE || type_103 == CHAR || type_103 == DOUBLE || type_103 == FALSE || type_103 == FLOAT || type_103 == INT || type_103 == LONG || type_103 == NEW || type_103 == NULL || type_103 == SHORT || type_103 == SUPER || type_103 == THIS || type_103 == TRUE || type_103 == VOID || type_103 == INTEGER_LITERAL || type_103 == FLOATING_POINT_LITERAL || type_103 == CHARACTER_LITERAL || type_103 == STRING_LITERAL || type_103 == IDENTIFIER || type_103 == LPAREN || type_103 == BANG || type_103 == TILDE || type_103 == INCR || type_103 == DECR || type_103 == PLUS || type_103 == MINUS) { 
 Expression();} else 
 {
 builder.error("Unexpected type " + builder.getTokenType());
@@ -1600,15 +1523,15 @@ break;
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     jj_consume_token(LBRACE);
-    IElementType type_106 = getType();
-    if ( type_106 == _OPTIONS || type_106 == _LOOKAHEAD || type_106 == _IGNORE_CASE || type_106 == _PARSER_BEGIN || type_106 == _PARSER_END || type_106 == _JAVACODE || type_106 == _TOKEN || type_106 == _SPECIAL_TOKEN || type_106 == _MORE || type_106 == _SKIP || type_106 == _TOKEN_MGR_DECLS || type_106 == _EOF || type_106 == BOOLEAN || type_106 == BYTE || type_106 == CHAR || type_106 == DOUBLE || type_106 == FALSE || type_106 == FLOAT || type_106 == INT || type_106 == LONG || type_106 == NEW || type_106 == NULL || type_106 == SHORT || type_106 == SUPER || type_106 == THIS || type_106 == TRUE || type_106 == VOID || type_106 == INTEGER_LITERAL || type_106 == FLOATING_POINT_LITERAL || type_106 == CHARACTER_LITERAL || type_106 == STRING_LITERAL || type_106 == IDENTIFIER || type_106 == LPAREN || type_106 == LBRACE || type_106 == BANG || type_106 == TILDE || type_106 == INCR || type_106 == DECR || type_106 == PLUS || type_106 == MINUS) { 
+    IElementType type_105 = getType();
+    if ( type_105 == _LOOKAHEAD || type_105 == _IGNORE_CASE || type_105 == _PARSER_BEGIN || type_105 == _PARSER_END || type_105 == _JAVACODE || type_105 == _TOKEN || type_105 == _SPECIAL_TOKEN || type_105 == _MORE || type_105 == _SKIP || type_105 == _TOKEN_MGR_DECLS || type_105 == _EOF || type_105 == BOOLEAN || type_105 == BYTE || type_105 == CHAR || type_105 == DOUBLE || type_105 == FALSE || type_105 == FLOAT || type_105 == INT || type_105 == LONG || type_105 == NEW || type_105 == NULL || type_105 == SHORT || type_105 == SUPER || type_105 == THIS || type_105 == TRUE || type_105 == VOID || type_105 == INTEGER_LITERAL || type_105 == FLOATING_POINT_LITERAL || type_105 == CHARACTER_LITERAL || type_105 == STRING_LITERAL || type_105 == IDENTIFIER || type_105 == LPAREN || type_105 == LBRACE || type_105 == BANG || type_105 == TILDE || type_105 == INCR || type_105 == DECR || type_105 == PLUS || type_105 == MINUS) { 
 VariableInitializer();
-label_105:
+label_104:
 while (true) {
-if (jj_2_15(2)) {
+if (jj_2_13(2)) {
 ;
 } else {
-break label_105;
+break label_104;
 }
 jj_consume_token(COMMA);
 VariableInitializer();
@@ -1616,8 +1539,8 @@ VariableInitializer();
 {
 ;
 }
-IElementType type_107 = getType();
-if ( type_107 == COMMA) { 
+IElementType type_106 = getType();
+if ( type_106 == COMMA) { 
 jj_consume_token(COMMA);} else 
 {
 ;
@@ -1635,47 +1558,25 @@ jj_consume_token(RBRACE);
  /*@bgen(jjtree) MethodDeclaration */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    label_108:
-    while (true) {
-      IElementType type_109 = getType();
-      if ( type_109 == ABSTRACT || type_109 == FINAL || type_109 == NATIVE || type_109 == PRIVATE || type_109 == PROTECTED || type_109 == PUBLIC || type_109 == STATIC || type_109 == SYNCHRONIZED) { 
-;} else 
+    IElementType type_107 = getType();
+    if ( type_107 == LT) { 
+  TypeParameters();} else 
 {
-break label_108;
-}
-do {
-IElementType type_110 = getType();
-if ( type_110 == PUBLIC) { 
-jj_consume_token(PUBLIC);} else if ( type_110 == PROTECTED) { 
-jj_consume_token(PROTECTED);} else if ( type_110 == PRIVATE) { 
-jj_consume_token(PRIVATE);} else if ( type_110 == STATIC) { 
-jj_consume_token(STATIC);} else if ( type_110 == ABSTRACT) { 
-jj_consume_token(ABSTRACT);} else if ( type_110 == FINAL) { 
-jj_consume_token(FINAL);} else if ( type_110 == NATIVE) { 
-jj_consume_token(NATIVE);} else if ( type_110 == SYNCHRONIZED) { 
-jj_consume_token(SYNCHRONIZED);} else 
-{
-builder.error("Unexpected type " + builder.getTokenType());
-builder.advanceLexer();
-continue;
-}
-break;
-} while(true);
-
+  ;
 }
 ResultType();
 MethodDeclarator();
-IElementType type_111 = getType();
-if ( type_111 == THROWS) { 
+IElementType type_108 = getType();
+if ( type_108 == THROWS) { 
 jj_consume_token(THROWS);
 NameList();} else 
 {
 ;
 }
 do {
-IElementType type_112 = getType();
-if ( type_112 == LBRACE) { 
-Block();} else if ( type_112 == SEMICOLON) { 
+IElementType type_109 = getType();
+if ( type_109 == LBRACE) { 
+Block();} else if ( type_109 == SEMICOLON) { 
 jj_consume_token(SEMICOLON);} else 
 {
 builder.error("Unexpected type " + builder.getTokenType());
@@ -1697,15 +1598,15 @@ break;
  /*@bgen(jjtree) MethodDeclarator */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    JavaIdentifier();
+    jj_consume_token(IDENTIFIER);
     FormalParameters();
-    label_113:
+    label_110:
     while (true) {
-      IElementType type_114 = getType();
-      if ( type_114 == LBRACKET) { 
+      IElementType type_111 = getType();
+      if ( type_111 == LBRACKET) { 
     ;} else 
   {
-    break label_113;
+    break label_110;
   }
   jj_consume_token(LBRACKET);
   jj_consume_token(RBRACKET);
@@ -1723,16 +1624,16 @@ break;
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     jj_consume_token(LPAREN);
-    IElementType type_117 = getType();
-    if ( type_117 == _OPTIONS || type_117 == _LOOKAHEAD || type_117 == _IGNORE_CASE || type_117 == _PARSER_BEGIN || type_117 == _PARSER_END || type_117 == _JAVACODE || type_117 == _TOKEN || type_117 == _SPECIAL_TOKEN || type_117 == _MORE || type_117 == _SKIP || type_117 == _TOKEN_MGR_DECLS || type_117 == _EOF || type_117 == BOOLEAN || type_117 == BYTE || type_117 == CHAR || type_117 == DOUBLE || type_117 == FINAL || type_117 == FLOAT || type_117 == INT || type_117 == LONG || type_117 == SHORT || type_117 == IDENTIFIER) { 
+    IElementType type_114 = getType();
+    if ( type_114 == ABSTRACT || type_114 == BOOLEAN || type_114 == BYTE || type_114 == CHAR || type_114 == DOUBLE || type_114 == FINAL || type_114 == FLOAT || type_114 == INT || type_114 == LONG || type_114 == NATIVE || type_114 == PRIVATE || type_114 == PROTECTED || type_114 == PUBLIC || type_114 == SHORT || type_114 == STATIC || type_114 == STRICTFP || type_114 == SYNCHRONIZED || type_114 == TRANSIENT || type_114 == VOLATILE || type_114 == IDENTIFIER || type_114 == AT) { 
 FormalParameter();
-label_115:
+label_112:
 while (true) {
-IElementType type_116 = getType();
-if ( type_116 == COMMA) { 
+IElementType type_113 = getType();
+if ( type_113 == COMMA) { 
 ;} else 
 {
-break label_115;
+break label_112;
 }
 jj_consume_token(COMMA);
 FormalParameter();
@@ -1753,13 +1654,14 @@ jj_consume_token(RPAREN);
  /*@bgen(jjtree) FormalParameter */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    IElementType type_118 = getType();
-    if ( type_118 == FINAL) { 
-  jj_consume_token(FINAL);} else 
+    Modifiers();
+    Type();
+    IElementType type_115 = getType();
+    if ( type_115 == ELLIPSIS) { 
+  jj_consume_token(ELLIPSIS);} else 
 {
   ;
 }
-Type();
 VariableDeclaratorId();
       {
         if (jjtc000) {
@@ -1773,47 +1675,34 @@ VariableDeclaratorId();
  /*@bgen(jjtree) ConstructorDeclaration */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    IElementType type_120 = getType();
-    if ( type_120 == PRIVATE || type_120 == PROTECTED || type_120 == PUBLIC) { 
-do {
-IElementType type_119 = getType();
-if ( type_119 == PUBLIC) { 
-jj_consume_token(PUBLIC);} else if ( type_119 == PROTECTED) { 
-jj_consume_token(PROTECTED);} else if ( type_119 == PRIVATE) { 
-jj_consume_token(PRIVATE);} else 
+    IElementType type_116 = getType();
+    if ( type_116 == LT) { 
+  TypeParameters();} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
-builder.advanceLexer();
-continue;
+  ;
 }
-break;
-} while(true);
-} else 
-{
-;
-}
-JavaIdentifier();
+jj_consume_token(IDENTIFIER);
 FormalParameters();
-IElementType type_121 = getType();
-if ( type_121 == THROWS) { 
+IElementType type_117 = getType();
+if ( type_117 == THROWS) { 
 jj_consume_token(THROWS);
 NameList();} else 
 {
 ;
 }
 jj_consume_token(LBRACE);
-if (jj_2_16(2147483647)) {
+if (jj_2_14(2147483647)) {
 ExplicitConstructorInvocation();
 } else {
 ;
 }
-label_122:
+label_118:
 while (true) {
-IElementType type_123 = getType();
-if ( type_123 == _OPTIONS || type_123 == _LOOKAHEAD || type_123 == _IGNORE_CASE || type_123 == _PARSER_BEGIN || type_123 == _PARSER_END || type_123 == _JAVACODE || type_123 == _TOKEN || type_123 == _SPECIAL_TOKEN || type_123 == _MORE || type_123 == _SKIP || type_123 == _TOKEN_MGR_DECLS || type_123 == _EOF || type_123 == BOOLEAN || type_123 == BREAK || type_123 == BYTE || type_123 == CHAR || type_123 == CLASS || type_123 == CONTINUE || type_123 == DO || type_123 == DOUBLE || type_123 == FALSE || type_123 == FINAL || type_123 == FLOAT || type_123 == FOR || type_123 == IF || type_123 == INT || type_123 == INTERFACE || type_123 == LONG || type_123 == NEW || type_123 == NULL || type_123 == RETURN || type_123 == SHORT || type_123 == SUPER || type_123 == SWITCH || type_123 == SYNCHRONIZED || type_123 == THIS || type_123 == THROW || type_123 == TRUE || type_123 == TRY || type_123 == VOID || type_123 == WHILE || type_123 == INTEGER_LITERAL || type_123 == FLOATING_POINT_LITERAL || type_123 == CHARACTER_LITERAL || type_123 == STRING_LITERAL || type_123 == IDENTIFIER || type_123 == LPAREN || type_123 == LBRACE || type_123 == SEMICOLON || type_123 == INCR || type_123 == DECR) { 
+IElementType type_119 = getType();
+if ( type_119 == _LOOKAHEAD || type_119 == _IGNORE_CASE || type_119 == _PARSER_BEGIN || type_119 == _PARSER_END || type_119 == _JAVACODE || type_119 == _TOKEN || type_119 == _SPECIAL_TOKEN || type_119 == _MORE || type_119 == _SKIP || type_119 == _TOKEN_MGR_DECLS || type_119 == _EOF || type_119 == ABSTRACT || type_119 == ASSERT || type_119 == BOOLEAN || type_119 == BREAK || type_119 == BYTE || type_119 == CHAR || type_119 == CLASS || type_119 == CONTINUE || type_119 == DO || type_119 == DOUBLE || type_119 == FALSE || type_119 == FINAL || type_119 == FLOAT || type_119 == FOR || type_119 == IF || type_119 == INT || type_119 == INTERFACE || type_119 == LONG || type_119 == NATIVE || type_119 == NEW || type_119 == NULL || type_119 == PRIVATE || type_119 == PROTECTED || type_119 == PUBLIC || type_119 == RETURN || type_119 == SHORT || type_119 == STATIC || type_119 == STRICTFP || type_119 == SUPER || type_119 == SWITCH || type_119 == SYNCHRONIZED || type_119 == THIS || type_119 == THROW || type_119 == TRANSIENT || type_119 == TRUE || type_119 == TRY || type_119 == VOID || type_119 == VOLATILE || type_119 == WHILE || type_119 == INTEGER_LITERAL || type_119 == FLOATING_POINT_LITERAL || type_119 == CHARACTER_LITERAL || type_119 == STRING_LITERAL || type_119 == IDENTIFIER || type_119 == LPAREN || type_119 == LBRACE || type_119 == SEMICOLON || type_119 == INCR || type_119 == DECR || type_119 == AT) { 
 ;} else 
 {
-break label_122;
+break label_118;
 }
 BlockStatement();
 }
@@ -1831,14 +1720,14 @@ jj_consume_token(RBRACE);
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     do {
-    if (jj_2_18(2147483647)) {
+    if (jj_2_16(2147483647)) {
       jj_consume_token(THIS);
       Arguments();
       jj_consume_token(SEMICOLON);
     } else {
-      IElementType type_124 = getType();
-      if ( type_124 == _OPTIONS || type_124 == _LOOKAHEAD || type_124 == _IGNORE_CASE || type_124 == _PARSER_BEGIN || type_124 == _PARSER_END || type_124 == _JAVACODE || type_124 == _TOKEN || type_124 == _SPECIAL_TOKEN || type_124 == _MORE || type_124 == _SKIP || type_124 == _TOKEN_MGR_DECLS || type_124 == _EOF || type_124 == BOOLEAN || type_124 == BYTE || type_124 == CHAR || type_124 == DOUBLE || type_124 == FALSE || type_124 == FLOAT || type_124 == INT || type_124 == LONG || type_124 == NEW || type_124 == NULL || type_124 == SHORT || type_124 == SUPER || type_124 == THIS || type_124 == TRUE || type_124 == VOID || type_124 == INTEGER_LITERAL || type_124 == FLOATING_POINT_LITERAL || type_124 == CHARACTER_LITERAL || type_124 == STRING_LITERAL || type_124 == IDENTIFIER || type_124 == LPAREN) { 
-if (jj_2_17(2)) {
+      IElementType type_120 = getType();
+      if ( type_120 == _LOOKAHEAD || type_120 == _IGNORE_CASE || type_120 == _PARSER_BEGIN || type_120 == _PARSER_END || type_120 == _JAVACODE || type_120 == _TOKEN || type_120 == _SPECIAL_TOKEN || type_120 == _MORE || type_120 == _SKIP || type_120 == _TOKEN_MGR_DECLS || type_120 == _EOF || type_120 == BOOLEAN || type_120 == BYTE || type_120 == CHAR || type_120 == DOUBLE || type_120 == FALSE || type_120 == FLOAT || type_120 == INT || type_120 == LONG || type_120 == NEW || type_120 == NULL || type_120 == SHORT || type_120 == SUPER || type_120 == THIS || type_120 == TRUE || type_120 == VOID || type_120 == INTEGER_LITERAL || type_120 == FLOATING_POINT_LITERAL || type_120 == CHARACTER_LITERAL || type_120 == STRING_LITERAL || type_120 == IDENTIFIER || type_120 == LPAREN) { 
+if (jj_2_15(2)) {
 PrimaryExpression();
 jj_consume_token(DOT);
 } else {
@@ -1868,8 +1757,8 @@ break;
  /*@bgen(jjtree) Initializer */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    IElementType type_125 = getType();
-    if ( type_125 == STATIC) { 
+    IElementType type_121 = getType();
+    if ( type_121 == STATIC) { 
   jj_consume_token(STATIC);} else 
 {
   ;
@@ -1891,10 +1780,58 @@ Block();
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     do {
-    IElementType type_126 = getType();
-    if ( type_126 == BOOLEAN || type_126 == BYTE || type_126 == CHAR || type_126 == DOUBLE || type_126 == FLOAT || type_126 == INT || type_126 == LONG || type_126 == SHORT) { 
-PrimitiveType();} else if ( type_126 == _OPTIONS || type_126 == _LOOKAHEAD || type_126 == _IGNORE_CASE || type_126 == _PARSER_BEGIN || type_126 == _PARSER_END || type_126 == _JAVACODE || type_126 == _TOKEN || type_126 == _SPECIAL_TOKEN || type_126 == _MORE || type_126 == _SKIP || type_126 == _TOKEN_MGR_DECLS || type_126 == _EOF || type_126 == IDENTIFIER) { 
-Name();} else 
+    if (jj_2_17(2)) {
+      ReferenceType();
+    } else {
+      IElementType type_122 = getType();
+      if ( type_122 == BOOLEAN || type_122 == BYTE || type_122 == CHAR || type_122 == DOUBLE || type_122 == FLOAT || type_122 == INT || type_122 == LONG || type_122 == SHORT) { 
+PrimitiveType();} else 
+{
+builder.error("Unexpected type " + builder.getTokenType());
+builder.advanceLexer();
+continue;
+}
+}
+break;
+} while(true);
+
+       {
+         if (jjtc000) {
+           jjtc000 = false;
+           {jjtn000.done(JJTTYPE); }
+         }
+       }
+  }
+
+  final public void ReferenceType()  {
+ /*@bgen(jjtree) ReferenceType */
+  boolean jjtc000 = true;
+  PsiBuilder.Marker jjtn000 = builder.mark();
+    do {
+    IElementType type_125 = getType();
+    if ( type_125 == BOOLEAN || type_125 == BYTE || type_125 == CHAR || type_125 == DOUBLE || type_125 == FLOAT || type_125 == INT || type_125 == LONG || type_125 == SHORT) { 
+PrimitiveType();
+label_123:
+while (true) {
+jj_consume_token(LBRACKET);
+jj_consume_token(RBRACKET);
+if (jj_2_18(2)) {
+;
+} else {
+break label_123;
+}
+}} else if ( type_125 == IDENTIFIER) { 
+ClassOrInterfaceType();
+label_124:
+while (true) {
+if (jj_2_19(2)) {
+;
+} else {
+break label_124;
+}
+jj_consume_token(LBRACKET);
+jj_consume_token(RBRACKET);
+}} else 
 {
 builder.error("Unexpected type " + builder.getTokenType());
 builder.advanceLexer();
@@ -1903,23 +1840,129 @@ continue;
 break;
 } while(true);
 
-label_127:
-while (true) {
-IElementType type_128 = getType();
-if ( type_128 == LBRACKET) { 
-;} else 
-{
-break label_127;
-}
-jj_consume_token(LBRACKET);
-jj_consume_token(RBRACKET);
-}
+       {
+         if (jjtc000) {
+           jjtc000 = false;
+           {jjtn000.done(JJTREFERENCETYPE); }
+         }
+       }
+  }
+
+  final public void ClassOrInterfaceType()  {
+ /*@bgen(jjtree) ClassOrInterfaceType */
+  boolean jjtc000 = true;
+  PsiBuilder.Marker jjtn000 = builder.mark();
+    jj_consume_token(IDENTIFIER);
+    if (jj_2_20(2)) {
+      TypeArguments();
+    } else {
+      ;
+    }
+    label_126:
+    while (true) {
+      if (jj_2_21(2)) {
+        ;
+      } else {
+        break label_126;
+      }
+      jj_consume_token(DOT);
+      jj_consume_token(IDENTIFIER);
+      if (jj_2_22(2)) {
+        TypeArguments();
+      } else {
+        ;
+      }
+    }
       {
         if (jjtc000) {
           jjtc000 = false;
-          {jjtn000.done(JJTTYPE); }
+          {jjtn000.done(JJTCLASSORINTERFACETYPE); }
         }
       }
+  }
+
+  final public void TypeArguments()  {
+ /*@bgen(jjtree) TypeArguments */
+  boolean jjtc000 = true;
+  PsiBuilder.Marker jjtn000 = builder.mark();
+    jj_consume_token(LT);
+    TypeArgument();
+    label_127:
+    while (true) {
+      IElementType type_128 = getType();
+      if ( type_128 == COMMA) { 
+    ;} else 
+  {
+    break label_127;
+  }
+  jj_consume_token(COMMA);
+  TypeArgument();
+}
+jj_consume_token(GT);
+       {
+         if (jjtc000) {
+           jjtc000 = false;
+           {jjtn000.done(JJTTYPEARGUMENTS); }
+         }
+       }
+  }
+
+  final public void TypeArgument()  {
+ /*@bgen(jjtree) TypeArgument */
+  boolean jjtc000 = true;
+  PsiBuilder.Marker jjtn000 = builder.mark();
+    do {
+    IElementType type_130 = getType();
+    if ( type_130 == BOOLEAN || type_130 == BYTE || type_130 == CHAR || type_130 == DOUBLE || type_130 == FLOAT || type_130 == INT || type_130 == LONG || type_130 == SHORT || type_130 == IDENTIFIER) { 
+ReferenceType();} else if ( type_130 == HOOK) { 
+jj_consume_token(HOOK);
+IElementType type_129 = getType();
+if ( type_129 == EXTENDS || type_129 == SUPER) { 
+WildcardBounds();} else 
+{
+;
+}} else 
+{
+builder.error("Unexpected type " + builder.getTokenType());
+builder.advanceLexer();
+continue;
+}
+break;
+} while(true);
+
+       {
+         if (jjtc000) {
+           jjtc000 = false;
+           {jjtn000.done(JJTTYPEARGUMENT); }
+         }
+       }
+  }
+
+  final public void WildcardBounds()  {
+ /*@bgen(jjtree) WildcardBounds */
+  boolean jjtc000 = true;
+  PsiBuilder.Marker jjtn000 = builder.mark();
+    do {
+    IElementType type_131 = getType();
+    if ( type_131 == EXTENDS) { 
+  jj_consume_token(EXTENDS);
+  ReferenceType();} else if ( type_131 == SUPER) { 
+jj_consume_token(SUPER);
+ReferenceType();} else 
+{
+builder.error("Unexpected type " + builder.getTokenType());
+builder.advanceLexer();
+continue;
+}
+break;
+} while(true);
+
+       {
+         if (jjtc000) {
+           jjtc000 = false;
+           {jjtn000.done(JJTWILDCARDBOUNDS); }
+         }
+       }
   }
 
   final public void PrimitiveType()  {
@@ -1927,15 +1970,15 @@ jj_consume_token(RBRACKET);
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     do {
-    IElementType type_129 = getType();
-    if ( type_129 == BOOLEAN) { 
-  jj_consume_token(BOOLEAN);} else if ( type_129 == CHAR) { 
-jj_consume_token(CHAR);} else if ( type_129 == BYTE) { 
-jj_consume_token(BYTE);} else if ( type_129 == SHORT) { 
-jj_consume_token(SHORT);} else if ( type_129 == INT) { 
-jj_consume_token(INT);} else if ( type_129 == LONG) { 
-jj_consume_token(LONG);} else if ( type_129 == FLOAT) { 
-jj_consume_token(FLOAT);} else if ( type_129 == DOUBLE) { 
+    IElementType type_132 = getType();
+    if ( type_132 == BOOLEAN) { 
+  jj_consume_token(BOOLEAN);} else if ( type_132 == CHAR) { 
+jj_consume_token(CHAR);} else if ( type_132 == BYTE) { 
+jj_consume_token(BYTE);} else if ( type_132 == SHORT) { 
+jj_consume_token(SHORT);} else if ( type_132 == INT) { 
+jj_consume_token(INT);} else if ( type_132 == LONG) { 
+jj_consume_token(LONG);} else if ( type_132 == FLOAT) { 
+jj_consume_token(FLOAT);} else if ( type_132 == DOUBLE) { 
 jj_consume_token(DOUBLE);} else 
 {
 builder.error("Unexpected type " + builder.getTokenType());
@@ -1958,9 +2001,9 @@ break;
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     do {
-    IElementType type_130 = getType();
-    if ( type_130 == VOID) { 
-  jj_consume_token(VOID);} else if ( type_130 == _OPTIONS || type_130 == _LOOKAHEAD || type_130 == _IGNORE_CASE || type_130 == _PARSER_BEGIN || type_130 == _PARSER_END || type_130 == _JAVACODE || type_130 == _TOKEN || type_130 == _SPECIAL_TOKEN || type_130 == _MORE || type_130 == _SKIP || type_130 == _TOKEN_MGR_DECLS || type_130 == _EOF || type_130 == BOOLEAN || type_130 == BYTE || type_130 == CHAR || type_130 == DOUBLE || type_130 == FLOAT || type_130 == INT || type_130 == LONG || type_130 == SHORT || type_130 == IDENTIFIER) { 
+    IElementType type_133 = getType();
+    if ( type_133 == VOID) { 
+  jj_consume_token(VOID);} else if ( type_133 == BOOLEAN || type_133 == BYTE || type_133 == CHAR || type_133 == DOUBLE || type_133 == FLOAT || type_133 == INT || type_133 == LONG || type_133 == SHORT || type_133 == IDENTIFIER) { 
 Type();} else 
 {
 builder.error("Unexpected type " + builder.getTokenType());
@@ -1983,12 +2026,12 @@ break;
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     JavaIdentifier();
-    label_131:
+    label_134:
     while (true) {
-      if (jj_2_19(2)) {
+      if (jj_2_23(2)) {
         ;
       } else {
-        break label_131;
+        break label_134;
       }
       jj_consume_token(DOT);
       JavaIdentifier();
@@ -2006,13 +2049,13 @@ break;
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     Name();
-    label_132:
+    label_135:
     while (true) {
-      IElementType type_133 = getType();
-      if ( type_133 == COMMA) { 
+      IElementType type_136 = getType();
+      if ( type_136 == COMMA) { 
     ;} else 
   {
-    break label_132;
+    break label_135;
   }
   jj_consume_token(COMMA);
   Name();
@@ -2033,13 +2076,12 @@ break;
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     ConditionalExpression();
-    IElementType type_134 = getType();
-    if ( type_134 == ASSIGN || type_134 == GT || type_134 == LT || type_134 == PLUSASSIGN || type_134 == MINUSASSIGN || type_134 == STARASSIGN || type_134 == SLASHASSIGN || type_134 == ANDASSIGN || type_134 == ORASSIGN || type_134 == XORASSIGN || type_134 == REMASSIGN) { 
-AssignmentOperator();
-Expression();} else 
-{
-;
-}
+    if (jj_2_24(2)) {
+      AssignmentOperator();
+      Expression();
+    } else {
+      ;
+    }
       {
         if (jjtc000) {
           jjtc000 = false;
@@ -2053,18 +2095,29 @@ Expression();} else
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     do {
-    IElementType type_135 = getType();
-    if ( type_135 == ASSIGN) { 
-  jj_consume_token(ASSIGN);} else if ( type_135 == STARASSIGN) { 
-jj_consume_token(STARASSIGN);} else if ( type_135 == SLASHASSIGN) { 
-jj_consume_token(SLASHASSIGN);} else if ( type_135 == REMASSIGN) { 
-jj_consume_token(REMASSIGN);} else if ( type_135 == PLUSASSIGN) { 
-jj_consume_token(PLUSASSIGN);} else if ( type_135 == MINUSASSIGN) { 
-jj_consume_token(MINUSASSIGN);} else if ( type_135 == ANDASSIGN) { 
-jj_consume_token(ANDASSIGN);} else if ( type_135 == XORASSIGN) { 
-jj_consume_token(XORASSIGN);} else if ( type_135 == ORASSIGN) { 
-jj_consume_token(ORASSIGN);} else if ( type_135 == GT || type_135 == LT) { 
-OtherAssignmentOps();} else 
+    IElementType type_138 = getType();
+    if ( type_138 == ASSIGN) { 
+  jj_consume_token(ASSIGN);} else if ( type_138 == STARASSIGN) { 
+jj_consume_token(STARASSIGN);} else if ( type_138 == SLASHASSIGN) { 
+jj_consume_token(SLASHASSIGN);} else if ( type_138 == REMASSIGN) { 
+jj_consume_token(REMASSIGN);} else if ( type_138 == PLUSASSIGN) { 
+jj_consume_token(PLUSASSIGN);} else if ( type_138 == MINUSASSIGN) { 
+jj_consume_token(MINUSASSIGN);} else if ( type_138 == LT) { 
+jj_consume_token(LT);
+jj_consume_token(LT);
+jj_consume_token(ASSIGN);} else if ( type_138 == GT) { 
+jj_consume_token(GT);
+jj_consume_token(GT);
+IElementType type_137 = getType();
+if ( type_137 == GT) { 
+jj_consume_token(GT);} else 
+{
+;
+}
+jj_consume_token(ASSIGN);} else if ( type_138 == ANDASSIGN) { 
+jj_consume_token(ANDASSIGN);} else if ( type_138 == XORASSIGN) { 
+jj_consume_token(XORASSIGN);} else if ( type_138 == ORASSIGN) { 
+jj_consume_token(ORASSIGN);} else 
 {
 builder.error("Unexpected type " + builder.getTokenType());
 builder.advanceLexer();
@@ -2086,12 +2139,12 @@ break;
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     ConditionalOrExpression();
-    IElementType type_136 = getType();
-    if ( type_136 == HOOK) { 
+    IElementType type_139 = getType();
+    if ( type_139 == HOOK) { 
   jj_consume_token(HOOK);
   Expression();
   jj_consume_token(COLON);
-  ConditionalExpression();} else 
+  Expression();} else 
 {
   ;
 }
@@ -2108,13 +2161,13 @@ break;
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     ConditionalAndExpression();
-    label_137:
+    label_140:
     while (true) {
-      IElementType type_138 = getType();
-      if ( type_138 == SC_OR) { 
+      IElementType type_141 = getType();
+      if ( type_141 == SC_OR) { 
     ;} else 
   {
-    break label_137;
+    break label_140;
   }
   jj_consume_token(SC_OR);
   ConditionalAndExpression();
@@ -2132,13 +2185,13 @@ break;
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     InclusiveOrExpression();
-    label_139:
+    label_142:
     while (true) {
-      IElementType type_140 = getType();
-      if ( type_140 == SC_AND) { 
+      IElementType type_143 = getType();
+      if ( type_143 == SC_AND) { 
     ;} else 
   {
-    break label_139;
+    break label_142;
   }
   jj_consume_token(SC_AND);
   InclusiveOrExpression();
@@ -2156,13 +2209,13 @@ break;
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     ExclusiveOrExpression();
-    label_141:
+    label_144:
     while (true) {
-      IElementType type_142 = getType();
-      if ( type_142 == BIT_OR) { 
+      IElementType type_145 = getType();
+      if ( type_145 == BIT_OR) { 
     ;} else 
   {
-    break label_141;
+    break label_144;
   }
   jj_consume_token(BIT_OR);
   ExclusiveOrExpression();
@@ -2180,13 +2233,13 @@ break;
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     AndExpression();
-    label_143:
+    label_146:
     while (true) {
-      IElementType type_144 = getType();
-      if ( type_144 == XOR) { 
+      IElementType type_147 = getType();
+      if ( type_147 == XOR) { 
     ;} else 
   {
-    break label_143;
+    break label_146;
   }
   jj_consume_token(XOR);
   AndExpression();
@@ -2204,13 +2257,13 @@ break;
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     EqualityExpression();
-    label_145:
+    label_148:
     while (true) {
-      IElementType type_146 = getType();
-      if ( type_146 == BIT_AND) { 
+      IElementType type_149 = getType();
+      if ( type_149 == BIT_AND) { 
     ;} else 
   {
-    break label_145;
+    break label_148;
   }
   jj_consume_token(BIT_AND);
   EqualityExpression();
@@ -2228,18 +2281,18 @@ break;
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     InstanceOfExpression();
-    label_147:
+    label_150:
     while (true) {
-      IElementType type_148 = getType();
-      if ( type_148 == EQ || type_148 == NE) { 
+      IElementType type_151 = getType();
+      if ( type_151 == EQ || type_151 == NE) { 
   ;} else 
 {
-  break label_147;
+  break label_150;
 }
 do {
-IElementType type_149 = getType();
-if ( type_149 == EQ) { 
-jj_consume_token(EQ);} else if ( type_149 == NE) { 
+IElementType type_152 = getType();
+if ( type_152 == EQ) { 
+jj_consume_token(EQ);} else if ( type_152 == NE) { 
 jj_consume_token(NE);} else 
 {
 builder.error("Unexpected type " + builder.getTokenType());
@@ -2264,8 +2317,8 @@ InstanceOfExpression();
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     RelationalExpression();
-    IElementType type_150 = getType();
-    if ( type_150 == INSTANCEOF) { 
+    IElementType type_153 = getType();
+    if ( type_153 == INSTANCEOF) { 
   jj_consume_token(INSTANCEOF);
   Type();} else 
 {
@@ -2284,28 +2337,32 @@ InstanceOfExpression();
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     ShiftExpression();
-    label_151:
+    label_154:
     while (true) {
-      if (jj_2_20(2)) {
+      if (jj_2_25(2)) {
         ;
       } else {
-        break label_151;
+        break label_154;
       }
       do {
-      IElementType type_152 = getType();
-      if ( type_152 == LT) { 
-    jj_consume_token(LT);} else if ( type_152 == GT) { 
-  jj_consume_token(GT);} else if ( type_152 == LE) { 
-jj_consume_token(LE);} else if ( type_152 == GE) { 
-jj_consume_token(GE);} else 
+      IElementType type_155 = getType();
+      if ( type_155 == LT) { 
+    jj_consume_token(LT);} else if ( type_155 == GT) { 
+  jj_consume_token(GT);} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
-builder.advanceLexer();
-continue;
+  builder.error("Unexpected type " + builder.getTokenType());
+  builder.advanceLexer();
+  continue;
 }
 break;
 } while(true);
 
+IElementType type_156 = getType();
+if ( type_156 == ASSIGN) { 
+jj_consume_token(ASSIGN);} else 
+{
+;
+}
 ShiftExpression();
 }
       {
@@ -2321,16 +2378,37 @@ ShiftExpression();
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     AdditiveExpression();
-    label_153:
+    label_157:
     while (true) {
-      if (jj_2_21(3)) {
+      if (jj_2_26(2)) {
         ;
       } else {
-        break label_153;
+        break label_157;
       }
-      ShiftOps();
-      AdditiveExpression();
-    }
+      do {
+      IElementType type_158 = getType();
+      if ( type_158 == LT) { 
+    jj_consume_token(LT);
+    jj_consume_token(LT);} else 
+  {
+    if (jj_2_27(3)) {
+      RUNSIGNEDSHIFT();
+    } else {
+      IElementType type_159 = getType();
+      if ( type_159 == GT) { 
+    RSIGNEDSHIFT();} else 
+  {
+    builder.error("Unexpected type " + builder.getTokenType());
+    builder.advanceLexer();
+    continue;
+  }
+}
+}
+break;
+} while(true);
+
+AdditiveExpression();
+}
       {
         if (jjtc000) {
           jjtc000 = false;
@@ -2344,18 +2422,18 @@ ShiftExpression();
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     MultiplicativeExpression();
-    label_154:
+    label_160:
     while (true) {
-      IElementType type_155 = getType();
-      if ( type_155 == PLUS || type_155 == MINUS) { 
+      IElementType type_161 = getType();
+      if ( type_161 == PLUS || type_161 == MINUS) { 
   ;} else 
 {
-  break label_154;
+  break label_160;
 }
 do {
-IElementType type_156 = getType();
-if ( type_156 == PLUS) { 
-jj_consume_token(PLUS);} else if ( type_156 == MINUS) { 
+IElementType type_162 = getType();
+if ( type_162 == PLUS) { 
+jj_consume_token(PLUS);} else if ( type_162 == MINUS) { 
 jj_consume_token(MINUS);} else 
 {
 builder.error("Unexpected type " + builder.getTokenType());
@@ -2380,19 +2458,19 @@ MultiplicativeExpression();
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     UnaryExpression();
-    label_157:
+    label_163:
     while (true) {
-      IElementType type_158 = getType();
-      if ( type_158 == STAR || type_158 == SLASH || type_158 == REM) { 
+      IElementType type_164 = getType();
+      if ( type_164 == STAR || type_164 == SLASH || type_164 == REM) { 
 ;} else 
 {
-break label_157;
+break label_163;
 }
 do {
-IElementType type_159 = getType();
-if ( type_159 == STAR) { 
-jj_consume_token(STAR);} else if ( type_159 == SLASH) { 
-jj_consume_token(SLASH);} else if ( type_159 == REM) { 
+IElementType type_165 = getType();
+if ( type_165 == STAR) { 
+jj_consume_token(STAR);} else if ( type_165 == SLASH) { 
+jj_consume_token(SLASH);} else if ( type_165 == REM) { 
 jj_consume_token(REM);} else 
 {
 builder.error("Unexpected type " + builder.getTokenType());
@@ -2417,12 +2495,12 @@ UnaryExpression();
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     do {
-    IElementType type_161 = getType();
-    if ( type_161 == PLUS || type_161 == MINUS) { 
+    IElementType type_167 = getType();
+    if ( type_167 == PLUS || type_167 == MINUS) { 
 do {
-IElementType type_160 = getType();
-if ( type_160 == PLUS) { 
-jj_consume_token(PLUS);} else if ( type_160 == MINUS) { 
+IElementType type_166 = getType();
+if ( type_166 == PLUS) { 
+jj_consume_token(PLUS);} else if ( type_166 == MINUS) { 
 jj_consume_token(MINUS);} else 
 {
 builder.error("Unexpected type " + builder.getTokenType());
@@ -2432,9 +2510,9 @@ continue;
 break;
 } while(true);
 
-UnaryExpression();} else if ( type_161 == INCR) { 
-PreIncrementExpression();} else if ( type_161 == DECR) { 
-PreDecrementExpression();} else if ( type_161 == _OPTIONS || type_161 == _LOOKAHEAD || type_161 == _IGNORE_CASE || type_161 == _PARSER_BEGIN || type_161 == _PARSER_END || type_161 == _JAVACODE || type_161 == _TOKEN || type_161 == _SPECIAL_TOKEN || type_161 == _MORE || type_161 == _SKIP || type_161 == _TOKEN_MGR_DECLS || type_161 == _EOF || type_161 == BOOLEAN || type_161 == BYTE || type_161 == CHAR || type_161 == DOUBLE || type_161 == FALSE || type_161 == FLOAT || type_161 == INT || type_161 == LONG || type_161 == NEW || type_161 == NULL || type_161 == SHORT || type_161 == SUPER || type_161 == THIS || type_161 == TRUE || type_161 == VOID || type_161 == INTEGER_LITERAL || type_161 == FLOATING_POINT_LITERAL || type_161 == CHARACTER_LITERAL || type_161 == STRING_LITERAL || type_161 == IDENTIFIER || type_161 == LPAREN || type_161 == BANG || type_161 == TILDE) { 
+UnaryExpression();} else if ( type_167 == INCR) { 
+PreIncrementExpression();} else if ( type_167 == DECR) { 
+PreDecrementExpression();} else if ( type_167 == _LOOKAHEAD || type_167 == _IGNORE_CASE || type_167 == _PARSER_BEGIN || type_167 == _PARSER_END || type_167 == _JAVACODE || type_167 == _TOKEN || type_167 == _SPECIAL_TOKEN || type_167 == _MORE || type_167 == _SKIP || type_167 == _TOKEN_MGR_DECLS || type_167 == _EOF || type_167 == BOOLEAN || type_167 == BYTE || type_167 == CHAR || type_167 == DOUBLE || type_167 == FALSE || type_167 == FLOAT || type_167 == INT || type_167 == LONG || type_167 == NEW || type_167 == NULL || type_167 == SHORT || type_167 == SUPER || type_167 == THIS || type_167 == TRUE || type_167 == VOID || type_167 == INTEGER_LITERAL || type_167 == FLOATING_POINT_LITERAL || type_167 == CHARACTER_LITERAL || type_167 == STRING_LITERAL || type_167 == IDENTIFIER || type_167 == LPAREN || type_167 == BANG || type_167 == TILDE) { 
 UnaryExpressionNotPlusMinus();} else 
 {
 builder.error("Unexpected type " + builder.getTokenType());
@@ -2485,12 +2563,12 @@ break;
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     do {
-    IElementType type_163 = getType();
-    if ( type_163 == BANG || type_163 == TILDE) { 
+    IElementType type_169 = getType();
+    if ( type_169 == BANG || type_169 == TILDE) { 
 do {
-IElementType type_162 = getType();
-if ( type_162 == TILDE) { 
-jj_consume_token(TILDE);} else if ( type_162 == BANG) { 
+IElementType type_168 = getType();
+if ( type_168 == TILDE) { 
+jj_consume_token(TILDE);} else if ( type_168 == BANG) { 
 jj_consume_token(BANG);} else 
 {
 builder.error("Unexpected type " + builder.getTokenType());
@@ -2502,11 +2580,11 @@ break;
 
 UnaryExpression();} else 
 {
-if (jj_2_22(2147483647)) {
+if (jj_2_28(2147483647)) {
 CastExpression();
 } else {
-IElementType type_164 = getType();
-if ( type_164 == _OPTIONS || type_164 == _LOOKAHEAD || type_164 == _IGNORE_CASE || type_164 == _PARSER_BEGIN || type_164 == _PARSER_END || type_164 == _JAVACODE || type_164 == _TOKEN || type_164 == _SPECIAL_TOKEN || type_164 == _MORE || type_164 == _SKIP || type_164 == _TOKEN_MGR_DECLS || type_164 == _EOF || type_164 == BOOLEAN || type_164 == BYTE || type_164 == CHAR || type_164 == DOUBLE || type_164 == FALSE || type_164 == FLOAT || type_164 == INT || type_164 == LONG || type_164 == NEW || type_164 == NULL || type_164 == SHORT || type_164 == SUPER || type_164 == THIS || type_164 == TRUE || type_164 == VOID || type_164 == INTEGER_LITERAL || type_164 == FLOATING_POINT_LITERAL || type_164 == CHARACTER_LITERAL || type_164 == STRING_LITERAL || type_164 == IDENTIFIER || type_164 == LPAREN) { 
+IElementType type_170 = getType();
+if ( type_170 == _LOOKAHEAD || type_170 == _IGNORE_CASE || type_170 == _PARSER_BEGIN || type_170 == _PARSER_END || type_170 == _JAVACODE || type_170 == _TOKEN || type_170 == _SPECIAL_TOKEN || type_170 == _MORE || type_170 == _SKIP || type_170 == _TOKEN_MGR_DECLS || type_170 == _EOF || type_170 == BOOLEAN || type_170 == BYTE || type_170 == CHAR || type_170 == DOUBLE || type_170 == FALSE || type_170 == FLOAT || type_170 == INT || type_170 == LONG || type_170 == NEW || type_170 == NULL || type_170 == SHORT || type_170 == SUPER || type_170 == THIS || type_170 == TRUE || type_170 == VOID || type_170 == INTEGER_LITERAL || type_170 == FLOATING_POINT_LITERAL || type_170 == CHARACTER_LITERAL || type_170 == STRING_LITERAL || type_170 == IDENTIFIER || type_170 == LPAREN) { 
 PostfixExpression();} else 
 {
 builder.error("Unexpected type " + builder.getTokenType());
@@ -2534,30 +2612,30 @@ break;
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     do {
-    if (jj_2_23(2)) {
+    if (jj_2_29(2)) {
       jj_consume_token(LPAREN);
       PrimitiveType();
-    } else if (jj_2_24(2147483647)) {
+    } else if (jj_2_30(2147483647)) {
       jj_consume_token(LPAREN);
-      Name();
+      Type();
       jj_consume_token(LBRACKET);
       jj_consume_token(RBRACKET);
     } else {
-      IElementType type_166 = getType();
-      if ( type_166 == LPAREN) { 
+      IElementType type_172 = getType();
+      if ( type_172 == LPAREN) { 
     jj_consume_token(LPAREN);
-    Name();
+    Type();
     jj_consume_token(RPAREN);
     do {
-    IElementType type_165 = getType();
-    if ( type_165 == TILDE) { 
-  jj_consume_token(TILDE);} else if ( type_165 == BANG) { 
-jj_consume_token(BANG);} else if ( type_165 == LPAREN) { 
-jj_consume_token(LPAREN);} else if ( type_165 == _OPTIONS || type_165 == _LOOKAHEAD || type_165 == _IGNORE_CASE || type_165 == _PARSER_BEGIN || type_165 == _PARSER_END || type_165 == _JAVACODE || type_165 == _TOKEN || type_165 == _SPECIAL_TOKEN || type_165 == _MORE || type_165 == _SKIP || type_165 == _TOKEN_MGR_DECLS || type_165 == _EOF || type_165 == IDENTIFIER) { 
-JavaIdentifier();} else if ( type_165 == THIS) { 
-jj_consume_token(THIS);} else if ( type_165 == SUPER) { 
-jj_consume_token(SUPER);} else if ( type_165 == NEW) { 
-jj_consume_token(NEW);} else if ( type_165 == FALSE || type_165 == NULL || type_165 == TRUE || type_165 == INTEGER_LITERAL || type_165 == FLOATING_POINT_LITERAL || type_165 == CHARACTER_LITERAL || type_165 == STRING_LITERAL) { 
+    IElementType type_171 = getType();
+    if ( type_171 == TILDE) { 
+  jj_consume_token(TILDE);} else if ( type_171 == BANG) { 
+jj_consume_token(BANG);} else if ( type_171 == LPAREN) { 
+jj_consume_token(LPAREN);} else if ( type_171 == IDENTIFIER) { 
+jj_consume_token(IDENTIFIER);} else if ( type_171 == THIS) { 
+jj_consume_token(THIS);} else if ( type_171 == SUPER) { 
+jj_consume_token(SUPER);} else if ( type_171 == NEW) { 
+jj_consume_token(NEW);} else if ( type_171 == FALSE || type_171 == NULL || type_171 == TRUE || type_171 == INTEGER_LITERAL || type_171 == FLOATING_POINT_LITERAL || type_171 == CHARACTER_LITERAL || type_171 == STRING_LITERAL) { 
 Literal();} else 
 {
 builder.error("Unexpected type " + builder.getTokenType());
@@ -2589,12 +2667,12 @@ break;
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     PrimaryExpression();
-    IElementType type_168 = getType();
-    if ( type_168 == INCR || type_168 == DECR) { 
+    IElementType type_174 = getType();
+    if ( type_174 == INCR || type_174 == DECR) { 
 do {
-IElementType type_167 = getType();
-if ( type_167 == INCR) { 
-jj_consume_token(INCR);} else if ( type_167 == DECR) { 
+IElementType type_173 = getType();
+if ( type_173 == INCR) { 
+jj_consume_token(INCR);} else if ( type_173 == DECR) { 
 jj_consume_token(DECR);} else 
 {
 builder.error("Unexpected type " + builder.getTokenType());
@@ -2620,24 +2698,27 @@ break;
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     do {
-    if (jj_2_25(2147483647)) {
+    if (jj_2_31(2147483647)) {
       jj_consume_token(LPAREN);
       Type();
       jj_consume_token(RPAREN);
       UnaryExpression();
-    } else if (jj_2_26(2147483647)) {
-      jj_consume_token(LPAREN);
-      Type();
-      jj_consume_token(RPAREN);
-      UnaryExpressionNotPlusMinus();
     } else {
-      builder.error("Unexpected type " + builder.getTokenType());
-      builder.advanceLexer();
-      continue;
-    }
-    break;
-    } while(true);
-    
+      IElementType type_175 = getType();
+      if ( type_175 == LPAREN) { 
+    jj_consume_token(LPAREN);
+    Type();
+    jj_consume_token(RPAREN);
+    UnaryExpressionNotPlusMinus();} else 
+  {
+    builder.error("Unexpected type " + builder.getTokenType());
+    builder.advanceLexer();
+    continue;
+  }
+}
+break;
+} while(true);
+
       {
         if (jjtc000) {
           jjtc000 = false;
@@ -2651,12 +2732,12 @@ break;
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     PrimaryPrefix();
-    label_169:
+    label_176:
     while (true) {
-      if (jj_2_27(2)) {
+      if (jj_2_32(2)) {
         ;
       } else {
-        break label_169;
+        break label_176;
       }
       PrimarySuffix();
     }
@@ -2668,30 +2749,45 @@ break;
       }
   }
 
+  final public void MemberSelector()  {
+ /*@bgen(jjtree) MemberSelector */
+  boolean jjtc000 = true;
+  PsiBuilder.Marker jjtn000 = builder.mark();
+    jj_consume_token(DOT);
+    TypeArguments();
+    jj_consume_token(IDENTIFIER);
+      {
+        if (jjtc000) {
+          jjtc000 = false;
+          {jjtn000.done(JJTMEMBERSELECTOR); }
+        }
+      }
+  }
+
   final public void PrimaryPrefix()  {
  /*@bgen(jjtree) PrimaryPrefix */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     do {
-    IElementType type_170 = getType();
-    if ( type_170 == FALSE || type_170 == NULL || type_170 == TRUE || type_170 == INTEGER_LITERAL || type_170 == FLOATING_POINT_LITERAL || type_170 == CHARACTER_LITERAL || type_170 == STRING_LITERAL) { 
-Literal();} else if ( type_170 == THIS) { 
-jj_consume_token(THIS);} else if ( type_170 == SUPER) { 
+    IElementType type_177 = getType();
+    if ( type_177 == FALSE || type_177 == NULL || type_177 == TRUE || type_177 == INTEGER_LITERAL || type_177 == FLOATING_POINT_LITERAL || type_177 == CHARACTER_LITERAL || type_177 == STRING_LITERAL) { 
+Literal();} else if ( type_177 == THIS) { 
+jj_consume_token(THIS);} else if ( type_177 == SUPER) { 
 jj_consume_token(SUPER);
 jj_consume_token(DOT);
-JavaIdentifier();} else if ( type_170 == LPAREN) { 
+jj_consume_token(IDENTIFIER);} else if ( type_177 == LPAREN) { 
 jj_consume_token(LPAREN);
 Expression();
-jj_consume_token(RPAREN);} else if ( type_170 == NEW) { 
+jj_consume_token(RPAREN);} else if ( type_177 == NEW) { 
 AllocationExpression();} else 
 {
-if (jj_2_28(2147483647)) {
+if (jj_2_33(2147483647)) {
 ResultType();
 jj_consume_token(DOT);
 jj_consume_token(CLASS);
 } else {
-IElementType type_171 = getType();
-if ( type_171 == _OPTIONS || type_171 == _LOOKAHEAD || type_171 == _IGNORE_CASE || type_171 == _PARSER_BEGIN || type_171 == _PARSER_END || type_171 == _JAVACODE || type_171 == _TOKEN || type_171 == _SPECIAL_TOKEN || type_171 == _MORE || type_171 == _SKIP || type_171 == _TOKEN_MGR_DECLS || type_171 == _EOF || type_171 == IDENTIFIER) { 
+IElementType type_178 = getType();
+if ( type_178 == _LOOKAHEAD || type_178 == _IGNORE_CASE || type_178 == _PARSER_BEGIN || type_178 == _PARSER_END || type_178 == _JAVACODE || type_178 == _TOKEN || type_178 == _SPECIAL_TOKEN || type_178 == _MORE || type_178 == _SKIP || type_178 == _TOKEN_MGR_DECLS || type_178 == _EOF || type_178 == IDENTIFIER) { 
 Name();} else 
 {
 builder.error("Unexpected type " + builder.getTokenType());
@@ -2716,20 +2812,22 @@ break;
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     do {
-    if (jj_2_29(2)) {
+    if (jj_2_34(2)) {
       jj_consume_token(DOT);
       jj_consume_token(THIS);
-    } else if (jj_2_30(2)) {
+    } else if (jj_2_35(2)) {
       jj_consume_token(DOT);
       AllocationExpression();
+    } else if (jj_2_36(3)) {
+      MemberSelector();
     } else {
-      IElementType type_172 = getType();
-      if ( type_172 == LBRACKET) { 
+      IElementType type_179 = getType();
+      if ( type_179 == LBRACKET) { 
     jj_consume_token(LBRACKET);
     Expression();
-    jj_consume_token(RBRACKET);} else if ( type_172 == DOT) { 
+    jj_consume_token(RBRACKET);} else if ( type_179 == DOT) { 
   jj_consume_token(DOT);
-  JavaIdentifier();} else if ( type_172 == LPAREN) { 
+  jj_consume_token(IDENTIFIER);} else if ( type_179 == LPAREN) { 
 Arguments();} else 
 {
 builder.error("Unexpected type " + builder.getTokenType());
@@ -2753,13 +2851,13 @@ break;
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     do {
-    IElementType type_173 = getType();
-    if ( type_173 == INTEGER_LITERAL) { 
-  jj_consume_token(INTEGER_LITERAL);} else if ( type_173 == FLOATING_POINT_LITERAL) { 
-jj_consume_token(FLOATING_POINT_LITERAL);} else if ( type_173 == CHARACTER_LITERAL) { 
-jj_consume_token(CHARACTER_LITERAL);} else if ( type_173 == STRING_LITERAL) { 
-jj_consume_token(STRING_LITERAL);} else if ( type_173 == FALSE || type_173 == TRUE) { 
-BooleanLiteral();} else if ( type_173 == NULL) { 
+    IElementType type_180 = getType();
+    if ( type_180 == INTEGER_LITERAL) { 
+  jj_consume_token(INTEGER_LITERAL);} else if ( type_180 == FLOATING_POINT_LITERAL) { 
+jj_consume_token(FLOATING_POINT_LITERAL);} else if ( type_180 == CHARACTER_LITERAL) { 
+jj_consume_token(CHARACTER_LITERAL);} else if ( type_180 == STRING_LITERAL) { 
+jj_consume_token(STRING_LITERAL);} else if ( type_180 == FALSE || type_180 == TRUE) { 
+BooleanLiteral();} else if ( type_180 == NULL) { 
 NullLiteral();} else 
 {
 builder.error("Unexpected type " + builder.getTokenType());
@@ -2795,9 +2893,9 @@ break;
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     do {
-    IElementType type_174 = getType();
-    if ( type_174 == TRUE) { 
-  jj_consume_token(TRUE);} else if ( type_174 == FALSE) { 
+    IElementType type_181 = getType();
+    if ( type_181 == TRUE) { 
+  jj_consume_token(TRUE);} else if ( type_181 == FALSE) { 
 jj_consume_token(FALSE);} else 
 {
 builder.error("Unexpected type " + builder.getTokenType());
@@ -2846,8 +2944,8 @@ break;
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     jj_consume_token(LPAREN);
-    IElementType type_175 = getType();
-    if ( type_175 == _OPTIONS || type_175 == _LOOKAHEAD || type_175 == _IGNORE_CASE || type_175 == _PARSER_BEGIN || type_175 == _PARSER_END || type_175 == _JAVACODE || type_175 == _TOKEN || type_175 == _SPECIAL_TOKEN || type_175 == _MORE || type_175 == _SKIP || type_175 == _TOKEN_MGR_DECLS || type_175 == _EOF || type_175 == BOOLEAN || type_175 == BYTE || type_175 == CHAR || type_175 == DOUBLE || type_175 == FALSE || type_175 == FLOAT || type_175 == INT || type_175 == LONG || type_175 == NEW || type_175 == NULL || type_175 == SHORT || type_175 == SUPER || type_175 == THIS || type_175 == TRUE || type_175 == VOID || type_175 == INTEGER_LITERAL || type_175 == FLOATING_POINT_LITERAL || type_175 == CHARACTER_LITERAL || type_175 == STRING_LITERAL || type_175 == IDENTIFIER || type_175 == LPAREN || type_175 == BANG || type_175 == TILDE || type_175 == INCR || type_175 == DECR || type_175 == PLUS || type_175 == MINUS) { 
+    IElementType type_182 = getType();
+    if ( type_182 == _LOOKAHEAD || type_182 == _IGNORE_CASE || type_182 == _PARSER_BEGIN || type_182 == _PARSER_END || type_182 == _JAVACODE || type_182 == _TOKEN || type_182 == _SPECIAL_TOKEN || type_182 == _MORE || type_182 == _SKIP || type_182 == _TOKEN_MGR_DECLS || type_182 == _EOF || type_182 == BOOLEAN || type_182 == BYTE || type_182 == CHAR || type_182 == DOUBLE || type_182 == FALSE || type_182 == FLOAT || type_182 == INT || type_182 == LONG || type_182 == NEW || type_182 == NULL || type_182 == SHORT || type_182 == SUPER || type_182 == THIS || type_182 == TRUE || type_182 == VOID || type_182 == INTEGER_LITERAL || type_182 == FLOATING_POINT_LITERAL || type_182 == CHARACTER_LITERAL || type_182 == STRING_LITERAL || type_182 == IDENTIFIER || type_182 == LPAREN || type_182 == BANG || type_182 == TILDE || type_182 == INCR || type_182 == DECR || type_182 == PLUS || type_182 == MINUS) { 
 ArgumentList();} else 
 {
 ;
@@ -2866,13 +2964,13 @@ jj_consume_token(RPAREN);
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     Expression();
-    label_176:
+    label_183:
     while (true) {
-      IElementType type_177 = getType();
-      if ( type_177 == COMMA) { 
+      IElementType type_184 = getType();
+      if ( type_184 == COMMA) { 
     ;} else 
   {
-    break label_176;
+    break label_183;
   }
   jj_consume_token(COMMA);
   Expression();
@@ -2890,23 +2988,29 @@ jj_consume_token(RPAREN);
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     do {
-    if (jj_2_31(2)) {
+    if (jj_2_37(2)) {
       jj_consume_token(NEW);
       PrimitiveType();
       ArrayDimsAndInits();
     } else {
-      IElementType type_180 = getType();
-      if ( type_180 == NEW) { 
+      IElementType type_188 = getType();
+      if ( type_188 == NEW) { 
     jj_consume_token(NEW);
-    Name();
-    do {
-    IElementType type_179 = getType();
-    if ( type_179 == LBRACKET) { 
-  ArrayDimsAndInits();} else if ( type_179 == LPAREN) { 
+    ClassOrInterfaceType();
+    IElementType type_185 = getType();
+    if ( type_185 == LT) { 
+  TypeArguments();} else 
+{
+  ;
+}
+do {
+IElementType type_187 = getType();
+if ( type_187 == LBRACKET) { 
+ArrayDimsAndInits();} else if ( type_187 == LPAREN) { 
 Arguments();
-IElementType type_178 = getType();
-if ( type_178 == LBRACE) { 
-ClassBody();} else 
+IElementType type_186 = getType();
+if ( type_186 == LBRACE) { 
+ClassOrInterfaceBody();} else 
 {
 ;
 }} else 
@@ -2936,7 +3040,7 @@ break;
   }
 
 /*
- * The second LOOKAHEAD specification below is to parse to PrimarySuffix
+ * The third LOOKAHEAD specification below is to parse to PrimarySuffix
  * if there is an expression between the "[...]".
  */
   final public void ArrayDimsAndInits()  {
@@ -2944,40 +3048,40 @@ break;
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     do {
-    if (jj_2_34(2)) {
-      label_181:
+    if (jj_2_40(2)) {
+      label_189:
       while (true) {
         jj_consume_token(LBRACKET);
         Expression();
         jj_consume_token(RBRACKET);
-        if (jj_2_32(2)) {
+        if (jj_2_38(2)) {
           ;
         } else {
-          break label_181;
+          break label_189;
         }
       }
-      label_182:
+      label_190:
       while (true) {
-        if (jj_2_33(2)) {
+        if (jj_2_39(2)) {
           ;
         } else {
-          break label_182;
+          break label_190;
         }
         jj_consume_token(LBRACKET);
         jj_consume_token(RBRACKET);
       }
     } else {
-      IElementType type_185 = getType();
-      if ( type_185 == LBRACKET) { 
-    label_183:
+      IElementType type_193 = getType();
+      if ( type_193 == LBRACKET) { 
+    label_191:
     while (true) {
       jj_consume_token(LBRACKET);
       jj_consume_token(RBRACKET);
-      IElementType type_184 = getType();
-      if ( type_184 == LBRACKET) { 
+      IElementType type_192 = getType();
+      if ( type_192 == LBRACKET) { 
     ;} else 
   {
-    break label_183;
+    break label_191;
   }
 }
 ArrayInitializer();} else 
@@ -3006,25 +3110,26 @@ break;
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     do {
-    if (jj_2_35(2)) {
+    if (jj_2_41(2)) {
       LabeledStatement();
     } else {
-      IElementType type_186 = getType();
-      if ( type_186 == LBRACE) { 
-    Block();} else if ( type_186 == SEMICOLON) { 
-  EmptyStatement();} else if ( type_186 == _OPTIONS || type_186 == _LOOKAHEAD || type_186 == _IGNORE_CASE || type_186 == _PARSER_BEGIN || type_186 == _PARSER_END || type_186 == _JAVACODE || type_186 == _TOKEN || type_186 == _SPECIAL_TOKEN || type_186 == _MORE || type_186 == _SKIP || type_186 == _TOKEN_MGR_DECLS || type_186 == _EOF || type_186 == BOOLEAN || type_186 == BYTE || type_186 == CHAR || type_186 == DOUBLE || type_186 == FALSE || type_186 == FLOAT || type_186 == INT || type_186 == LONG || type_186 == NEW || type_186 == NULL || type_186 == SHORT || type_186 == SUPER || type_186 == THIS || type_186 == TRUE || type_186 == VOID || type_186 == INTEGER_LITERAL || type_186 == FLOATING_POINT_LITERAL || type_186 == CHARACTER_LITERAL || type_186 == STRING_LITERAL || type_186 == IDENTIFIER || type_186 == LPAREN || type_186 == INCR || type_186 == DECR) { 
+      IElementType type_194 = getType();
+      if ( type_194 == ASSERT) { 
+    AssertStatement();} else if ( type_194 == LBRACE) { 
+  Block();} else if ( type_194 == SEMICOLON) { 
+EmptyStatement();} else if ( type_194 == _LOOKAHEAD || type_194 == _IGNORE_CASE || type_194 == _PARSER_BEGIN || type_194 == _PARSER_END || type_194 == _JAVACODE || type_194 == _TOKEN || type_194 == _SPECIAL_TOKEN || type_194 == _MORE || type_194 == _SKIP || type_194 == _TOKEN_MGR_DECLS || type_194 == _EOF || type_194 == BOOLEAN || type_194 == BYTE || type_194 == CHAR || type_194 == DOUBLE || type_194 == FALSE || type_194 == FLOAT || type_194 == INT || type_194 == LONG || type_194 == NEW || type_194 == NULL || type_194 == SHORT || type_194 == SUPER || type_194 == THIS || type_194 == TRUE || type_194 == VOID || type_194 == INTEGER_LITERAL || type_194 == FLOATING_POINT_LITERAL || type_194 == CHARACTER_LITERAL || type_194 == STRING_LITERAL || type_194 == IDENTIFIER || type_194 == LPAREN || type_194 == INCR || type_194 == DECR) { 
 StatementExpression();
-jj_consume_token(SEMICOLON);} else if ( type_186 == SWITCH) { 
-SwitchStatement();} else if ( type_186 == IF) { 
-IfStatement();} else if ( type_186 == WHILE) { 
-WhileStatement();} else if ( type_186 == DO) { 
-DoStatement();} else if ( type_186 == FOR) { 
-ForStatement();} else if ( type_186 == BREAK) { 
-BreakStatement();} else if ( type_186 == CONTINUE) { 
-ContinueStatement();} else if ( type_186 == RETURN) { 
-ReturnStatement();} else if ( type_186 == THROW) { 
-ThrowStatement();} else if ( type_186 == SYNCHRONIZED) { 
-SynchronizedStatement();} else if ( type_186 == TRY) { 
+jj_consume_token(SEMICOLON);} else if ( type_194 == SWITCH) { 
+SwitchStatement();} else if ( type_194 == IF) { 
+IfStatement();} else if ( type_194 == WHILE) { 
+WhileStatement();} else if ( type_194 == DO) { 
+DoStatement();} else if ( type_194 == FOR) { 
+ForStatement();} else if ( type_194 == BREAK) { 
+BreakStatement();} else if ( type_194 == CONTINUE) { 
+ContinueStatement();} else if ( type_194 == RETURN) { 
+ReturnStatement();} else if ( type_194 == THROW) { 
+ThrowStatement();} else if ( type_194 == SYNCHRONIZED) { 
+SynchronizedStatement();} else if ( type_194 == TRY) { 
 TryStatement();} else 
 {
 builder.error("Unexpected type " + builder.getTokenType());
@@ -3043,11 +3148,33 @@ break;
       }
   }
 
+  final public void AssertStatement()  {
+ /*@bgen(jjtree) AssertStatement */
+  boolean jjtc000 = true;
+  PsiBuilder.Marker jjtn000 = builder.mark();
+    jj_consume_token(ASSERT);
+    Expression();
+    IElementType type_195 = getType();
+    if ( type_195 == COLON) { 
+  jj_consume_token(COLON);
+  Expression();} else 
+{
+  ;
+}
+jj_consume_token(SEMICOLON);
+      {
+        if (jjtc000) {
+          jjtc000 = false;
+          {jjtn000.done(JJTASSERTSTATEMENT); }
+        }
+      }
+  }
+
   final public void LabeledStatement()  {
  /*@bgen(jjtree) LabeledStatement */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    JavaIdentifier();
+    jj_consume_token(IDENTIFIER);
     jj_consume_token(COLON);
     Statement();
       {
@@ -3063,13 +3190,13 @@ break;
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     jj_consume_token(LBRACE);
-    label_187:
+    label_196:
     while (true) {
-      IElementType type_188 = getType();
-      if ( type_188 == _OPTIONS || type_188 == _LOOKAHEAD || type_188 == _IGNORE_CASE || type_188 == _PARSER_BEGIN || type_188 == _PARSER_END || type_188 == _JAVACODE || type_188 == _TOKEN || type_188 == _SPECIAL_TOKEN || type_188 == _MORE || type_188 == _SKIP || type_188 == _TOKEN_MGR_DECLS || type_188 == _EOF || type_188 == BOOLEAN || type_188 == BREAK || type_188 == BYTE || type_188 == CHAR || type_188 == CLASS || type_188 == CONTINUE || type_188 == DO || type_188 == DOUBLE || type_188 == FALSE || type_188 == FINAL || type_188 == FLOAT || type_188 == FOR || type_188 == IF || type_188 == INT || type_188 == INTERFACE || type_188 == LONG || type_188 == NEW || type_188 == NULL || type_188 == RETURN || type_188 == SHORT || type_188 == SUPER || type_188 == SWITCH || type_188 == SYNCHRONIZED || type_188 == THIS || type_188 == THROW || type_188 == TRUE || type_188 == TRY || type_188 == VOID || type_188 == WHILE || type_188 == INTEGER_LITERAL || type_188 == FLOATING_POINT_LITERAL || type_188 == CHARACTER_LITERAL || type_188 == STRING_LITERAL || type_188 == IDENTIFIER || type_188 == LPAREN || type_188 == LBRACE || type_188 == SEMICOLON || type_188 == INCR || type_188 == DECR) { 
+      IElementType type_197 = getType();
+      if ( type_197 == _LOOKAHEAD || type_197 == _IGNORE_CASE || type_197 == _PARSER_BEGIN || type_197 == _PARSER_END || type_197 == _JAVACODE || type_197 == _TOKEN || type_197 == _SPECIAL_TOKEN || type_197 == _MORE || type_197 == _SKIP || type_197 == _TOKEN_MGR_DECLS || type_197 == _EOF || type_197 == ABSTRACT || type_197 == ASSERT || type_197 == BOOLEAN || type_197 == BREAK || type_197 == BYTE || type_197 == CHAR || type_197 == CLASS || type_197 == CONTINUE || type_197 == DO || type_197 == DOUBLE || type_197 == FALSE || type_197 == FINAL || type_197 == FLOAT || type_197 == FOR || type_197 == IF || type_197 == INT || type_197 == INTERFACE || type_197 == LONG || type_197 == NATIVE || type_197 == NEW || type_197 == NULL || type_197 == PRIVATE || type_197 == PROTECTED || type_197 == PUBLIC || type_197 == RETURN || type_197 == SHORT || type_197 == STATIC || type_197 == STRICTFP || type_197 == SUPER || type_197 == SWITCH || type_197 == SYNCHRONIZED || type_197 == THIS || type_197 == THROW || type_197 == TRANSIENT || type_197 == TRUE || type_197 == TRY || type_197 == VOID || type_197 == VOLATILE || type_197 == WHILE || type_197 == INTEGER_LITERAL || type_197 == FLOATING_POINT_LITERAL || type_197 == CHARACTER_LITERAL || type_197 == STRING_LITERAL || type_197 == IDENTIFIER || type_197 == LPAREN || type_197 == LBRACE || type_197 == SEMICOLON || type_197 == INCR || type_197 == DECR || type_197 == AT) { 
 ;} else 
 {
-break label_187;
+break label_196;
 }
 BlockStatement();
 }
@@ -3087,15 +3214,14 @@ jj_consume_token(RBRACE);
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     do {
-    if (jj_2_36(2147483647)) {
+    if (jj_2_42(2147483647)) {
       LocalVariableDeclaration();
       jj_consume_token(SEMICOLON);
     } else {
-      IElementType type_189 = getType();
-      if ( type_189 == _OPTIONS || type_189 == _LOOKAHEAD || type_189 == _IGNORE_CASE || type_189 == _PARSER_BEGIN || type_189 == _PARSER_END || type_189 == _JAVACODE || type_189 == _TOKEN || type_189 == _SPECIAL_TOKEN || type_189 == _MORE || type_189 == _SKIP || type_189 == _TOKEN_MGR_DECLS || type_189 == _EOF || type_189 == BOOLEAN || type_189 == BREAK || type_189 == BYTE || type_189 == CHAR || type_189 == CONTINUE || type_189 == DO || type_189 == DOUBLE || type_189 == FALSE || type_189 == FLOAT || type_189 == FOR || type_189 == IF || type_189 == INT || type_189 == LONG || type_189 == NEW || type_189 == NULL || type_189 == RETURN || type_189 == SHORT || type_189 == SUPER || type_189 == SWITCH || type_189 == SYNCHRONIZED || type_189 == THIS || type_189 == THROW || type_189 == TRUE || type_189 == TRY || type_189 == VOID || type_189 == WHILE || type_189 == INTEGER_LITERAL || type_189 == FLOATING_POINT_LITERAL || type_189 == CHARACTER_LITERAL || type_189 == STRING_LITERAL || type_189 == IDENTIFIER || type_189 == LPAREN || type_189 == LBRACE || type_189 == SEMICOLON || type_189 == INCR || type_189 == DECR) { 
-Statement();} else if ( type_189 == CLASS) { 
-UnmodifiedClassDeclaration();} else if ( type_189 == INTERFACE) { 
-UnmodifiedInterfaceDeclaration();} else 
+      IElementType type_198 = getType();
+      if ( type_198 == _LOOKAHEAD || type_198 == _IGNORE_CASE || type_198 == _PARSER_BEGIN || type_198 == _PARSER_END || type_198 == _JAVACODE || type_198 == _TOKEN || type_198 == _SPECIAL_TOKEN || type_198 == _MORE || type_198 == _SKIP || type_198 == _TOKEN_MGR_DECLS || type_198 == _EOF || type_198 == ASSERT || type_198 == BOOLEAN || type_198 == BREAK || type_198 == BYTE || type_198 == CHAR || type_198 == CONTINUE || type_198 == DO || type_198 == DOUBLE || type_198 == FALSE || type_198 == FLOAT || type_198 == FOR || type_198 == IF || type_198 == INT || type_198 == LONG || type_198 == NEW || type_198 == NULL || type_198 == RETURN || type_198 == SHORT || type_198 == SUPER || type_198 == SWITCH || type_198 == SYNCHRONIZED || type_198 == THIS || type_198 == THROW || type_198 == TRUE || type_198 == TRY || type_198 == VOID || type_198 == WHILE || type_198 == INTEGER_LITERAL || type_198 == FLOATING_POINT_LITERAL || type_198 == CHARACTER_LITERAL || type_198 == STRING_LITERAL || type_198 == IDENTIFIER || type_198 == LPAREN || type_198 == LBRACE || type_198 == SEMICOLON || type_198 == INCR || type_198 == DECR) { 
+Statement();} else if ( type_198 == CLASS || type_198 == INTERFACE) { 
+ClassOrInterfaceDeclaration();} else 
 {
 builder.error("Unexpected type " + builder.getTokenType());
 builder.advanceLexer();
@@ -3117,24 +3243,19 @@ break;
  /*@bgen(jjtree) LocalVariableDeclaration */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    IElementType type_190 = getType();
-    if ( type_190 == FINAL) { 
-  jj_consume_token(FINAL);} else 
-{
-  ;
-}
-Type();
-VariableDeclarator();
-label_191:
-while (true) {
-  IElementType type_192 = getType();
-  if ( type_192 == COMMA) { 
-;} else 
-{
-break label_191;
-}
-jj_consume_token(COMMA);
-VariableDeclarator();
+    Modifiers();
+    Type();
+    VariableDeclarator();
+    label_199:
+    while (true) {
+      IElementType type_200 = getType();
+      if ( type_200 == COMMA) { 
+    ;} else 
+  {
+    break label_199;
+  }
+  jj_consume_token(COMMA);
+  VariableDeclarator();
 }
       {
         if (jjtc000) {
@@ -3162,18 +3283,18 @@ VariableDeclarator();
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     do {
-    IElementType type_195 = getType();
-    if ( type_195 == INCR) { 
-  PreIncrementExpression();} else if ( type_195 == DECR) { 
-PreDecrementExpression();} else if ( type_195 == _OPTIONS || type_195 == _LOOKAHEAD || type_195 == _IGNORE_CASE || type_195 == _PARSER_BEGIN || type_195 == _PARSER_END || type_195 == _JAVACODE || type_195 == _TOKEN || type_195 == _SPECIAL_TOKEN || type_195 == _MORE || type_195 == _SKIP || type_195 == _TOKEN_MGR_DECLS || type_195 == _EOF || type_195 == BOOLEAN || type_195 == BYTE || type_195 == CHAR || type_195 == DOUBLE || type_195 == FALSE || type_195 == FLOAT || type_195 == INT || type_195 == LONG || type_195 == NEW || type_195 == NULL || type_195 == SHORT || type_195 == SUPER || type_195 == THIS || type_195 == TRUE || type_195 == VOID || type_195 == INTEGER_LITERAL || type_195 == FLOATING_POINT_LITERAL || type_195 == CHARACTER_LITERAL || type_195 == STRING_LITERAL || type_195 == IDENTIFIER || type_195 == LPAREN) { 
+    IElementType type_203 = getType();
+    if ( type_203 == INCR) { 
+  PreIncrementExpression();} else if ( type_203 == DECR) { 
+PreDecrementExpression();} else if ( type_203 == _LOOKAHEAD || type_203 == _IGNORE_CASE || type_203 == _PARSER_BEGIN || type_203 == _PARSER_END || type_203 == _JAVACODE || type_203 == _TOKEN || type_203 == _SPECIAL_TOKEN || type_203 == _MORE || type_203 == _SKIP || type_203 == _TOKEN_MGR_DECLS || type_203 == _EOF || type_203 == BOOLEAN || type_203 == BYTE || type_203 == CHAR || type_203 == DOUBLE || type_203 == FALSE || type_203 == FLOAT || type_203 == INT || type_203 == LONG || type_203 == NEW || type_203 == NULL || type_203 == SHORT || type_203 == SUPER || type_203 == THIS || type_203 == TRUE || type_203 == VOID || type_203 == INTEGER_LITERAL || type_203 == FLOATING_POINT_LITERAL || type_203 == CHARACTER_LITERAL || type_203 == STRING_LITERAL || type_203 == IDENTIFIER || type_203 == LPAREN) { 
 PrimaryExpression();
-IElementType type_194 = getType();
-if ( type_194 == ASSIGN || type_194 == GT || type_194 == LT || type_194 == INCR || type_194 == DECR || type_194 == PLUSASSIGN || type_194 == MINUSASSIGN || type_194 == STARASSIGN || type_194 == SLASHASSIGN || type_194 == ANDASSIGN || type_194 == ORASSIGN || type_194 == XORASSIGN || type_194 == REMASSIGN) { 
+IElementType type_202 = getType();
+if ( type_202 == ASSIGN || type_202 == GT || type_202 == LT || type_202 == INCR || type_202 == DECR || type_202 == PLUSASSIGN || type_202 == MINUSASSIGN || type_202 == STARASSIGN || type_202 == SLASHASSIGN || type_202 == ANDASSIGN || type_202 == ORASSIGN || type_202 == XORASSIGN || type_202 == REMASSIGN) { 
 do {
-IElementType type_193 = getType();
-if ( type_193 == INCR) { 
-jj_consume_token(INCR);} else if ( type_193 == DECR) { 
-jj_consume_token(DECR);} else if ( type_193 == ASSIGN || type_193 == GT || type_193 == LT || type_193 == PLUSASSIGN || type_193 == MINUSASSIGN || type_193 == STARASSIGN || type_193 == SLASHASSIGN || type_193 == ANDASSIGN || type_193 == ORASSIGN || type_193 == XORASSIGN || type_193 == REMASSIGN) { 
+IElementType type_201 = getType();
+if ( type_201 == INCR) { 
+jj_consume_token(INCR);} else if ( type_201 == DECR) { 
+jj_consume_token(DECR);} else if ( type_201 == ASSIGN || type_201 == GT || type_201 == LT || type_201 == PLUSASSIGN || type_201 == MINUSASSIGN || type_201 == STARASSIGN || type_201 == SLASHASSIGN || type_201 == ANDASSIGN || type_201 == ORASSIGN || type_201 == XORASSIGN || type_201 == REMASSIGN) { 
 AssignmentOperator();
 Expression();} else 
 {
@@ -3212,22 +3333,22 @@ break;
     Expression();
     jj_consume_token(RPAREN);
     jj_consume_token(LBRACE);
-    label_196:
+    label_204:
     while (true) {
-      IElementType type_197 = getType();
-      if ( type_197 == CASE || type_197 == _DEFAULT) { 
+      IElementType type_205 = getType();
+      if ( type_205 == CASE || type_205 == _DEFAULT) { 
   ;} else 
 {
-  break label_196;
+  break label_204;
 }
 SwitchLabel();
-label_198:
+label_206:
 while (true) {
-  IElementType type_199 = getType();
-  if ( type_199 == _OPTIONS || type_199 == _LOOKAHEAD || type_199 == _IGNORE_CASE || type_199 == _PARSER_BEGIN || type_199 == _PARSER_END || type_199 == _JAVACODE || type_199 == _TOKEN || type_199 == _SPECIAL_TOKEN || type_199 == _MORE || type_199 == _SKIP || type_199 == _TOKEN_MGR_DECLS || type_199 == _EOF || type_199 == BOOLEAN || type_199 == BREAK || type_199 == BYTE || type_199 == CHAR || type_199 == CLASS || type_199 == CONTINUE || type_199 == DO || type_199 == DOUBLE || type_199 == FALSE || type_199 == FINAL || type_199 == FLOAT || type_199 == FOR || type_199 == IF || type_199 == INT || type_199 == INTERFACE || type_199 == LONG || type_199 == NEW || type_199 == NULL || type_199 == RETURN || type_199 == SHORT || type_199 == SUPER || type_199 == SWITCH || type_199 == SYNCHRONIZED || type_199 == THIS || type_199 == THROW || type_199 == TRUE || type_199 == TRY || type_199 == VOID || type_199 == WHILE || type_199 == INTEGER_LITERAL || type_199 == FLOATING_POINT_LITERAL || type_199 == CHARACTER_LITERAL || type_199 == STRING_LITERAL || type_199 == IDENTIFIER || type_199 == LPAREN || type_199 == LBRACE || type_199 == SEMICOLON || type_199 == INCR || type_199 == DECR) { 
+  IElementType type_207 = getType();
+  if ( type_207 == _LOOKAHEAD || type_207 == _IGNORE_CASE || type_207 == _PARSER_BEGIN || type_207 == _PARSER_END || type_207 == _JAVACODE || type_207 == _TOKEN || type_207 == _SPECIAL_TOKEN || type_207 == _MORE || type_207 == _SKIP || type_207 == _TOKEN_MGR_DECLS || type_207 == _EOF || type_207 == ABSTRACT || type_207 == ASSERT || type_207 == BOOLEAN || type_207 == BREAK || type_207 == BYTE || type_207 == CHAR || type_207 == CLASS || type_207 == CONTINUE || type_207 == DO || type_207 == DOUBLE || type_207 == FALSE || type_207 == FINAL || type_207 == FLOAT || type_207 == FOR || type_207 == IF || type_207 == INT || type_207 == INTERFACE || type_207 == LONG || type_207 == NATIVE || type_207 == NEW || type_207 == NULL || type_207 == PRIVATE || type_207 == PROTECTED || type_207 == PUBLIC || type_207 == RETURN || type_207 == SHORT || type_207 == STATIC || type_207 == STRICTFP || type_207 == SUPER || type_207 == SWITCH || type_207 == SYNCHRONIZED || type_207 == THIS || type_207 == THROW || type_207 == TRANSIENT || type_207 == TRUE || type_207 == TRY || type_207 == VOID || type_207 == VOLATILE || type_207 == WHILE || type_207 == INTEGER_LITERAL || type_207 == FLOATING_POINT_LITERAL || type_207 == CHARACTER_LITERAL || type_207 == STRING_LITERAL || type_207 == IDENTIFIER || type_207 == LPAREN || type_207 == LBRACE || type_207 == SEMICOLON || type_207 == INCR || type_207 == DECR || type_207 == AT) { 
 ;} else 
 {
-break label_198;
+break label_206;
 }
 BlockStatement();
 }
@@ -3246,11 +3367,11 @@ jj_consume_token(RBRACE);
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     do {
-    IElementType type_200 = getType();
-    if ( type_200 == CASE) { 
+    IElementType type_208 = getType();
+    if ( type_208 == CASE) { 
   jj_consume_token(CASE);
   Expression();
-  jj_consume_token(COLON);} else if ( type_200 == _DEFAULT) { 
+  jj_consume_token(COLON);} else if ( type_208 == _DEFAULT) { 
 jj_consume_token(_DEFAULT);
 jj_consume_token(COLON);} else 
 {
@@ -3278,8 +3399,8 @@ break;
     Expression();
     jj_consume_token(RPAREN);
     Statement();
-    IElementType type_201 = getType();
-    if ( type_201 == ELSE) { 
+    IElementType type_209 = getType();
+    if ( type_209 == ELSE) { 
   jj_consume_token(ELSE);
   Statement();} else 
 {
@@ -3335,26 +3456,45 @@ break;
   PsiBuilder.Marker jjtn000 = builder.mark();
     jj_consume_token(FOR);
     jj_consume_token(LPAREN);
-    IElementType type_202 = getType();
-    if ( type_202 == _OPTIONS || type_202 == _LOOKAHEAD || type_202 == _IGNORE_CASE || type_202 == _PARSER_BEGIN || type_202 == _PARSER_END || type_202 == _JAVACODE || type_202 == _TOKEN || type_202 == _SPECIAL_TOKEN || type_202 == _MORE || type_202 == _SKIP || type_202 == _TOKEN_MGR_DECLS || type_202 == _EOF || type_202 == BOOLEAN || type_202 == BYTE || type_202 == CHAR || type_202 == DOUBLE || type_202 == FALSE || type_202 == FINAL || type_202 == FLOAT || type_202 == INT || type_202 == LONG || type_202 == NEW || type_202 == NULL || type_202 == SHORT || type_202 == SUPER || type_202 == THIS || type_202 == TRUE || type_202 == VOID || type_202 == INTEGER_LITERAL || type_202 == FLOATING_POINT_LITERAL || type_202 == CHARACTER_LITERAL || type_202 == STRING_LITERAL || type_202 == IDENTIFIER || type_202 == LPAREN || type_202 == INCR || type_202 == DECR) { 
+    do {
+    if (jj_2_43(2147483647)) {
+      Modifiers();
+      Type();
+      jj_consume_token(IDENTIFIER);
+      jj_consume_token(COLON);
+      Expression();
+    } else {
+      IElementType type_213 = getType();
+      if ( type_213 == _LOOKAHEAD || type_213 == _IGNORE_CASE || type_213 == _PARSER_BEGIN || type_213 == _PARSER_END || type_213 == _JAVACODE || type_213 == _TOKEN || type_213 == _SPECIAL_TOKEN || type_213 == _MORE || type_213 == _SKIP || type_213 == _TOKEN_MGR_DECLS || type_213 == _EOF || type_213 == ABSTRACT || type_213 == BOOLEAN || type_213 == BYTE || type_213 == CHAR || type_213 == DOUBLE || type_213 == FALSE || type_213 == FINAL || type_213 == FLOAT || type_213 == INT || type_213 == LONG || type_213 == NATIVE || type_213 == NEW || type_213 == NULL || type_213 == PRIVATE || type_213 == PROTECTED || type_213 == PUBLIC || type_213 == SHORT || type_213 == STATIC || type_213 == STRICTFP || type_213 == SUPER || type_213 == SYNCHRONIZED || type_213 == THIS || type_213 == TRANSIENT || type_213 == TRUE || type_213 == VOID || type_213 == VOLATILE || type_213 == INTEGER_LITERAL || type_213 == FLOATING_POINT_LITERAL || type_213 == CHARACTER_LITERAL || type_213 == STRING_LITERAL || type_213 == IDENTIFIER || type_213 == LPAREN || type_213 == SEMICOLON || type_213 == INCR || type_213 == DECR || type_213 == AT) { 
+IElementType type_210 = getType();
+if ( type_210 == _LOOKAHEAD || type_210 == _IGNORE_CASE || type_210 == _PARSER_BEGIN || type_210 == _PARSER_END || type_210 == _JAVACODE || type_210 == _TOKEN || type_210 == _SPECIAL_TOKEN || type_210 == _MORE || type_210 == _SKIP || type_210 == _TOKEN_MGR_DECLS || type_210 == _EOF || type_210 == ABSTRACT || type_210 == BOOLEAN || type_210 == BYTE || type_210 == CHAR || type_210 == DOUBLE || type_210 == FALSE || type_210 == FINAL || type_210 == FLOAT || type_210 == INT || type_210 == LONG || type_210 == NATIVE || type_210 == NEW || type_210 == NULL || type_210 == PRIVATE || type_210 == PROTECTED || type_210 == PUBLIC || type_210 == SHORT || type_210 == STATIC || type_210 == STRICTFP || type_210 == SUPER || type_210 == SYNCHRONIZED || type_210 == THIS || type_210 == TRANSIENT || type_210 == TRUE || type_210 == VOID || type_210 == VOLATILE || type_210 == INTEGER_LITERAL || type_210 == FLOATING_POINT_LITERAL || type_210 == CHARACTER_LITERAL || type_210 == STRING_LITERAL || type_210 == IDENTIFIER || type_210 == LPAREN || type_210 == INCR || type_210 == DECR || type_210 == AT) { 
 ForInit();} else 
 {
 ;
 }
 jj_consume_token(SEMICOLON);
-IElementType type_203 = getType();
-if ( type_203 == _OPTIONS || type_203 == _LOOKAHEAD || type_203 == _IGNORE_CASE || type_203 == _PARSER_BEGIN || type_203 == _PARSER_END || type_203 == _JAVACODE || type_203 == _TOKEN || type_203 == _SPECIAL_TOKEN || type_203 == _MORE || type_203 == _SKIP || type_203 == _TOKEN_MGR_DECLS || type_203 == _EOF || type_203 == BOOLEAN || type_203 == BYTE || type_203 == CHAR || type_203 == DOUBLE || type_203 == FALSE || type_203 == FLOAT || type_203 == INT || type_203 == LONG || type_203 == NEW || type_203 == NULL || type_203 == SHORT || type_203 == SUPER || type_203 == THIS || type_203 == TRUE || type_203 == VOID || type_203 == INTEGER_LITERAL || type_203 == FLOATING_POINT_LITERAL || type_203 == CHARACTER_LITERAL || type_203 == STRING_LITERAL || type_203 == IDENTIFIER || type_203 == LPAREN || type_203 == BANG || type_203 == TILDE || type_203 == INCR || type_203 == DECR || type_203 == PLUS || type_203 == MINUS) { 
+IElementType type_211 = getType();
+if ( type_211 == _LOOKAHEAD || type_211 == _IGNORE_CASE || type_211 == _PARSER_BEGIN || type_211 == _PARSER_END || type_211 == _JAVACODE || type_211 == _TOKEN || type_211 == _SPECIAL_TOKEN || type_211 == _MORE || type_211 == _SKIP || type_211 == _TOKEN_MGR_DECLS || type_211 == _EOF || type_211 == BOOLEAN || type_211 == BYTE || type_211 == CHAR || type_211 == DOUBLE || type_211 == FALSE || type_211 == FLOAT || type_211 == INT || type_211 == LONG || type_211 == NEW || type_211 == NULL || type_211 == SHORT || type_211 == SUPER || type_211 == THIS || type_211 == TRUE || type_211 == VOID || type_211 == INTEGER_LITERAL || type_211 == FLOATING_POINT_LITERAL || type_211 == CHARACTER_LITERAL || type_211 == STRING_LITERAL || type_211 == IDENTIFIER || type_211 == LPAREN || type_211 == BANG || type_211 == TILDE || type_211 == INCR || type_211 == DECR || type_211 == PLUS || type_211 == MINUS) { 
 Expression();} else 
 {
 ;
 }
 jj_consume_token(SEMICOLON);
-IElementType type_204 = getType();
-if ( type_204 == _OPTIONS || type_204 == _LOOKAHEAD || type_204 == _IGNORE_CASE || type_204 == _PARSER_BEGIN || type_204 == _PARSER_END || type_204 == _JAVACODE || type_204 == _TOKEN || type_204 == _SPECIAL_TOKEN || type_204 == _MORE || type_204 == _SKIP || type_204 == _TOKEN_MGR_DECLS || type_204 == _EOF || type_204 == BOOLEAN || type_204 == BYTE || type_204 == CHAR || type_204 == DOUBLE || type_204 == FALSE || type_204 == FLOAT || type_204 == INT || type_204 == LONG || type_204 == NEW || type_204 == NULL || type_204 == SHORT || type_204 == SUPER || type_204 == THIS || type_204 == TRUE || type_204 == VOID || type_204 == INTEGER_LITERAL || type_204 == FLOATING_POINT_LITERAL || type_204 == CHARACTER_LITERAL || type_204 == STRING_LITERAL || type_204 == IDENTIFIER || type_204 == LPAREN || type_204 == INCR || type_204 == DECR) { 
+IElementType type_212 = getType();
+if ( type_212 == _LOOKAHEAD || type_212 == _IGNORE_CASE || type_212 == _PARSER_BEGIN || type_212 == _PARSER_END || type_212 == _JAVACODE || type_212 == _TOKEN || type_212 == _SPECIAL_TOKEN || type_212 == _MORE || type_212 == _SKIP || type_212 == _TOKEN_MGR_DECLS || type_212 == _EOF || type_212 == BOOLEAN || type_212 == BYTE || type_212 == CHAR || type_212 == DOUBLE || type_212 == FALSE || type_212 == FLOAT || type_212 == INT || type_212 == LONG || type_212 == NEW || type_212 == NULL || type_212 == SHORT || type_212 == SUPER || type_212 == THIS || type_212 == TRUE || type_212 == VOID || type_212 == INTEGER_LITERAL || type_212 == FLOATING_POINT_LITERAL || type_212 == CHARACTER_LITERAL || type_212 == STRING_LITERAL || type_212 == IDENTIFIER || type_212 == LPAREN || type_212 == INCR || type_212 == DECR) { 
 ForUpdate();} else 
 {
 ;
+}} else 
+{
+builder.error("Unexpected type " + builder.getTokenType());
+builder.advanceLexer();
+continue;
 }
+}
+break;
+} while(true);
+
 jj_consume_token(RPAREN);
 Statement();
       {
@@ -3370,11 +3510,11 @@ Statement();
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     do {
-    if (jj_2_37(2147483647)) {
+    if (jj_2_44(2147483647)) {
       LocalVariableDeclaration();
     } else {
-      IElementType type_205 = getType();
-      if ( type_205 == _OPTIONS || type_205 == _LOOKAHEAD || type_205 == _IGNORE_CASE || type_205 == _PARSER_BEGIN || type_205 == _PARSER_END || type_205 == _JAVACODE || type_205 == _TOKEN || type_205 == _SPECIAL_TOKEN || type_205 == _MORE || type_205 == _SKIP || type_205 == _TOKEN_MGR_DECLS || type_205 == _EOF || type_205 == BOOLEAN || type_205 == BYTE || type_205 == CHAR || type_205 == DOUBLE || type_205 == FALSE || type_205 == FLOAT || type_205 == INT || type_205 == LONG || type_205 == NEW || type_205 == NULL || type_205 == SHORT || type_205 == SUPER || type_205 == THIS || type_205 == TRUE || type_205 == VOID || type_205 == INTEGER_LITERAL || type_205 == FLOATING_POINT_LITERAL || type_205 == CHARACTER_LITERAL || type_205 == STRING_LITERAL || type_205 == IDENTIFIER || type_205 == LPAREN || type_205 == INCR || type_205 == DECR) { 
+      IElementType type_214 = getType();
+      if ( type_214 == _LOOKAHEAD || type_214 == _IGNORE_CASE || type_214 == _PARSER_BEGIN || type_214 == _PARSER_END || type_214 == _JAVACODE || type_214 == _TOKEN || type_214 == _SPECIAL_TOKEN || type_214 == _MORE || type_214 == _SKIP || type_214 == _TOKEN_MGR_DECLS || type_214 == _EOF || type_214 == BOOLEAN || type_214 == BYTE || type_214 == CHAR || type_214 == DOUBLE || type_214 == FALSE || type_214 == FLOAT || type_214 == INT || type_214 == LONG || type_214 == NEW || type_214 == NULL || type_214 == SHORT || type_214 == SUPER || type_214 == THIS || type_214 == TRUE || type_214 == VOID || type_214 == INTEGER_LITERAL || type_214 == FLOATING_POINT_LITERAL || type_214 == CHARACTER_LITERAL || type_214 == STRING_LITERAL || type_214 == IDENTIFIER || type_214 == LPAREN || type_214 == INCR || type_214 == DECR) { 
 StatementExpressionList();} else 
 {
 builder.error("Unexpected type " + builder.getTokenType());
@@ -3398,13 +3538,13 @@ break;
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     StatementExpression();
-    label_206:
+    label_215:
     while (true) {
-      IElementType type_207 = getType();
-      if ( type_207 == COMMA) { 
+      IElementType type_216 = getType();
+      if ( type_216 == COMMA) { 
     ;} else 
   {
-    break label_206;
+    break label_215;
   }
   jj_consume_token(COMMA);
   StatementExpression();
@@ -3435,11 +3575,11 @@ break;
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     jj_consume_token(BREAK);
-    IElementType type_208 = getType();
-    if ( type_208 == _OPTIONS || type_208 == _LOOKAHEAD || type_208 == _IGNORE_CASE || type_208 == _PARSER_BEGIN || type_208 == _PARSER_END || type_208 == _JAVACODE || type_208 == _TOKEN || type_208 == _SPECIAL_TOKEN || type_208 == _MORE || type_208 == _SKIP || type_208 == _TOKEN_MGR_DECLS || type_208 == _EOF || type_208 == IDENTIFIER) { 
-JavaIdentifier();} else 
+    IElementType type_217 = getType();
+    if ( type_217 == IDENTIFIER) { 
+  jj_consume_token(IDENTIFIER);} else 
 {
-;
+  ;
 }
 jj_consume_token(SEMICOLON);
       {
@@ -3455,11 +3595,11 @@ jj_consume_token(SEMICOLON);
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     jj_consume_token(CONTINUE);
-    IElementType type_209 = getType();
-    if ( type_209 == _OPTIONS || type_209 == _LOOKAHEAD || type_209 == _IGNORE_CASE || type_209 == _PARSER_BEGIN || type_209 == _PARSER_END || type_209 == _JAVACODE || type_209 == _TOKEN || type_209 == _SPECIAL_TOKEN || type_209 == _MORE || type_209 == _SKIP || type_209 == _TOKEN_MGR_DECLS || type_209 == _EOF || type_209 == IDENTIFIER) { 
-JavaIdentifier();} else 
+    IElementType type_218 = getType();
+    if ( type_218 == IDENTIFIER) { 
+  jj_consume_token(IDENTIFIER);} else 
 {
-;
+  ;
 }
 jj_consume_token(SEMICOLON);
       {
@@ -3475,8 +3615,8 @@ jj_consume_token(SEMICOLON);
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     jj_consume_token(RETURN);
-    IElementType type_210 = getType();
-    if ( type_210 == _OPTIONS || type_210 == _LOOKAHEAD || type_210 == _IGNORE_CASE || type_210 == _PARSER_BEGIN || type_210 == _PARSER_END || type_210 == _JAVACODE || type_210 == _TOKEN || type_210 == _SPECIAL_TOKEN || type_210 == _MORE || type_210 == _SKIP || type_210 == _TOKEN_MGR_DECLS || type_210 == _EOF || type_210 == BOOLEAN || type_210 == BYTE || type_210 == CHAR || type_210 == DOUBLE || type_210 == FALSE || type_210 == FLOAT || type_210 == INT || type_210 == LONG || type_210 == NEW || type_210 == NULL || type_210 == SHORT || type_210 == SUPER || type_210 == THIS || type_210 == TRUE || type_210 == VOID || type_210 == INTEGER_LITERAL || type_210 == FLOATING_POINT_LITERAL || type_210 == CHARACTER_LITERAL || type_210 == STRING_LITERAL || type_210 == IDENTIFIER || type_210 == LPAREN || type_210 == BANG || type_210 == TILDE || type_210 == INCR || type_210 == DECR || type_210 == PLUS || type_210 == MINUS) { 
+    IElementType type_219 = getType();
+    if ( type_219 == _LOOKAHEAD || type_219 == _IGNORE_CASE || type_219 == _PARSER_BEGIN || type_219 == _PARSER_END || type_219 == _JAVACODE || type_219 == _TOKEN || type_219 == _SPECIAL_TOKEN || type_219 == _MORE || type_219 == _SKIP || type_219 == _TOKEN_MGR_DECLS || type_219 == _EOF || type_219 == BOOLEAN || type_219 == BYTE || type_219 == CHAR || type_219 == DOUBLE || type_219 == FALSE || type_219 == FLOAT || type_219 == INT || type_219 == LONG || type_219 == NEW || type_219 == NULL || type_219 == SHORT || type_219 == SUPER || type_219 == THIS || type_219 == TRUE || type_219 == VOID || type_219 == INTEGER_LITERAL || type_219 == FLOATING_POINT_LITERAL || type_219 == CHARACTER_LITERAL || type_219 == STRING_LITERAL || type_219 == IDENTIFIER || type_219 == LPAREN || type_219 == BANG || type_219 == TILDE || type_219 == INCR || type_219 == DECR || type_219 == PLUS || type_219 == MINUS) { 
 Expression();} else 
 {
 ;
@@ -3528,13 +3668,13 @@ jj_consume_token(SEMICOLON);
   PsiBuilder.Marker jjtn000 = builder.mark();
     jj_consume_token(TRY);
     Block();
-    label_211:
+    label_220:
     while (true) {
-      IElementType type_212 = getType();
-      if ( type_212 == CATCH) { 
+      IElementType type_221 = getType();
+      if ( type_221 == CATCH) { 
     ;} else 
   {
-    break label_211;
+    break label_220;
   }
   jj_consume_token(CATCH);
   jj_consume_token(LPAREN);
@@ -3542,8 +3682,8 @@ jj_consume_token(SEMICOLON);
   jj_consume_token(RPAREN);
   Block();
 }
-IElementType type_213 = getType();
-if ( type_213 == FINALLY) { 
+IElementType type_222 = getType();
+if ( type_222 == FINALLY) { 
 jj_consume_token(FINALLY);
 Block();} else 
 {
@@ -3553,6 +3693,327 @@ Block();} else
         if (jjtc000) {
           jjtc000 = false;
           {jjtn000.done(JJTTRYSTATEMENT); }
+        }
+      }
+  }
+
+/* We use productions to match >>>, >> and > so that we can keep the
+ * type declaration syntax with generics clean
+ */
+  final public void RUNSIGNEDSHIFT()  {
+ /*@bgen(jjtree) RUNSIGNEDSHIFT */
+  boolean jjtc000 = true;
+  PsiBuilder.Marker jjtn000 = builder.mark();
+    jj_consume_token(GT);
+    jj_consume_token(GT);
+    jj_consume_token(GT);
+      {
+        if (jjtc000) {
+          jjtc000 = false;
+          {jjtn000.done(JJTRUNSIGNEDSHIFT); }
+        }
+      }
+  }
+
+  final public void RSIGNEDSHIFT()  {
+ /*@bgen(jjtree) RSIGNEDSHIFT */
+  boolean jjtc000 = true;
+  PsiBuilder.Marker jjtn000 = builder.mark();
+    jj_consume_token(GT);
+    jj_consume_token(GT);
+      {
+        if (jjtc000) {
+          jjtc000 = false;
+          {jjtn000.done(JJTRSIGNEDSHIFT); }
+        }
+      }
+  }
+
+/* Annotation syntax follows. */
+  final public void Annotation()  {
+ /*@bgen(jjtree) Annotation */
+  boolean jjtc000 = true;
+  PsiBuilder.Marker jjtn000 = builder.mark();
+    do {
+    if (jj_2_45(2147483647)) {
+      NormalAnnotation();
+    } else if (jj_2_46(2147483647)) {
+      SingleMemberAnnotation();
+    } else {
+      IElementType type_223 = getType();
+      if ( type_223 == AT) { 
+    MarkerAnnotation();} else 
+  {
+    builder.error("Unexpected type " + builder.getTokenType());
+    builder.advanceLexer();
+    continue;
+  }
+}
+break;
+} while(true);
+
+       {
+         if (jjtc000) {
+           jjtc000 = false;
+           {jjtn000.done(JJTANNOTATION); }
+         }
+       }
+  }
+
+  final public void NormalAnnotation()  {
+ /*@bgen(jjtree) NormalAnnotation */
+  boolean jjtc000 = true;
+  PsiBuilder.Marker jjtn000 = builder.mark();
+    jj_consume_token(AT);
+    Name();
+    jj_consume_token(LPAREN);
+    IElementType type_224 = getType();
+    if ( type_224 == IDENTIFIER) { 
+  MemberValuePairs();} else 
+{
+  ;
+}
+jj_consume_token(RPAREN);
+       {
+         if (jjtc000) {
+           jjtc000 = false;
+           {jjtn000.done(JJTNORMALANNOTATION); }
+         }
+       }
+  }
+
+  final public void MarkerAnnotation()  {
+ /*@bgen(jjtree) MarkerAnnotation */
+  boolean jjtc000 = true;
+  PsiBuilder.Marker jjtn000 = builder.mark();
+    jj_consume_token(AT);
+    Name();
+      {
+        if (jjtc000) {
+          jjtc000 = false;
+          {jjtn000.done(JJTMARKERANNOTATION); }
+        }
+      }
+  }
+
+  final public void SingleMemberAnnotation()  {
+ /*@bgen(jjtree) SingleMemberAnnotation */
+  boolean jjtc000 = true;
+  PsiBuilder.Marker jjtn000 = builder.mark();
+    jj_consume_token(AT);
+    Name();
+    jj_consume_token(LPAREN);
+    MemberValue();
+    jj_consume_token(RPAREN);
+      {
+        if (jjtc000) {
+          jjtc000 = false;
+          {jjtn000.done(JJTSINGLEMEMBERANNOTATION); }
+        }
+      }
+  }
+
+  final public void MemberValuePairs()  {
+ /*@bgen(jjtree) MemberValuePairs */
+  boolean jjtc000 = true;
+  PsiBuilder.Marker jjtn000 = builder.mark();
+    MemberValuePair();
+    label_225:
+    while (true) {
+      IElementType type_226 = getType();
+      if ( type_226 == COMMA) { 
+    ;} else 
+  {
+    break label_225;
+  }
+  jj_consume_token(COMMA);
+  MemberValuePair();
+}
+       {
+         if (jjtc000) {
+           jjtc000 = false;
+           {jjtn000.done(JJTMEMBERVALUEPAIRS); }
+         }
+       }
+  }
+
+  final public void MemberValuePair()  {
+ /*@bgen(jjtree) MemberValuePair */
+  boolean jjtc000 = true;
+  PsiBuilder.Marker jjtn000 = builder.mark();
+    jj_consume_token(IDENTIFIER);
+    jj_consume_token(ASSIGN);
+    MemberValue();
+        {
+          if (jjtc000) {
+            jjtc000 = false;
+            {jjtn000.done(JJTMEMBERVALUEPAIR); }
+          }
+        }
+  }
+
+  final public void MemberValue()  {
+ /*@bgen(jjtree) MemberValue */
+  boolean jjtc000 = true;
+  PsiBuilder.Marker jjtn000 = builder.mark();
+    do {
+    IElementType type_227 = getType();
+    if ( type_227 == AT) { 
+  Annotation();} else if ( type_227 == LBRACE) { 
+MemberValueArrayInitializer();} else if ( type_227 == _LOOKAHEAD || type_227 == _IGNORE_CASE || type_227 == _PARSER_BEGIN || type_227 == _PARSER_END || type_227 == _JAVACODE || type_227 == _TOKEN || type_227 == _SPECIAL_TOKEN || type_227 == _MORE || type_227 == _SKIP || type_227 == _TOKEN_MGR_DECLS || type_227 == _EOF || type_227 == BOOLEAN || type_227 == BYTE || type_227 == CHAR || type_227 == DOUBLE || type_227 == FALSE || type_227 == FLOAT || type_227 == INT || type_227 == LONG || type_227 == NEW || type_227 == NULL || type_227 == SHORT || type_227 == SUPER || type_227 == THIS || type_227 == TRUE || type_227 == VOID || type_227 == INTEGER_LITERAL || type_227 == FLOATING_POINT_LITERAL || type_227 == CHARACTER_LITERAL || type_227 == STRING_LITERAL || type_227 == IDENTIFIER || type_227 == LPAREN || type_227 == BANG || type_227 == TILDE || type_227 == INCR || type_227 == DECR || type_227 == PLUS || type_227 == MINUS) { 
+ConditionalExpression();} else 
+{
+builder.error("Unexpected type " + builder.getTokenType());
+builder.advanceLexer();
+continue;
+}
+break;
+} while(true);
+
+       {
+         if (jjtc000) {
+           jjtc000 = false;
+           {jjtn000.done(JJTMEMBERVALUE); }
+         }
+       }
+  }
+
+  final public void MemberValueArrayInitializer()  {
+ /*@bgen(jjtree) MemberValueArrayInitializer */
+  boolean jjtc000 = true;
+  PsiBuilder.Marker jjtn000 = builder.mark();
+    jj_consume_token(LBRACE);
+    MemberValue();
+    label_228:
+    while (true) {
+      if (jj_2_47(2)) {
+        ;
+      } else {
+        break label_228;
+      }
+      jj_consume_token(COMMA);
+      MemberValue();
+    }
+    IElementType type_229 = getType();
+    if ( type_229 == COMMA) { 
+  jj_consume_token(COMMA);} else 
+{
+  ;
+}
+jj_consume_token(RBRACE);
+      {
+        if (jjtc000) {
+          jjtc000 = false;
+          {jjtn000.done(JJTMEMBERVALUEARRAYINITIALIZER); }
+        }
+      }
+  }
+
+/* Annotation Types. */
+  final public void AnnotationTypeDeclaration()  {
+ /*@bgen(jjtree) AnnotationTypeDeclaration */
+  boolean jjtc000 = true;
+  PsiBuilder.Marker jjtn000 = builder.mark();
+    jj_consume_token(AT);
+    jj_consume_token(INTERFACE);
+    jj_consume_token(IDENTIFIER);
+    AnnotationTypeBody();
+      {
+        if (jjtc000) {
+          jjtc000 = false;
+          {jjtn000.done(JJTANNOTATIONTYPEDECLARATION); }
+        }
+      }
+  }
+
+  final public void AnnotationTypeBody()  {
+ /*@bgen(jjtree) AnnotationTypeBody */
+  boolean jjtc000 = true;
+  PsiBuilder.Marker jjtn000 = builder.mark();
+    jj_consume_token(LBRACE);
+    label_230:
+    while (true) {
+      IElementType type_231 = getType();
+      if ( type_231 == ABSTRACT || type_231 == BOOLEAN || type_231 == BYTE || type_231 == CHAR || type_231 == CLASS || type_231 == DOUBLE || type_231 == ENUM || type_231 == FINAL || type_231 == FLOAT || type_231 == INT || type_231 == INTERFACE || type_231 == LONG || type_231 == NATIVE || type_231 == PRIVATE || type_231 == PROTECTED || type_231 == PUBLIC || type_231 == SHORT || type_231 == STATIC || type_231 == STRICTFP || type_231 == SYNCHRONIZED || type_231 == TRANSIENT || type_231 == VOLATILE || type_231 == IDENTIFIER || type_231 == SEMICOLON || type_231 == AT) { 
+;} else 
+{
+break label_230;
+}
+AnnotationTypeMemberDeclaration();
+}
+jj_consume_token(RBRACE);
+      {
+        if (jjtc000) {
+          jjtc000 = false;
+          {jjtn000.done(JJTANNOTATIONTYPEBODY); }
+        }
+      }
+  }
+
+  final public void AnnotationTypeMemberDeclaration()  {
+ /*@bgen(jjtree) AnnotationTypeMemberDeclaration */
+  boolean jjtc000 = true;
+  PsiBuilder.Marker jjtn000 = builder.mark();
+    do {
+    IElementType type_234 = getType();
+    if ( type_234 == ABSTRACT || type_234 == BOOLEAN || type_234 == BYTE || type_234 == CHAR || type_234 == CLASS || type_234 == DOUBLE || type_234 == ENUM || type_234 == FINAL || type_234 == FLOAT || type_234 == INT || type_234 == INTERFACE || type_234 == LONG || type_234 == NATIVE || type_234 == PRIVATE || type_234 == PROTECTED || type_234 == PUBLIC || type_234 == SHORT || type_234 == STATIC || type_234 == STRICTFP || type_234 == SYNCHRONIZED || type_234 == TRANSIENT || type_234 == VOLATILE || type_234 == IDENTIFIER || type_234 == AT) { 
+Modifiers();
+do {
+if (jj_2_48(2147483647)) {
+Type();
+jj_consume_token(IDENTIFIER);
+jj_consume_token(LPAREN);
+jj_consume_token(RPAREN);
+IElementType type_232 = getType();
+if ( type_232 == _DEFAULT) { 
+DefaultValue();} else 
+{
+;
+}
+jj_consume_token(SEMICOLON);
+} else {
+IElementType type_233 = getType();
+if ( type_233 == CLASS || type_233 == INTERFACE) { 
+ClassOrInterfaceDeclaration();} else if ( type_233 == ENUM) { 
+EnumDeclaration();} else if ( type_233 == AT) { 
+AnnotationTypeDeclaration();} else if ( type_233 == BOOLEAN || type_233 == BYTE || type_233 == CHAR || type_233 == DOUBLE || type_233 == FLOAT || type_233 == INT || type_233 == LONG || type_233 == SHORT || type_233 == IDENTIFIER) { 
+FieldDeclaration();} else 
+{
+builder.error("Unexpected type " + builder.getTokenType());
+builder.advanceLexer();
+continue;
+}
+}
+break;
+} while(true);
+} else if ( type_234 == SEMICOLON) { 
+jj_consume_token(SEMICOLON);} else 
+{
+builder.error("Unexpected type " + builder.getTokenType());
+builder.advanceLexer();
+continue;
+}
+break;
+} while(true);
+
+     {
+       if (jjtc000) {
+         jjtc000 = false;
+         {jjtn000.done(JJTANNOTATIONTYPEMEMBERDECLARATION); }
+       }
+     }
+  }
+
+  final public void DefaultValue()  {
+ /*@bgen(jjtree) DefaultValue */
+  boolean jjtc000 = true;
+  PsiBuilder.Marker jjtn000 = builder.mark();
+    jj_consume_token(_DEFAULT);
+    MemberValue();
+      {
+        if (jjtc000) {
+          jjtc000 = false;
+          {jjtn000.done(JJTDEFAULTVALUE); }
         }
       }
   }
@@ -3890,284 +4351,1242 @@ Block();} else
     finally { jj_scanpos.rollbackTo(); }
   }
 
-  private boolean jj_3R_318() {
-    if (jj_scan_token(CLASS)) return true;
-    if (jj_3R_233()) return true;
+  private boolean jj_2_38(int xla) {
+    jj_la = xla;
+    jj_offset = builder.getCurrentOffset();
+    PsiBuilder.Marker jj_scanpos = builder.mark();
+    try { boolean result =  !jj_3_38(); return result;}
+    catch(LookaheadSuccess ls) { return true; }
+    finally { jj_scanpos.rollbackTo(); }
+  }
+
+  private boolean jj_2_39(int xla) {
+    jj_la = xla;
+    jj_offset = builder.getCurrentOffset();
+    PsiBuilder.Marker jj_scanpos = builder.mark();
+    try { boolean result =  !jj_3_39(); return result;}
+    catch(LookaheadSuccess ls) { return true; }
+    finally { jj_scanpos.rollbackTo(); }
+  }
+
+  private boolean jj_2_40(int xla) {
+    jj_la = xla;
+    jj_offset = builder.getCurrentOffset();
+    PsiBuilder.Marker jj_scanpos = builder.mark();
+    try { boolean result =  !jj_3_40(); return result;}
+    catch(LookaheadSuccess ls) { return true; }
+    finally { jj_scanpos.rollbackTo(); }
+  }
+
+  private boolean jj_2_41(int xla) {
+    jj_la = xla;
+    jj_offset = builder.getCurrentOffset();
+    PsiBuilder.Marker jj_scanpos = builder.mark();
+    try { boolean result =  !jj_3_41(); return result;}
+    catch(LookaheadSuccess ls) { return true; }
+    finally { jj_scanpos.rollbackTo(); }
+  }
+
+  private boolean jj_2_42(int xla) {
+    jj_la = xla;
+    jj_offset = builder.getCurrentOffset();
+    PsiBuilder.Marker jj_scanpos = builder.mark();
+    try { boolean result =  !jj_3_42(); return result;}
+    catch(LookaheadSuccess ls) { return true; }
+    finally { jj_scanpos.rollbackTo(); }
+  }
+
+  private boolean jj_2_43(int xla) {
+    jj_la = xla;
+    jj_offset = builder.getCurrentOffset();
+    PsiBuilder.Marker jj_scanpos = builder.mark();
+    try { boolean result =  !jj_3_43(); return result;}
+    catch(LookaheadSuccess ls) { return true; }
+    finally { jj_scanpos.rollbackTo(); }
+  }
+
+  private boolean jj_2_44(int xla) {
+    jj_la = xla;
+    jj_offset = builder.getCurrentOffset();
+    PsiBuilder.Marker jj_scanpos = builder.mark();
+    try { boolean result =  !jj_3_44(); return result;}
+    catch(LookaheadSuccess ls) { return true; }
+    finally { jj_scanpos.rollbackTo(); }
+  }
+
+  private boolean jj_2_45(int xla) {
+    jj_la = xla;
+    jj_offset = builder.getCurrentOffset();
+    PsiBuilder.Marker jj_scanpos = builder.mark();
+    try { boolean result =  !jj_3_45(); return result;}
+    catch(LookaheadSuccess ls) { return true; }
+    finally { jj_scanpos.rollbackTo(); }
+  }
+
+  private boolean jj_2_46(int xla) {
+    jj_la = xla;
+    jj_offset = builder.getCurrentOffset();
+    PsiBuilder.Marker jj_scanpos = builder.mark();
+    try { boolean result =  !jj_3_46(); return result;}
+    catch(LookaheadSuccess ls) { return true; }
+    finally { jj_scanpos.rollbackTo(); }
+  }
+
+  private boolean jj_2_47(int xla) {
+    jj_la = xla;
+    jj_offset = builder.getCurrentOffset();
+    PsiBuilder.Marker jj_scanpos = builder.mark();
+    try { boolean result =  !jj_3_47(); return result;}
+    catch(LookaheadSuccess ls) { return true; }
+    finally { jj_scanpos.rollbackTo(); }
+  }
+
+  private boolean jj_2_48(int xla) {
+    jj_la = xla;
+    jj_offset = builder.getCurrentOffset();
+    PsiBuilder.Marker jj_scanpos = builder.mark();
+    try { boolean result =  !jj_3_48(); return result;}
+    catch(LookaheadSuccess ls) { return true; }
+    finally { jj_scanpos.rollbackTo(); }
+  }
+
+  private boolean jj_3R_473() {
+    if (jj_3R_268()) return true;
+    if (jj_3R_246()) return true;
     {
       PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_406()) jj_scanpos.rollbackTo();
+      if (jj_scan_token(ELLIPSIS) ) jj_scanpos.rollbackTo();
     }
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_407()) jj_scanpos.rollbackTo();
-    }
-    if (jj_3R_349()) return true;
+    if (jj_3R_466()) return true;
     return false;
   }
 
-  private boolean jj_3R_221() {
+  private boolean jj_3R_464() {
+    if (jj_3R_473()) return true;
+    while (true) {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_474()) { jj_scanpos.rollbackTo(); break; }
+    }
+    return false;
+  }
+
+  private boolean jj_3R_458() {
+    if (jj_scan_token(THROWS)) return true;
+    if (jj_3R_465()) return true;
+    return false;
+  }
+
+  private boolean jj_3_13() {
+    if (jj_scan_token(COMMA)) return true;
+    if (jj_3R_249()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_450() {
+    if (jj_scan_token(LPAREN)) return true;
     {
       PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_scan_token(ABSTRACT) ) {
+      if (jj_3R_464()) jj_scanpos.rollbackTo();
+    }
+    if (jj_scan_token(RPAREN)) return true;
+    return false;
+  }
+
+  private boolean jj_3_48() {
+    if (jj_3R_246()) return true;
+    if (jj_scan_token(IDENTIFIER)) return true;
+    if (jj_scan_token(LPAREN)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_457() {
+    if (jj_scan_token(IDENTIFIER)) return true;
+    if (jj_3R_450()) return true;
+    while (true) {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_468()) { jj_scanpos.rollbackTo(); break; }
+    }
+    return false;
+  }
+
+  private boolean jj_3R_459() {
+    if (jj_3R_279()) return true;
+    return false;
+  }
+
+  private boolean jj_3_47() {
+    if (jj_scan_token(COMMA)) return true;
+    if (jj_3R_271()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_456() {
+    if (jj_3R_277()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_443() {
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_456()) jj_scanpos.rollbackTo();
+    }
+    if (jj_3R_264()) return true;
+    if (jj_3R_457()) return true;
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_458()) jj_scanpos.rollbackTo();
+    }
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_459()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_scan_token(SEMICOLON) ) {
+        jj_scanpos.rollbackTo();
+        return true;
+      }
+      }
+    }
+    return false;
+  }
+
+  private boolean jj_3R_416() {
+    if (jj_3R_249()) return true;
+    while (true) {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3_13()) { jj_scanpos.rollbackTo(); break; }
+    }
+    return false;
+  }
+
+  private boolean jj_3R_467() {
+    if (jj_scan_token(ASSIGN)) return true;
+    if (jj_3R_249()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_455() {
+    if (jj_scan_token(COMMA)) return true;
+    if (jj_3R_454()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_476() {
+    if (jj_scan_token(LBRACKET)) return true;
+    if (jj_scan_token(RBRACKET)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_316() {
+    if (jj_scan_token(LBRACE)) return true;
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_416()) jj_scanpos.rollbackTo();
+    }
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_scan_token(COMMA) ) jj_scanpos.rollbackTo();
+    }
+    if (jj_scan_token(RBRACE)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_247() {
+    if (jj_scan_token(LBRACKET)) return true;
+    if (jj_scan_token(RBRACKET)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_281() {
+    if (jj_3R_256()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_280() {
+    if (jj_3R_316()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_249() {
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_280()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_281()) {
+        jj_scanpos.rollbackTo();
+        return true;
+      }
+      }
+    }
+    return false;
+  }
+
+  private boolean jj_3R_324() {
+    if (jj_scan_token(LBRACE)) return true;
+    if (jj_3R_271()) return true;
+    while (true) {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3_47()) { jj_scanpos.rollbackTo(); break; }
+    }
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_scan_token(COMMA) ) jj_scanpos.rollbackTo();
+    }
+    if (jj_scan_token(RBRACE)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_374() {
+    if (jj_scan_token(COMMA)) return true;
+    if (jj_3R_373()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_466() {
+    if (jj_scan_token(IDENTIFIER)) return true;
+    while (true) {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_476()) { jj_scanpos.rollbackTo(); break; }
+    }
+    return false;
+  }
+
+  private boolean jj_3R_302() {
+    if (jj_3R_290()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_301() {
+    if (jj_3R_324()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_300() {
+    if (jj_3R_276()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_271() {
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_300()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_301()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_302()) {
+        jj_scanpos.rollbackTo();
+        return true;
+      }
+      }
+      }
+    }
+    return false;
+  }
+
+  private boolean jj_3R_454() {
+    if (jj_3R_466()) return true;
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_467()) jj_scanpos.rollbackTo();
+    }
+    return false;
+  }
+
+  private boolean jj_3R_373() {
+    if (jj_scan_token(IDENTIFIER)) return true;
+    if (jj_scan_token(ASSIGN)) return true;
+    if (jj_3R_271()) return true;
+    return false;
+  }
+
+  private boolean jj_3_11() {
+    if (jj_3R_246()) return true;
+    if (jj_scan_token(IDENTIFIER)) return true;
+    while (true) {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_247()) { jj_scanpos.rollbackTo(); break; }
+    }
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_scan_token(COMMA) ) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_scan_token(ASSIGN) ) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_scan_token(SEMICOLON) ) {
+        jj_scanpos.rollbackTo();
+        return true;
+      }
+      }
+      }
+    }
+    return false;
+  }
+
+  private boolean jj_3R_245() {
+    if (jj_3R_277()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_442() {
+    if (jj_3R_246()) return true;
+    if (jj_3R_454()) return true;
+    while (true) {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_455()) { jj_scanpos.rollbackTo(); break; }
+    }
+    if (jj_scan_token(SEMICOLON)) return true;
+    return false;
+  }
+
+  private boolean jj_3_10() {
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_245()) jj_scanpos.rollbackTo();
+    }
+    if (jj_scan_token(IDENTIFIER)) return true;
+    if (jj_scan_token(LPAREN)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_359() {
+    if (jj_3R_373()) return true;
+    while (true) {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_374()) { jj_scanpos.rollbackTo(); break; }
+    }
+    return false;
+  }
+
+  private boolean jj_3R_341() {
+    if (jj_3R_359()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_438() {
+    if (jj_3R_443()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_360() {
+    if (jj_scan_token(BIT_AND)) return true;
+    if (jj_3R_318()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_270() {
+    if (jj_scan_token(IDENTIFIER)) return true;
+    if (jj_scan_token(ASSIGN)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_437() {
+    if (jj_3R_442()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_328() {
+    if (jj_scan_token(AT)) return true;
+    if (jj_3R_269()) return true;
+    if (jj_scan_token(LPAREN)) return true;
+    if (jj_3R_271()) return true;
+    if (jj_scan_token(RPAREN)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_436() {
+    if (jj_3R_441()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_435() {
+    if (jj_3R_440()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_434() {
+    if (jj_3R_363()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_479() {
+    if (jj_3R_396()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_329() {
+    if (jj_scan_token(AT)) return true;
+    if (jj_3R_269()) return true;
+    return false;
+  }
+
+  private boolean jj_3_46() {
+    if (jj_scan_token(AT)) return true;
+    if (jj_3R_269()) return true;
+    if (jj_scan_token(LPAREN)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_327() {
+    if (jj_scan_token(AT)) return true;
+    if (jj_3R_269()) return true;
+    if (jj_scan_token(LPAREN)) return true;
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_341()) jj_scanpos.rollbackTo();
+    }
+    if (jj_scan_token(RPAREN)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_430() {
+    if (jj_3R_268()) return true;
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_434()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_435()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_436()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_437()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_438()) {
+        jj_scanpos.rollbackTo();
+        return true;
+      }
+      }
+      }
+      }
+      }
+    }
+    return false;
+  }
+
+  private boolean jj_3_45() {
+    if (jj_scan_token(AT)) return true;
+    if (jj_3R_269()) return true;
+    if (jj_scan_token(LPAREN)) return true;
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_270()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_scan_token(RPAREN) ) {
+        jj_scanpos.rollbackTo();
+        return true;
+      }
+      }
+    }
+    return false;
+  }
+
+  private boolean jj_3_12() {
+    if (jj_3R_248()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_417() {
+    if (jj_3R_426()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_426() {
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3_12()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_430()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_scan_token(SEMICOLON) ) {
+        jj_scanpos.rollbackTo();
+        return true;
+      }
+      }
+      }
+    }
+    return false;
+  }
+
+  private boolean jj_3R_312() {
+    if (jj_3R_329()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_314() {
+    if (jj_scan_token(COMMA)) return true;
+    if (jj_3R_313()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_311() {
+    if (jj_3R_328()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_330() {
+    if (jj_3R_342()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_396() {
+    if (jj_scan_token(LBRACE)) return true;
+    while (true) {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_417()) { jj_scanpos.rollbackTo(); break; }
+    }
+    if (jj_scan_token(RBRACE)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_478() {
+    if (jj_3R_251()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_310() {
+    if (jj_3R_327()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_276() {
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_310()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_311()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_312()) {
+        jj_scanpos.rollbackTo();
+        return true;
+      }
+      }
+      }
+    }
+    return false;
+  }
+
+  private boolean jj_3R_342() {
+    if (jj_scan_token(EXTENDS)) return true;
+    if (jj_3R_318()) return true;
+    while (true) {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_360()) { jj_scanpos.rollbackTo(); break; }
+    }
+    return false;
+  }
+
+  private boolean jj_3R_292() {
+    if (jj_scan_token(GT)) return true;
+    if (jj_scan_token(GT)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_313() {
+    if (jj_scan_token(IDENTIFIER)) return true;
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_330()) jj_scanpos.rollbackTo();
+    }
+    return false;
+  }
+
+  private boolean jj_3_9() {
+    if (jj_scan_token(COMMA)) return true;
+    if (jj_3R_244()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_260() {
+    if (jj_scan_token(GT)) return true;
+    if (jj_scan_token(GT)) return true;
+    if (jj_scan_token(GT)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_277() {
+    if (jj_scan_token(LT)) return true;
+    if (jj_3R_313()) return true;
+    while (true) {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_314()) { jj_scanpos.rollbackTo(); break; }
+    }
+    if (jj_scan_token(GT)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_488() {
+    if (jj_scan_token(FINALLY)) return true;
+    if (jj_3R_279()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_487() {
+    if (jj_scan_token(CATCH)) return true;
+    if (jj_scan_token(LPAREN)) return true;
+    if (jj_3R_473()) return true;
+    if (jj_scan_token(RPAREN)) return true;
+    if (jj_3R_279()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_472() {
+    if (jj_3R_426()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_243() {
+    if (jj_3R_276()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_244() {
+    if (jj_3R_268()) return true;
+    if (jj_scan_token(IDENTIFIER)) return true;
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_478()) jj_scanpos.rollbackTo();
+    }
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_479()) jj_scanpos.rollbackTo();
+    }
+    return false;
+  }
+
+  private boolean jj_3R_411() {
+    if (jj_scan_token(TRY)) return true;
+    if (jj_3R_279()) return true;
+    while (true) {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_487()) { jj_scanpos.rollbackTo(); break; }
+    }
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_488()) jj_scanpos.rollbackTo();
+    }
+    return false;
+  }
+
+  private boolean jj_3R_463() {
+    if (jj_scan_token(SEMICOLON)) return true;
+    while (true) {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_472()) { jj_scanpos.rollbackTo(); break; }
+    }
+    return false;
+  }
+
+  private boolean jj_3R_462() {
+    if (jj_3R_244()) return true;
+    while (true) {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3_9()) { jj_scanpos.rollbackTo(); break; }
+    }
+    return false;
+  }
+
+  private boolean jj_3R_448() {
+    if (jj_scan_token(LBRACE)) return true;
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_462()) jj_scanpos.rollbackTo();
+    }
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_scan_token(COMMA) ) jj_scanpos.rollbackTo();
+    }
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_463()) jj_scanpos.rollbackTo();
+    }
+    if (jj_scan_token(RBRACE)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_410() {
+    if (jj_scan_token(SYNCHRONIZED)) return true;
+    if (jj_scan_token(LPAREN)) return true;
+    if (jj_3R_256()) return true;
+    if (jj_scan_token(RPAREN)) return true;
+    if (jj_3R_279()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_486() {
+    if (jj_3R_256()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_447() {
+    if (jj_3R_461()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_409() {
+    if (jj_scan_token(THROW)) return true;
+    if (jj_3R_256()) return true;
+    if (jj_scan_token(SEMICOLON)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_440() {
+    if (jj_scan_token(ENUM)) return true;
+    if (jj_scan_token(IDENTIFIER)) return true;
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_447()) jj_scanpos.rollbackTo();
+    }
+    if (jj_3R_448()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_494() {
+    if (jj_3R_500()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_471() {
+    if (jj_scan_token(COMMA)) return true;
+    if (jj_3R_318()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_504() {
+    if (jj_scan_token(COMMA)) return true;
+    if (jj_3R_400()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_408() {
+    if (jj_scan_token(RETURN)) return true;
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_486()) jj_scanpos.rollbackTo();
+    }
+    if (jj_scan_token(SEMICOLON)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_461() {
+    if (jj_scan_token(IMPLEMENTS)) return true;
+    if (jj_3R_318()) return true;
+    while (true) {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_471()) { jj_scanpos.rollbackTo(); break; }
+    }
+    return false;
+  }
+
+  private boolean jj_3R_470() {
+    if (jj_scan_token(COMMA)) return true;
+    if (jj_3R_318()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_407() {
+    if (jj_scan_token(CONTINUE)) return true;
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_scan_token(IDENTIFIER) ) jj_scanpos.rollbackTo();
+    }
+    if (jj_scan_token(SEMICOLON)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_460() {
+    if (jj_scan_token(EXTENDS)) return true;
+    if (jj_3R_318()) return true;
+    while (true) {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_470()) { jj_scanpos.rollbackTo(); break; }
+    }
+    return false;
+  }
+
+  private boolean jj_3R_406() {
+    if (jj_scan_token(BREAK)) return true;
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_scan_token(IDENTIFIER) ) jj_scanpos.rollbackTo();
+    }
+    if (jj_scan_token(SEMICOLON)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_446() {
+    if (jj_3R_461()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_445() {
+    if (jj_3R_460()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_444() {
+    if (jj_3R_277()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_500() {
+    if (jj_3R_503()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_493() {
+    if (jj_3R_256()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_363() {
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_scan_token(CLASS) ) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_scan_token(INTERFACE) ) {
+        jj_scanpos.rollbackTo();
+        return true;
+      }
+      }
+    }
+    if (jj_scan_token(IDENTIFIER)) return true;
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_444()) jj_scanpos.rollbackTo();
+    }
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_445()) jj_scanpos.rollbackTo();
+    }
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_446()) jj_scanpos.rollbackTo();
+    }
+    if (jj_3R_396()) return true;
+    return false;
+  }
+
+  private boolean jj_3_44() {
+    if (jj_3R_268()) return true;
+    if (jj_3R_246()) return true;
+    if (jj_scan_token(IDENTIFIER)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_503() {
+    if (jj_3R_400()) return true;
+    while (true) {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_504()) { jj_scanpos.rollbackTo(); break; }
+    }
+    return false;
+  }
+
+  private boolean jj_3R_483() {
+    if (jj_scan_token(ELSE)) return true;
+    if (jj_3R_362()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_502() {
+    if (jj_3R_503()) return true;
+    return false;
+  }
+
+  private boolean jj_3_43() {
+    if (jj_3R_268()) return true;
+    if (jj_3R_246()) return true;
+    if (jj_scan_token(IDENTIFIER)) return true;
+    if (jj_scan_token(COLON)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_501() {
+    if (jj_3R_361()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_499() {
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_501()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_502()) {
+        jj_scanpos.rollbackTo();
+        return true;
+      }
+      }
+    }
+    return false;
+  }
+
+  private boolean jj_3R_492() {
+    if (jj_3R_499()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_485() {
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_492()) jj_scanpos.rollbackTo();
+    }
+    if (jj_scan_token(SEMICOLON)) return true;
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_493()) jj_scanpos.rollbackTo();
+    }
+    if (jj_scan_token(SEMICOLON)) return true;
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_494()) jj_scanpos.rollbackTo();
+    }
+    return false;
+  }
+
+  private boolean jj_3R_484() {
+    if (jj_3R_268()) return true;
+    if (jj_3R_246()) return true;
+    if (jj_scan_token(IDENTIFIER)) return true;
+    if (jj_scan_token(COLON)) return true;
+    if (jj_3R_256()) return true;
+    return false;
+  }
+
+  private boolean jj_3_8() {
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_scan_token(PUBLIC) ) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_scan_token(STATIC) ) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_scan_token(PROTECTED) ) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_scan_token(PRIVATE) ) {
         jj_scanpos.rollbackTo();
         jj_scanpos = builder.mark();
       if (jj_scan_token(FINAL) ) {
         jj_scanpos.rollbackTo();
         jj_scanpos = builder.mark();
-      if (jj_scan_token(PUBLIC) ) {
+      if (jj_scan_token(ABSTRACT) ) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_scan_token(SYNCHRONIZED) ) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_scan_token(NATIVE) ) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_scan_token(TRANSIENT) ) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_scan_token(VOLATILE) ) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_scan_token(STRICTFP) ) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_243()) {
         jj_scanpos.rollbackTo();
         return true;
       }
       }
       }
+      }
+      }
+      }
+      }
+      }
+      }
+      }
+      }
+      }
     }
     return false;
   }
 
-  private boolean jj_3_6() {
-    while (true) {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_221()) { jj_scanpos.rollbackTo(); break; }
-    }
-    if (jj_scan_token(CLASS)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_436() {
-    if (jj_scan_token(FINALLY)) return true;
-    if (jj_3R_249()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_435() {
-    if (jj_scan_token(CATCH)) return true;
+  private boolean jj_3R_405() {
+    if (jj_scan_token(FOR)) return true;
     if (jj_scan_token(LPAREN)) return true;
-    if (jj_3R_416()) return true;
-    if (jj_scan_token(RPAREN)) return true;
-    if (jj_3R_249()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_363() {
-    if (jj_scan_token(TRY)) return true;
-    if (jj_3R_249()) return true;
-    while (true) {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_435()) { jj_scanpos.rollbackTo(); break; }
-    }
     {
       PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_436()) jj_scanpos.rollbackTo();
+      if (jj_3R_484()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_485()) {
+        jj_scanpos.rollbackTo();
+        return true;
+      }
+      }
+    }
+    if (jj_scan_token(RPAREN)) return true;
+    if (jj_3R_362()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_268() {
+    while (true) {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3_8()) { jj_scanpos.rollbackTo(); break; }
     }
     return false;
   }
 
-  private boolean jj_3R_362() {
-    if (jj_scan_token(SYNCHRONIZED)) return true;
+  private boolean jj_3R_404() {
+    if (jj_scan_token(DO)) return true;
+    if (jj_3R_362()) return true;
+    if (jj_scan_token(WHILE)) return true;
     if (jj_scan_token(LPAREN)) return true;
-    if (jj_3R_242()) return true;
+    if (jj_3R_256()) return true;
     if (jj_scan_token(RPAREN)) return true;
-    if (jj_3R_249()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_431() {
-    if (jj_3R_441()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_434() {
-    if (jj_3R_242()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_433() {
-    if (jj_3R_233()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_361() {
-    if (jj_scan_token(THROW)) return true;
-    if (jj_3R_242()) return true;
     if (jj_scan_token(SEMICOLON)) return true;
     return false;
   }
 
-  private boolean jj_3R_449() {
+  private boolean jj_3R_242() {
+    if (jj_3R_276()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_403() {
+    if (jj_scan_token(WHILE)) return true;
+    if (jj_scan_token(LPAREN)) return true;
+    if (jj_3R_256()) return true;
+    if (jj_scan_token(RPAREN)) return true;
+    if (jj_3R_362()) return true;
+    return false;
+  }
+
+  private boolean jj_3_7() {
+    while (true) {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_242()) { jj_scanpos.rollbackTo(); break; }
+    }
+    if (jj_scan_token(PACKAGE)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_491() {
+    if (jj_3R_331()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_402() {
+    if (jj_scan_token(IF)) return true;
+    if (jj_scan_token(LPAREN)) return true;
+    if (jj_3R_256()) return true;
+    if (jj_scan_token(RPAREN)) return true;
+    if (jj_3R_362()) return true;
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_483()) jj_scanpos.rollbackTo();
+    }
+    return false;
+  }
+
+  private boolean jj_3R_498() {
+    if (jj_scan_token(_DEFAULT)) return true;
+    if (jj_scan_token(COLON)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_497() {
+    if (jj_scan_token(CASE)) return true;
+    if (jj_3R_256()) return true;
+    if (jj_scan_token(COLON)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_490() {
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_497()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_498()) {
+        jj_scanpos.rollbackTo();
+        return true;
+      }
+      }
+    }
+    return false;
+  }
+
+  private boolean jj_3R_480() {
     if (jj_scan_token(COMMA)) return true;
-    if (jj_3R_352()) return true;
+    if (jj_3R_454()) return true;
     return false;
   }
 
-  private boolean jj_3R_360() {
-    if (jj_scan_token(RETURN)) return true;
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_434()) jj_scanpos.rollbackTo();
-    }
-    if (jj_scan_token(SEMICOLON)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_369() {
-    if (jj_scan_token(GT)) return true;
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_scan_token(GT) ) jj_scanpos.rollbackTo();
-    }
-    if (jj_scan_token(GE)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_432() {
-    if (jj_3R_233()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_347() {
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_368()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_369()) {
-        jj_scanpos.rollbackTo();
-        return true;
-      }
-      }
-    }
-    return false;
-  }
-
-  private boolean jj_3R_368() {
-    if (jj_scan_token(LT)) return true;
-    if (jj_scan_token(LE)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_359() {
-    if (jj_scan_token(CONTINUE)) return true;
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_433()) jj_scanpos.rollbackTo();
-    }
-    if (jj_scan_token(SEMICOLON)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_257() {
-    if (jj_scan_token(GT)) return true;
-    if (jj_scan_token(GT)) return true;
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_scan_token(GT) ) jj_scanpos.rollbackTo();
-    }
-    return false;
-  }
-
-  private boolean jj_3R_430() {
-    if (jj_3R_242()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_256() {
-    if (jj_scan_token(LT)) return true;
-    if (jj_scan_token(LT)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_235() {
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_256()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_257()) {
-        jj_scanpos.rollbackTo();
-        return true;
-      }
-      }
-    }
-    return false;
-  }
-
-  private boolean jj_3R_358() {
-    if (jj_scan_token(BREAK)) return true;
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_432()) jj_scanpos.rollbackTo();
-    }
-    if (jj_scan_token(SEMICOLON)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_428() {
-    if (jj_scan_token(ELSE)) return true;
-    if (jj_3R_317()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_441() {
-    if (jj_3R_447()) return true;
-    return false;
-  }
-
-  private boolean jj_3_37() {
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_scan_token(FINAL) ) jj_scanpos.rollbackTo();
-    }
-    if (jj_3R_244()) return true;
-    if (jj_3R_233()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_447() {
-    if (jj_3R_352()) return true;
+  private boolean jj_3R_482() {
+    if (jj_3R_490()) return true;
     while (true) {
       PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_449()) { jj_scanpos.rollbackTo(); break; }
+      if (jj_3R_491()) { jj_scanpos.rollbackTo(); break; }
     }
     return false;
   }
 
-  private boolean jj_3R_429() {
-    if (jj_3R_440()) return true;
+  private boolean jj_3R_401() {
+    if (jj_scan_token(SWITCH)) return true;
+    if (jj_scan_token(LPAREN)) return true;
+    if (jj_3R_256()) return true;
+    if (jj_scan_token(RPAREN)) return true;
+    if (jj_scan_token(LBRACE)) return true;
+    while (true) {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_482()) { jj_scanpos.rollbackTo(); break; }
+    }
+    if (jj_scan_token(RBRACE)) return true;
     return false;
   }
 
-  private boolean jj_3R_446() {
-    if (jj_3R_447()) return true;
+  private boolean jj_3R_496() {
+    if (jj_3R_255()) return true;
+    if (jj_3R_256()) return true;
     return false;
   }
 
-  private boolean jj_3R_445() {
-    if (jj_3R_316()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_440() {
+  private boolean jj_3R_489() {
     {
       PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_445()) {
+      if (jj_scan_token(INCR) ) {
         jj_scanpos.rollbackTo();
         jj_scanpos = builder.mark();
-      if (jj_3R_446()) {
+      if (jj_scan_token(DECR) ) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_496()) {
         jj_scanpos.rollbackTo();
         return true;
       }
       }
+      }
     }
     return false;
   }
 
-  private boolean jj_3R_233() {
+  private boolean jj_3R_254() {
     {
       PsiBuilder.Marker jj_scanpos = builder.mark();
       if (jj_scan_token(IDENTIFIER) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(_OPTIONS) ) {
         jj_scanpos.rollbackTo();
         jj_scanpos = builder.mark();
       if (jj_scan_token(_LOOKAHEAD) ) {
@@ -4215,144 +5634,34 @@ Block();} else
       }
       }
       }
-      }
     }
     return false;
   }
 
-  private boolean jj_3R_357() {
-    if (jj_scan_token(FOR)) return true;
-    if (jj_scan_token(LPAREN)) return true;
+  private boolean jj_3R_421() {
+    if (jj_3R_235()) return true;
     {
       PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_429()) jj_scanpos.rollbackTo();
-    }
-    if (jj_scan_token(SEMICOLON)) return true;
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_430()) jj_scanpos.rollbackTo();
-    }
-    if (jj_scan_token(SEMICOLON)) return true;
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_431()) jj_scanpos.rollbackTo();
-    }
-    if (jj_scan_token(RPAREN)) return true;
-    if (jj_3R_317()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_356() {
-    if (jj_scan_token(DO)) return true;
-    if (jj_3R_317()) return true;
-    if (jj_scan_token(WHILE)) return true;
-    if (jj_scan_token(LPAREN)) return true;
-    if (jj_3R_242()) return true;
-    if (jj_scan_token(RPAREN)) return true;
-    if (jj_scan_token(SEMICOLON)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_355() {
-    if (jj_scan_token(WHILE)) return true;
-    if (jj_scan_token(LPAREN)) return true;
-    if (jj_3R_242()) return true;
-    if (jj_scan_token(RPAREN)) return true;
-    if (jj_3R_317()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_439() {
-    if (jj_3R_286()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_354() {
-    if (jj_scan_token(IF)) return true;
-    if (jj_scan_token(LPAREN)) return true;
-    if (jj_3R_242()) return true;
-    if (jj_scan_token(RPAREN)) return true;
-    if (jj_3R_317()) return true;
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_428()) jj_scanpos.rollbackTo();
+      if (jj_3R_489()) jj_scanpos.rollbackTo();
     }
     return false;
   }
 
-  private boolean jj_3R_444() {
-    if (jj_scan_token(_DEFAULT)) return true;
-    if (jj_scan_token(COLON)) return true;
+  private boolean jj_3R_420() {
+    if (jj_3R_366()) return true;
     return false;
   }
 
-  private boolean jj_3R_443() {
-    if (jj_scan_token(CASE)) return true;
-    if (jj_3R_242()) return true;
-    if (jj_scan_token(COLON)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_438() {
+  private boolean jj_3R_400() {
     {
       PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_443()) {
+      if (jj_3R_419()) {
         jj_scanpos.rollbackTo();
         jj_scanpos = builder.mark();
-      if (jj_3R_444()) {
-        jj_scanpos.rollbackTo();
-        return true;
-      }
-      }
-    }
-    return false;
-  }
-
-  private boolean jj_3R_426() {
-    if (jj_scan_token(COMMA)) return true;
-    if (jj_3R_404()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_427() {
-    if (jj_3R_438()) return true;
-    while (true) {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_439()) { jj_scanpos.rollbackTo(); break; }
-    }
-    return false;
-  }
-
-  private boolean jj_3R_353() {
-    if (jj_scan_token(SWITCH)) return true;
-    if (jj_scan_token(LPAREN)) return true;
-    if (jj_3R_242()) return true;
-    if (jj_scan_token(RPAREN)) return true;
-    if (jj_scan_token(LBRACE)) return true;
-    while (true) {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_427()) { jj_scanpos.rollbackTo(); break; }
-    }
-    if (jj_scan_token(RBRACE)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_442() {
-    if (jj_3R_311()) return true;
-    if (jj_3R_242()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_437() {
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_scan_token(INCR) ) {
+      if (jj_3R_420()) {
         jj_scanpos.rollbackTo();
         jj_scanpos = builder.mark();
-      if (jj_scan_token(DECR) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_442()) {
+      if (jj_3R_421()) {
         jj_scanpos.rollbackTo();
         return true;
       }
@@ -4362,65 +5671,81 @@ Block();} else
     return false;
   }
 
-  private boolean jj_3R_328() {
-    if (jj_3R_350()) return true;
+  private boolean jj_3R_419() {
+    if (jj_3R_365()) return true;
     return false;
   }
 
-  private boolean jj_3R_220() {
-    if (jj_scan_token(IDENTIFIER)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_374() {
-    if (jj_3R_214()) return true;
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_437()) jj_scanpos.rollbackTo();
-    }
-    return false;
-  }
-
-  private boolean jj_3R_373() {
-    if (jj_3R_305()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_352() {
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_372()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_373()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_374()) {
-        jj_scanpos.rollbackTo();
-        return true;
-      }
-      }
-      }
-    }
+  private boolean jj_3R_399() {
+    if (jj_scan_token(SEMICOLON)) return true;
     return false;
   }
 
   private boolean jj_3R_372() {
-    if (jj_3R_304()) return true;
+    if (jj_3R_397()) return true;
     return false;
   }
 
-  private boolean jj_3R_248() {
+  private boolean jj_3R_236() {
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_scan_token(IDENTIFIER) ) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_scan_token(_OPTIONS) ) {
+        jj_scanpos.rollbackTo();
+        return true;
+      }
+      }
+    }
+    return false;
+  }
+
+  private boolean jj_3_42() {
+    if (jj_3R_268()) return true;
+    if (jj_3R_246()) return true;
+    if (jj_scan_token(IDENTIFIER)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_361() {
+    if (jj_3R_268()) return true;
+    if (jj_3R_246()) return true;
+    if (jj_3R_454()) return true;
+    while (true) {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_480()) { jj_scanpos.rollbackTo(); break; }
+    }
+    return false;
+  }
+
+  private boolean jj_3R_397() {
+    if (jj_3R_273()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_345() {
+    if (jj_3R_363()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_275() {
     if (jj_scan_token(BIT_OR)) return true;
     return false;
   }
 
-  private boolean jj_3R_350() {
-    if (jj_3R_246()) return true;
+  private boolean jj_3R_344() {
+    if (jj_3R_362()) return true;
     return false;
   }
 
-  private boolean jj_3R_315() {
+  private boolean jj_3R_481() {
+    if (jj_scan_token(COLON)) return true;
+    if (jj_3R_256()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_358() {
     {
       PsiBuilder.Marker jj_scanpos = builder.mark();
       if (jj_scan_token(TILDE) ) jj_scanpos.rollbackTo();
@@ -4428,359 +5753,78 @@ Block();} else
     if (jj_scan_token(LBRACKET)) return true;
     {
       PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_328()) jj_scanpos.rollbackTo();
+      if (jj_3R_372()) jj_scanpos.rollbackTo();
     }
     if (jj_scan_token(RBRACKET)) return true;
     return false;
   }
 
-  private boolean jj_3R_217() {
-    if (jj_3R_214()) return true;
-    if (jj_scan_token(ASSIGN)) return true;
+  private boolean jj_3R_315() {
+    if (jj_3R_331()) return true;
     return false;
   }
 
-  private boolean jj_3R_351() {
-    if (jj_scan_token(SEMICOLON)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_299() {
-    if (jj_scan_token(LPAREN)) return true;
-    if (jj_3R_219()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_298() {
-    if (jj_3R_315()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_316() {
+  private boolean jj_3R_331() {
     {
       PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_scan_token(FINAL) ) jj_scanpos.rollbackTo();
-    }
-    if (jj_3R_244()) return true;
-    if (jj_3R_404()) return true;
-    while (true) {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_426()) { jj_scanpos.rollbackTo(); break; }
-    }
-    return false;
-  }
-
-  private boolean jj_3R_297() {
-    if (jj_scan_token(LT)) return true;
-    if (jj_3R_220()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_296() {
-    if (jj_3R_246()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_285() {
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_296()) {
+      if (jj_3R_343()) {
         jj_scanpos.rollbackTo();
         jj_scanpos = builder.mark();
-      if (jj_3R_297()) {
+      if (jj_3R_344()) {
         jj_scanpos.rollbackTo();
         jj_scanpos = builder.mark();
-      if (jj_3R_298()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_299()) {
+      if (jj_3R_345()) {
         jj_scanpos.rollbackTo();
         return true;
       }
       }
       }
-      }
     }
     return false;
   }
 
-  private boolean jj_3_36() {
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_scan_token(FINAL) ) jj_scanpos.rollbackTo();
-    }
-    if (jj_3R_244()) return true;
-    if (jj_3R_233()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_303() {
-    if (jj_3R_319()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_276() {
-    if (jj_3R_285()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_302() {
-    if (jj_3R_318()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_247() {
-    if (jj_3R_276()) return true;
-    while (true) {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_276()) { jj_scanpos.rollbackTo(); break; }
-    }
-    return false;
-  }
-
-  private boolean jj_3R_301() {
-    if (jj_3R_317()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_286() {
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_300()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_301()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_302()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_303()) {
-        jj_scanpos.rollbackTo();
-        return true;
-      }
-      }
-      }
-      }
-    }
-    return false;
-  }
-
-  private boolean jj_3R_277() {
-    if (jj_3R_286()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_300() {
-    if (jj_3R_316()) return true;
+  private boolean jj_3R_343() {
+    if (jj_3R_361()) return true;
     if (jj_scan_token(SEMICOLON)) return true;
     return false;
   }
 
-  private boolean jj_3R_219() {
-    if (jj_3R_247()) return true;
-    while (true) {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_248()) { jj_scanpos.rollbackTo(); break; }
-    }
-    return false;
-  }
-
-  private boolean jj_3R_216() {
-    if (jj_3R_246()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_249() {
+  private boolean jj_3R_279() {
     if (jj_scan_token(LBRACE)) return true;
     while (true) {
       PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_277()) { jj_scanpos.rollbackTo(); break; }
+      if (jj_3R_315()) { jj_scanpos.rollbackTo(); break; }
     }
     if (jj_scan_token(RBRACE)) return true;
     return false;
   }
 
-  private boolean jj_3R_218() {
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_scan_token(SHARP) ) jj_scanpos.rollbackTo();
-    }
-    if (jj_3R_220()) return true;
-    if (jj_scan_token(COLON)) return true;
-    return false;
-  }
-
-  private boolean jj_3_5() {
-    if (jj_scan_token(LT)) return true;
-    if (jj_3R_220()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_243() {
-    if (jj_3R_233()) return true;
-    if (jj_scan_token(COLON)) return true;
-    if (jj_3R_317()) return true;
-    return false;
-  }
-
-  private boolean jj_3_4() {
-    if (jj_scan_token(LT)) return true;
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_218()) jj_scanpos.rollbackTo();
-    }
-    if (jj_3R_219()) return true;
-    if (jj_scan_token(GT)) return true;
-    return false;
-  }
-
-  private boolean jj_3_2() {
-    if (jj_3R_214()) return true;
+  private boolean jj_3R_239() {
+    if (jj_3R_235()) return true;
     if (jj_scan_token(ASSIGN)) return true;
     return false;
   }
 
-  private boolean jj_3_3() {
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_215()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_216()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(LT) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_217()) {
-        jj_scanpos.rollbackTo();
-        return true;
-      }
-      }
-      }
-      }
-    }
-    return false;
-  }
-
-  private boolean jj_3R_215() {
-    if (jj_3R_220()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_342() {
-    if (jj_3R_363()) return true;
-    return false;
-  }
-
-  private boolean jj_3_33() {
-    if (jj_scan_token(LBRACKET)) return true;
-    if (jj_scan_token(RBRACKET)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_341() {
-    if (jj_3R_362()) return true;
-    return false;
-  }
-
   private boolean jj_3R_340() {
-    if (jj_3R_361()) return true;
+    if (jj_scan_token(LPAREN)) return true;
+    if (jj_3R_241()) return true;
     return false;
   }
 
   private boolean jj_3R_339() {
-    if (jj_3R_360()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_338() {
-    if (jj_3R_359()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_337() {
     if (jj_3R_358()) return true;
     return false;
   }
 
-  private boolean jj_3R_336() {
-    if (jj_3R_357()) return true;
+  private boolean jj_3R_338() {
+    if (jj_scan_token(LT)) return true;
+    if (jj_3R_236()) return true;
     return false;
   }
 
-  private boolean jj_3R_335() {
-    if (jj_3R_356()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_334() {
-    if (jj_3R_355()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_333() {
-    if (jj_3R_354()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_332() {
-    if (jj_3R_353()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_331() {
-    if (jj_3R_352()) return true;
-    if (jj_scan_token(SEMICOLON)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_330() {
-    if (jj_3R_351()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_329() {
-    if (jj_3R_249()) return true;
-    return false;
-  }
-
-  private boolean jj_3_35() {
-    if (jj_3R_243()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_317() {
+  private boolean jj_3R_326() {
     {
       PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3_35()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_329()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_330()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_331()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_332()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_333()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_334()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_335()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_336()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
       if (jj_3R_337()) {
         jj_scanpos.rollbackTo();
         jj_scanpos = builder.mark();
@@ -4792,139 +5836,344 @@ Block();} else
         jj_scanpos = builder.mark();
       if (jj_3R_340()) {
         jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_341()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_342()) {
-        jj_scanpos.rollbackTo();
         return true;
       }
       }
       }
       }
-      }
-      }
-      }
-      }
-      }
-      }
-      }
-      }
-      }
-      }
-      }
     }
     return false;
   }
 
-  private boolean jj_3R_327() {
-    if (jj_3R_349()) return true;
+  private boolean jj_3R_337() {
+    if (jj_3R_273()) return true;
     return false;
   }
 
-  private boolean jj_3R_348() {
-    if (jj_scan_token(LBRACKET)) return true;
-    if (jj_scan_token(RBRACKET)) return true;
+  private boolean jj_3R_267() {
+    if (jj_scan_token(IDENTIFIER)) return true;
+    if (jj_scan_token(COLON)) return true;
+    if (jj_3R_362()) return true;
     return false;
   }
 
-  private boolean jj_3_32() {
-    if (jj_scan_token(LBRACKET)) return true;
-    if (jj_3R_242()) return true;
-    if (jj_scan_token(RBRACKET)) return true;
+  private boolean jj_3R_309() {
+    if (jj_3R_326()) return true;
     return false;
   }
 
-  private boolean jj_3R_326() {
-    if (jj_3R_348()) return true;
+  private boolean jj_3R_274() {
+    if (jj_3R_309()) return true;
     while (true) {
       PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_348()) { jj_scanpos.rollbackTo(); break; }
-    }
-    if (jj_3R_278()) return true;
-    return false;
-  }
-
-  private boolean jj_3_34() {
-    if (jj_3_32()) return true;
-    while (true) {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3_32()) { jj_scanpos.rollbackTo(); break; }
-    }
-    while (true) {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3_33()) { jj_scanpos.rollbackTo(); break; }
+      if (jj_3R_309()) { jj_scanpos.rollbackTo(); break; }
     }
     return false;
   }
 
-  private boolean jj_3R_312() {
+  private boolean jj_3R_398() {
+    if (jj_scan_token(ASSERT)) return true;
+    if (jj_3R_256()) return true;
     {
       PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3_34()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_326()) {
-        jj_scanpos.rollbackTo();
-        return true;
-      }
-      }
+      if (jj_3R_481()) jj_scanpos.rollbackTo();
     }
-    return false;
-  }
-
-  private boolean jj_3R_314() {
-    if (jj_3R_232()) return true;
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_327()) jj_scanpos.rollbackTo();
-    }
-    return false;
-  }
-
-  private boolean jj_3R_287() {
-    if (jj_scan_token(COMMA)) return true;
-    if (jj_3R_242()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_313() {
-    if (jj_3R_312()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_265() {
-    if (jj_scan_token(NEW)) return true;
-    if (jj_3R_226()) return true;
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_313()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_314()) {
-        jj_scanpos.rollbackTo();
-        return true;
-      }
-      }
-    }
-    return false;
-  }
-
-  private boolean jj_3_31() {
-    if (jj_scan_token(NEW)) return true;
-    if (jj_3R_238()) return true;
-    if (jj_3R_312()) return true;
+    if (jj_scan_token(SEMICOLON)) return true;
     return false;
   }
 
   private boolean jj_3R_241() {
+    if (jj_3R_274()) return true;
+    while (true) {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_275()) { jj_scanpos.rollbackTo(); break; }
+    }
+    return false;
+  }
+
+  private boolean jj_3R_389() {
+    if (jj_3R_411()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_388() {
+    if (jj_3R_410()) return true;
+    return false;
+  }
+
+  private boolean jj_3_39() {
+    if (jj_scan_token(LBRACKET)) return true;
+    if (jj_scan_token(RBRACKET)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_240() {
     {
       PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3_31()) {
+      if (jj_scan_token(SHARP) ) jj_scanpos.rollbackTo();
+    }
+    if (jj_3R_236()) return true;
+    if (jj_scan_token(COLON)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_387() {
+    if (jj_3R_409()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_238() {
+    if (jj_3R_273()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_386() {
+    if (jj_3R_408()) return true;
+    return false;
+  }
+
+  private boolean jj_3_6() {
+    if (jj_scan_token(LT)) return true;
+    if (jj_3R_236()) return true;
+    return false;
+  }
+
+  private boolean jj_3_3() {
+    if (jj_3R_236()) return true;
+    if (jj_scan_token(LPAREN)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_385() {
+    if (jj_3R_407()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_384() {
+    if (jj_3R_406()) return true;
+    return false;
+  }
+
+  private boolean jj_3_5() {
+    if (jj_scan_token(LT)) return true;
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_240()) jj_scanpos.rollbackTo();
+    }
+    if (jj_3R_241()) return true;
+    if (jj_scan_token(GT)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_383() {
+    if (jj_3R_405()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_382() {
+    if (jj_3R_404()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_381() {
+    if (jj_3R_403()) return true;
+    return false;
+  }
+
+  private boolean jj_3_2() {
+    if (jj_3R_235()) return true;
+    if (jj_scan_token(ASSIGN)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_380() {
+    if (jj_3R_402()) return true;
+    return false;
+  }
+
+  private boolean jj_3_4() {
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_237()) {
         jj_scanpos.rollbackTo();
         jj_scanpos = builder.mark();
-      if (jj_3R_265()) {
+      if (jj_3R_238()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_scan_token(LT) ) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_239()) {
+        jj_scanpos.rollbackTo();
+        return true;
+      }
+      }
+      }
+      }
+    }
+    return false;
+  }
+
+  private boolean jj_3R_237() {
+    if (jj_3R_236()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_379() {
+    if (jj_3R_401()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_378() {
+    if (jj_3R_400()) return true;
+    if (jj_scan_token(SEMICOLON)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_377() {
+    if (jj_3R_399()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_376() {
+    if (jj_3R_279()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_375() {
+    if (jj_3R_398()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_355() {
+    if (jj_3R_253()) return true;
+    return false;
+  }
+
+  private boolean jj_3_41() {
+    if (jj_3R_267()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_362() {
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3_41()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_375()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_376()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_377()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_378()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_379()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_380()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_381()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_382()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_383()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_384()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_385()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_386()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_387()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_388()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_389()) {
+        jj_scanpos.rollbackTo();
+        return true;
+      }
+      }
+      }
+      }
+      }
+      }
+      }
+      }
+      }
+      }
+      }
+      }
+      }
+      }
+      }
+      }
+    }
+    return false;
+  }
+
+  private boolean jj_3R_370() {
+    if (jj_3R_396()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_395() {
+    if (jj_scan_token(LBRACKET)) return true;
+    if (jj_scan_token(RBRACKET)) return true;
+    return false;
+  }
+
+  private boolean jj_3_38() {
+    if (jj_scan_token(LBRACKET)) return true;
+    if (jj_3R_256()) return true;
+    if (jj_scan_token(RBRACKET)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_369() {
+    if (jj_3R_395()) return true;
+    while (true) {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_395()) { jj_scanpos.rollbackTo(); break; }
+    }
+    if (jj_3R_316()) return true;
+    return false;
+  }
+
+  private boolean jj_3_40() {
+    if (jj_3_38()) return true;
+    while (true) {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3_38()) { jj_scanpos.rollbackTo(); break; }
+    }
+    while (true) {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3_39()) { jj_scanpos.rollbackTo(); break; }
+    }
+    return false;
+  }
+
+  private boolean jj_3R_354() {
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3_40()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_369()) {
         jj_scanpos.rollbackTo();
         return true;
       }
@@ -4933,41 +6182,104 @@ Block();} else
     return false;
   }
 
-  private boolean jj_3R_279() {
-    if (jj_3R_242()) return true;
-    while (true) {
+  private boolean jj_3R_357() {
+    if (jj_3R_251()) return true;
+    {
       PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_287()) { jj_scanpos.rollbackTo(); break; }
+      if (jj_3R_370()) jj_scanpos.rollbackTo();
     }
     return false;
   }
 
-  private boolean jj_3R_255() {
-    if (jj_3R_279()) return true;
+  private boolean jj_3R_332() {
+    if (jj_scan_token(COMMA)) return true;
+    if (jj_3R_256()) return true;
     return false;
   }
 
-  private boolean jj_3R_232() {
+  private boolean jj_3R_356() {
+    if (jj_3R_354()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_299() {
+    if (jj_scan_token(NEW)) return true;
+    if (jj_3R_318()) return true;
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_355()) jj_scanpos.rollbackTo();
+    }
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_356()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_357()) {
+        jj_scanpos.rollbackTo();
+        return true;
+      }
+      }
+    }
+    return false;
+  }
+
+  private boolean jj_3R_265() {
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3_37()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_299()) {
+        jj_scanpos.rollbackTo();
+        return true;
+      }
+      }
+    }
+    return false;
+  }
+
+  private boolean jj_3_37() {
+    if (jj_scan_token(NEW)) return true;
+    if (jj_3R_262()) return true;
+    if (jj_3R_354()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_317() {
+    if (jj_3R_256()) return true;
+    while (true) {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_332()) { jj_scanpos.rollbackTo(); break; }
+    }
+    return false;
+  }
+
+  private boolean jj_3R_284() {
+    if (jj_3R_317()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_251() {
     if (jj_scan_token(LPAREN)) return true;
     {
       PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_255()) jj_scanpos.rollbackTo();
+      if (jj_3R_284()) jj_scanpos.rollbackTo();
     }
     if (jj_scan_token(RPAREN)) return true;
     return false;
   }
 
-  private boolean jj_3R_309() {
+  private boolean jj_3R_352() {
     if (jj_scan_token(NULL)) return true;
     return false;
   }
 
-  private boolean jj_3R_246() {
+  private boolean jj_3R_273() {
     if (jj_scan_token(STRING_LITERAL)) return true;
     return false;
   }
 
-  private boolean jj_3R_308() {
+  private boolean jj_3R_351() {
     {
       PsiBuilder.Marker jj_scanpos = builder.mark();
       if (jj_scan_token(TRUE) ) {
@@ -4982,22 +6294,22 @@ Block();} else
     return false;
   }
 
-  private boolean jj_3R_282() {
-    if (jj_3R_284()) return true;
+  private boolean jj_3R_336() {
+    if (jj_3R_352()) return true;
     return false;
   }
 
-  private boolean jj_3R_294() {
-    if (jj_3R_309()) return true;
+  private boolean jj_3R_335() {
+    if (jj_3R_351()) return true;
     return false;
   }
 
-  private boolean jj_3R_293() {
-    if (jj_3R_308()) return true;
+  private boolean jj_3R_323() {
+    if (jj_3R_325()) return true;
     return false;
   }
 
-  private boolean jj_3R_284() {
+  private boolean jj_3R_325() {
     {
       PsiBuilder.Marker jj_scanpos = builder.mark();
       if (jj_scan_token(INTEGER_LITERAL) ) {
@@ -5012,10 +6324,10 @@ Block();} else
       if (jj_scan_token(STRING_LITERAL) ) {
         jj_scanpos.rollbackTo();
         jj_scanpos = builder.mark();
-      if (jj_3R_293()) {
+      if (jj_3R_335()) {
         jj_scanpos.rollbackTo();
         jj_scanpos = builder.mark();
-      if (jj_3R_294()) {
+      if (jj_3R_336()) {
         jj_scanpos.rollbackTo();
         return true;
       }
@@ -5025,6 +6337,29 @@ Block();} else
       }
       }
     }
+    return false;
+  }
+
+  private boolean jj_3R_297() {
+    if (jj_3R_251()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_296() {
+    if (jj_scan_token(DOT)) return true;
+    if (jj_scan_token(IDENTIFIER)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_295() {
+    if (jj_scan_token(LBRACKET)) return true;
+    if (jj_3R_256()) return true;
+    if (jj_scan_token(RBRACKET)) return true;
+    return false;
+  }
+
+  private boolean jj_3_36() {
+    if (jj_3R_266()) return true;
     return false;
   }
 
@@ -5034,61 +6369,41 @@ Block();} else
     return false;
   }
 
-  private boolean jj_3R_263() {
-    if (jj_3R_232()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_262() {
+  private boolean jj_3_35() {
     if (jj_scan_token(DOT)) return true;
-    if (jj_3R_233()) return true;
+    if (jj_3R_265()) return true;
     return false;
   }
 
-  private boolean jj_3R_261() {
-    if (jj_scan_token(LBRACKET)) return true;
-    if (jj_3R_242()) return true;
-    if (jj_scan_token(RBRACKET)) return true;
-    return false;
-  }
-
-  private boolean jj_3_30() {
-    if (jj_scan_token(DOT)) return true;
-    if (jj_3R_241()) return true;
-    return false;
-  }
-
-  private boolean jj_3_28() {
-    if (jj_3R_240()) return true;
+  private boolean jj_3_33() {
+    if (jj_3R_264()) return true;
     if (jj_scan_token(DOT)) return true;
     if (jj_scan_token(CLASS)) return true;
     return false;
   }
 
-  private boolean jj_3_29() {
-    if (jj_scan_token(DOT)) return true;
-    if (jj_scan_token(THIS)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_239() {
+  private boolean jj_3R_263() {
     {
       PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3_29()) {
+      if (jj_3_34()) {
         jj_scanpos.rollbackTo();
         jj_scanpos = builder.mark();
-      if (jj_3_30()) {
+      if (jj_3_35()) {
         jj_scanpos.rollbackTo();
         jj_scanpos = builder.mark();
-      if (jj_3R_261()) {
+      if (jj_3_36()) {
         jj_scanpos.rollbackTo();
         jj_scanpos = builder.mark();
-      if (jj_3R_262()) {
+      if (jj_3R_295()) {
         jj_scanpos.rollbackTo();
         jj_scanpos = builder.mark();
-      if (jj_3R_263()) {
+      if (jj_3R_296()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_297()) {
         jj_scanpos.rollbackTo();
         return true;
+      }
       }
       }
       }
@@ -5098,48 +6413,89 @@ Block();} else
     return false;
   }
 
-  private boolean jj_3R_275() {
-    if (jj_3R_226()) return true;
+  private boolean jj_3_34() {
+    if (jj_scan_token(DOT)) return true;
+    if (jj_scan_token(THIS)) return true;
     return false;
   }
 
-  private boolean jj_3_27() {
-    if (jj_3R_239()) return true;
+  private boolean jj_3R_308() {
+    if (jj_3R_269()) return true;
     return false;
   }
 
-  private boolean jj_3R_274() {
-    if (jj_3R_240()) return true;
+  private boolean jj_3R_307() {
+    if (jj_3R_264()) return true;
     if (jj_scan_token(DOT)) return true;
     if (jj_scan_token(CLASS)) return true;
     return false;
   }
 
-  private boolean jj_3R_273() {
-    if (jj_3R_241()) return true;
+  private boolean jj_3R_306() {
+    if (jj_3R_265()) return true;
     return false;
   }
 
-  private boolean jj_3R_281() {
-    if (jj_3R_233()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_272() {
+  private boolean jj_3R_305() {
     if (jj_scan_token(LPAREN)) return true;
-    if (jj_3R_242()) return true;
+    if (jj_3R_256()) return true;
     if (jj_scan_token(RPAREN)) return true;
     return false;
   }
 
-  private boolean jj_3R_271() {
-    if (jj_scan_token(SUPER)) return true;
-    if (jj_scan_token(DOT)) return true;
-    if (jj_3R_233()) return true;
+  private boolean jj_3_32() {
+    if (jj_3R_263()) return true;
     return false;
   }
 
-  private boolean jj_3R_448() {
+  private boolean jj_3R_304() {
+    if (jj_scan_token(SUPER)) return true;
+    if (jj_scan_token(DOT)) return true;
+    if (jj_scan_token(IDENTIFIER)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_303() {
+    if (jj_3R_325()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_272() {
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_303()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_scan_token(THIS) ) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_304()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_305()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_306()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_307()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_308()) {
+        jj_scanpos.rollbackTo();
+        return true;
+      }
+      }
+      }
+      }
+      }
+      }
+      }
+    }
+    return false;
+  }
+
+  private boolean jj_3R_495() {
     {
       PsiBuilder.Marker jj_scanpos = builder.mark();
       if (jj_scan_token(INCR) ) {
@@ -5154,82 +6510,48 @@ Block();} else
     return false;
   }
 
-  private boolean jj_3R_270() {
-    if (jj_3R_284()) return true;
+  private boolean jj_3R_266() {
+    if (jj_scan_token(DOT)) return true;
+    if (jj_3R_253()) return true;
+    if (jj_scan_token(IDENTIFIER)) return true;
     return false;
   }
 
-  private boolean jj_3R_245() {
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_270()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(THIS) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_271()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_272()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_273()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_274()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_275()) {
-        jj_scanpos.rollbackTo();
-        return true;
-      }
-      }
-      }
-      }
-      }
-      }
-      }
-    }
-    return false;
-  }
-
-  private boolean jj_3_26() {
+  private boolean jj_3_31() {
     if (jj_scan_token(LPAREN)) return true;
-    if (jj_3R_226()) return true;
+    if (jj_3R_262()) return true;
     return false;
   }
 
-  private boolean jj_3_25() {
-    if (jj_scan_token(LPAREN)) return true;
-    if (jj_3R_238()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_214() {
-    if (jj_3R_245()) return true;
+  private boolean jj_3R_235() {
+    if (jj_3R_272()) return true;
     while (true) {
       PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3_27()) { jj_scanpos.rollbackTo(); break; }
+      if (jj_3_32()) { jj_scanpos.rollbackTo(); break; }
     }
     return false;
   }
 
-  private boolean jj_3R_365() {
-    if (jj_scan_token(LPAREN)) return true;
-    if (jj_3R_244()) return true;
-    if (jj_scan_token(RPAREN)) return true;
-    if (jj_3R_306()) return true;
+  private boolean jj_3R_259() {
+    if (jj_3R_292()) return true;
     return false;
   }
 
-  private boolean jj_3R_343() {
+  private boolean jj_3R_424() {
+    if (jj_scan_token(LPAREN)) return true;
+    if (jj_3R_246()) return true;
+    if (jj_scan_token(RPAREN)) return true;
+    if (jj_3R_367()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_413() {
     {
       PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_364()) {
+      if (jj_3R_423()) {
         jj_scanpos.rollbackTo();
         jj_scanpos = builder.mark();
-      if (jj_3R_365()) {
+      if (jj_3R_424()) {
         jj_scanpos.rollbackTo();
         return true;
       }
@@ -5238,33 +6560,33 @@ Block();} else
     return false;
   }
 
-  private boolean jj_3R_364() {
+  private boolean jj_3R_423() {
     if (jj_scan_token(LPAREN)) return true;
-    if (jj_3R_244()) return true;
+    if (jj_3R_246()) return true;
     if (jj_scan_token(RPAREN)) return true;
-    if (jj_3R_280()) return true;
+    if (jj_3R_334()) return true;
     return false;
   }
 
-  private boolean jj_3_24() {
+  private boolean jj_3_30() {
     if (jj_scan_token(LPAREN)) return true;
-    if (jj_3R_226()) return true;
+    if (jj_3R_246()) return true;
     if (jj_scan_token(LBRACKET)) return true;
     return false;
   }
 
-  private boolean jj_3R_344() {
-    if (jj_3R_214()) return true;
+  private boolean jj_3R_414() {
+    if (jj_3R_235()) return true;
     {
       PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_448()) jj_scanpos.rollbackTo();
+      if (jj_3R_495()) jj_scanpos.rollbackTo();
     }
     return false;
   }
 
-  private boolean jj_3R_260() {
+  private boolean jj_3R_294() {
     if (jj_scan_token(LPAREN)) return true;
-    if (jj_3R_226()) return true;
+    if (jj_3R_246()) return true;
     if (jj_scan_token(RPAREN)) return true;
     {
       PsiBuilder.Marker jj_scanpos = builder.mark();
@@ -5277,7 +6599,7 @@ Block();} else
       if (jj_scan_token(LPAREN) ) {
         jj_scanpos.rollbackTo();
         jj_scanpos = builder.mark();
-      if (jj_3R_281()) {
+      if (jj_scan_token(IDENTIFIER) ) {
         jj_scanpos.rollbackTo();
         jj_scanpos = builder.mark();
       if (jj_scan_token(THIS) ) {
@@ -5289,7 +6611,7 @@ Block();} else
       if (jj_scan_token(NEW) ) {
         jj_scanpos.rollbackTo();
         jj_scanpos = builder.mark();
-      if (jj_3R_282()) {
+      if (jj_3R_323()) {
         jj_scanpos.rollbackTo();
         return true;
       }
@@ -5304,30 +6626,69 @@ Block();} else
     return false;
   }
 
-  private boolean jj_3R_259() {
+  private boolean jj_3R_293() {
     if (jj_scan_token(LPAREN)) return true;
-    if (jj_3R_226()) return true;
+    if (jj_3R_246()) return true;
     if (jj_scan_token(LBRACKET)) return true;
     if (jj_scan_token(RBRACKET)) return true;
     return false;
   }
 
-  private boolean jj_3_23() {
+  private boolean jj_3R_261() {
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3_29()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_293()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_294()) {
+        jj_scanpos.rollbackTo();
+        return true;
+      }
+      }
+      }
+    }
+    return false;
+  }
+
+  private boolean jj_3_29() {
     if (jj_scan_token(LPAREN)) return true;
-    if (jj_3R_238()) return true;
+    if (jj_3R_262()) return true;
     return false;
   }
 
-  private boolean jj_3R_237() {
+  private boolean jj_3_28() {
+    if (jj_3R_261()) return true;
+    return false;
+  }
+
+  private boolean jj_3_27() {
+    if (jj_3R_260()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_393() {
+    if (jj_3R_414()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_392() {
+    if (jj_3R_413()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_367() {
     {
       PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3_23()) {
+      if (jj_3R_391()) {
         jj_scanpos.rollbackTo();
         jj_scanpos = builder.mark();
-      if (jj_3R_259()) {
+      if (jj_3R_392()) {
         jj_scanpos.rollbackTo();
         jj_scanpos = builder.mark();
-      if (jj_3R_260()) {
+      if (jj_3R_393()) {
         jj_scanpos.rollbackTo();
         return true;
       }
@@ -5337,41 +6698,7 @@ Block();} else
     return false;
   }
 
-  private boolean jj_3_22() {
-    if (jj_3R_237()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_322() {
-    if (jj_3R_344()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_321() {
-    if (jj_3R_343()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_306() {
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_320()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_321()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_322()) {
-        jj_scanpos.rollbackTo();
-        return true;
-      }
-      }
-      }
-    }
-    return false;
-  }
-
-  private boolean jj_3R_320() {
+  private boolean jj_3R_391() {
     {
       PsiBuilder.Marker jj_scanpos = builder.mark();
       if (jj_scan_token(TILDE) ) {
@@ -5383,17 +6710,23 @@ Block();} else
       }
       }
     }
-    if (jj_3R_280()) return true;
+    if (jj_3R_334()) return true;
     return false;
   }
 
-  private boolean jj_3R_305() {
+  private boolean jj_3R_258() {
+    if (jj_scan_token(LT)) return true;
+    if (jj_scan_token(LT)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_366() {
     if (jj_scan_token(DECR)) return true;
-    if (jj_3R_214()) return true;
+    if (jj_3R_235()) return true;
     return false;
   }
 
-  private boolean jj_3R_420() {
+  private boolean jj_3R_469() {
     {
       PsiBuilder.Marker jj_scanpos = builder.mark();
       if (jj_scan_token(PLUS) ) {
@@ -5405,11 +6738,11 @@ Block();} else
       }
       }
     }
-    if (jj_3R_258()) return true;
+    if (jj_3R_322()) return true;
     return false;
   }
 
-  private boolean jj_3R_425() {
+  private boolean jj_3R_477() {
     {
       PsiBuilder.Marker jj_scanpos = builder.mark();
       if (jj_scan_token(STAR) ) {
@@ -5425,38 +6758,75 @@ Block();} else
       }
       }
     }
-    if (jj_3R_280()) return true;
+    if (jj_3R_334()) return true;
     return false;
   }
 
-  private boolean jj_3R_304() {
+  private boolean jj_3R_365() {
     if (jj_scan_token(INCR)) return true;
-    if (jj_3R_214()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_291() {
-    if (jj_3R_306()) return true;
-    return false;
-  }
-
-  private boolean jj_3_21() {
     if (jj_3R_235()) return true;
-    if (jj_3R_236()) return true;
     return false;
   }
 
-  private boolean jj_3R_290() {
-    if (jj_3R_305()) return true;
+  private boolean jj_3R_350() {
+    if (jj_3R_367()) return true;
     return false;
   }
 
-  private boolean jj_3R_289() {
-    if (jj_3R_304()) return true;
+  private boolean jj_3_26() {
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_258()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3_27()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_259()) {
+        jj_scanpos.rollbackTo();
+        return true;
+      }
+      }
+      }
+    }
+    if (jj_3R_291()) return true;
     return false;
   }
 
-  private boolean jj_3R_288() {
+  private boolean jj_3R_349() {
+    if (jj_3R_366()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_348() {
+    if (jj_3R_365()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_334() {
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_347()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_348()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_349()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_350()) {
+        jj_scanpos.rollbackTo();
+        return true;
+      }
+      }
+      }
+      }
+    }
+    return false;
+  }
+
+  private boolean jj_3R_347() {
     {
       PsiBuilder.Marker jj_scanpos = builder.mark();
       if (jj_scan_token(PLUS) ) {
@@ -5468,43 +6838,11 @@ Block();} else
       }
       }
     }
-    if (jj_3R_280()) return true;
+    if (jj_3R_334()) return true;
     return false;
   }
 
-  private boolean jj_3R_280() {
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_288()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_289()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_290()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_291()) {
-        jj_scanpos.rollbackTo();
-        return true;
-      }
-      }
-      }
-      }
-    }
-    return false;
-  }
-
-  private boolean jj_3R_258() {
-    if (jj_3R_280()) return true;
-    while (true) {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_425()) { jj_scanpos.rollbackTo(); break; }
-    }
-    return false;
-  }
-
-  private boolean jj_3_20() {
+  private boolean jj_3_25() {
     {
       PsiBuilder.Marker jj_scanpos = builder.mark();
       if (jj_scan_token(LT) ) {
@@ -5512,38 +6850,34 @@ Block();} else
         jj_scanpos = builder.mark();
       if (jj_scan_token(GT) ) {
         jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(LE) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(GE) ) {
-        jj_scanpos.rollbackTo();
         return true;
       }
       }
-      }
-      }
     }
-    if (jj_3R_234()) return true;
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_scan_token(ASSIGN) ) jj_scanpos.rollbackTo();
+    }
+    if (jj_3R_257()) return true;
     return false;
   }
 
-  private boolean jj_3R_236() {
-    if (jj_3R_258()) return true;
+  private boolean jj_3R_439() {
+    if (jj_scan_token(INSTANCEOF)) return true;
+    if (jj_3R_246()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_322() {
+    if (jj_3R_334()) return true;
     while (true) {
       PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_420()) { jj_scanpos.rollbackTo(); break; }
+      if (jj_3R_477()) { jj_scanpos.rollbackTo(); break; }
     }
     return false;
   }
 
-  private boolean jj_3R_391() {
-    if (jj_scan_token(INSTANCEOF)) return true;
-    if (jj_3R_244()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_385() {
+  private boolean jj_3R_433() {
     {
       PsiBuilder.Marker jj_scanpos = builder.mark();
       if (jj_scan_token(EQ) ) {
@@ -5555,150 +6889,172 @@ Block();} else
       }
       }
     }
-    if (jj_3R_375()) return true;
+    if (jj_3R_422()) return true;
     return false;
   }
 
-  private boolean jj_3R_234() {
-    if (jj_3R_236()) return true;
+  private boolean jj_3R_291() {
+    if (jj_3R_322()) return true;
     while (true) {
       PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3_21()) { jj_scanpos.rollbackTo(); break; }
+      if (jj_3R_469()) { jj_scanpos.rollbackTo(); break; }
     }
     return false;
   }
 
-  private boolean jj_3R_379() {
+  private boolean jj_3R_257() {
+    if (jj_3R_291()) return true;
+    while (true) {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3_26()) { jj_scanpos.rollbackTo(); break; }
+    }
+    return false;
+  }
+
+  private boolean jj_3R_429() {
     if (jj_scan_token(BIT_AND)) return true;
-    if (jj_3R_366()) return true;
+    if (jj_3R_412()) return true;
     return false;
   }
 
-  private boolean jj_3R_378() {
-    if (jj_3R_234()) return true;
-    while (true) {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3_20()) { jj_scanpos.rollbackTo(); break; }
-    }
-    return false;
-  }
-
-  private boolean jj_3R_367() {
-    if (jj_scan_token(BIT_OR)) return true;
-    if (jj_3R_323()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_375() {
-    if (jj_3R_378()) return true;
+  private boolean jj_3R_289() {
+    if (jj_scan_token(GT)) return true;
+    if (jj_scan_token(GT)) return true;
     {
       PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_391()) jj_scanpos.rollbackTo();
+      if (jj_scan_token(GT) ) jj_scanpos.rollbackTo();
+    }
+    if (jj_scan_token(ASSIGN)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_428() {
+    if (jj_3R_257()) return true;
+    while (true) {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3_25()) { jj_scanpos.rollbackTo(); break; }
     }
     return false;
   }
 
-  private boolean jj_3R_376() {
+  private boolean jj_3R_415() {
+    if (jj_scan_token(BIT_OR)) return true;
+    if (jj_3R_364()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_422() {
+    if (jj_3R_428()) return true;
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_439()) jj_scanpos.rollbackTo();
+    }
+    return false;
+  }
+
+  private boolean jj_3R_425() {
     if (jj_scan_token(XOR)) return true;
-    if (jj_3R_345()) return true;
+    if (jj_3R_390()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_394() {
+    if (jj_scan_token(SC_AND)) return true;
+    if (jj_3R_346()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_412() {
+    if (jj_3R_422()) return true;
+    while (true) {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_433()) { jj_scanpos.rollbackTo(); break; }
+    }
+    return false;
+  }
+
+  private boolean jj_3R_288() {
+    if (jj_scan_token(LT)) return true;
+    if (jj_scan_token(LT)) return true;
+    if (jj_scan_token(ASSIGN)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_368() {
+    if (jj_scan_token(SC_OR)) return true;
+    if (jj_3R_333()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_390() {
+    if (jj_3R_412()) return true;
+    while (true) {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_429()) { jj_scanpos.rollbackTo(); break; }
+    }
+    return false;
+  }
+
+  private boolean jj_3R_353() {
+    if (jj_scan_token(HOOK)) return true;
+    if (jj_3R_256()) return true;
+    if (jj_scan_token(COLON)) return true;
+    if (jj_3R_256()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_364() {
+    if (jj_3R_390()) return true;
+    while (true) {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_425()) { jj_scanpos.rollbackTo(); break; }
+    }
     return false;
   }
 
   private boolean jj_3R_346() {
-    if (jj_scan_token(SC_AND)) return true;
-    if (jj_3R_307()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_366() {
-    if (jj_3R_375()) return true;
+    if (jj_3R_364()) return true;
     while (true) {
       PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_385()) { jj_scanpos.rollbackTo(); break; }
+      if (jj_3R_415()) { jj_scanpos.rollbackTo(); break; }
     }
     return false;
   }
 
-  private boolean jj_3R_324() {
-    if (jj_scan_token(SC_OR)) return true;
-    if (jj_3R_292()) return true;
+  private boolean jj_3_24() {
+    if (jj_3R_255()) return true;
+    if (jj_3R_256()) return true;
     return false;
   }
 
-  private boolean jj_3R_345() {
-    if (jj_3R_366()) return true;
+  private boolean jj_3R_333() {
+    if (jj_3R_346()) return true;
     while (true) {
       PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_379()) { jj_scanpos.rollbackTo(); break; }
+      if (jj_3R_394()) { jj_scanpos.rollbackTo(); break; }
     }
     return false;
   }
 
-  private boolean jj_3R_310() {
-    if (jj_scan_token(HOOK)) return true;
-    if (jj_3R_242()) return true;
-    if (jj_scan_token(COLON)) return true;
-    if (jj_3R_266()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_323() {
-    if (jj_3R_345()) return true;
+  private boolean jj_3R_321() {
+    if (jj_3R_333()) return true;
     while (true) {
       PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_376()) { jj_scanpos.rollbackTo(); break; }
+      if (jj_3R_368()) { jj_scanpos.rollbackTo(); break; }
     }
     return false;
   }
 
-  private boolean jj_3R_307() {
-    if (jj_3R_323()) return true;
-    while (true) {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_367()) { jj_scanpos.rollbackTo(); break; }
-    }
-    return false;
-  }
-
-  private boolean jj_3R_295() {
-    if (jj_3R_311()) return true;
-    if (jj_3R_242()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_292() {
-    if (jj_3R_307()) return true;
-    while (true) {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_346()) { jj_scanpos.rollbackTo(); break; }
-    }
-    return false;
-  }
-
-  private boolean jj_3R_283() {
-    if (jj_3R_292()) return true;
-    while (true) {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_324()) { jj_scanpos.rollbackTo(); break; }
-    }
-    return false;
-  }
-
-  private boolean jj_3R_266() {
-    if (jj_3R_283()) return true;
+  private boolean jj_3R_290() {
+    if (jj_3R_321()) return true;
     {
       PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_310()) jj_scanpos.rollbackTo();
+      if (jj_3R_353()) jj_scanpos.rollbackTo();
     }
     return false;
   }
 
-  private boolean jj_3R_325() {
-    if (jj_3R_347()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_311() {
+  private boolean jj_3R_255() {
     {
       PsiBuilder.Marker jj_scanpos = builder.mark();
       if (jj_scan_token(ASSIGN) ) {
@@ -5719,6 +7075,12 @@ Block();} else
       if (jj_scan_token(MINUSASSIGN) ) {
         jj_scanpos.rollbackTo();
         jj_scanpos = builder.mark();
+      if (jj_3R_288()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_289()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
       if (jj_scan_token(ANDASSIGN) ) {
         jj_scanpos.rollbackTo();
         jj_scanpos = builder.mark();
@@ -5727,9 +7089,6 @@ Block();} else
         jj_scanpos = builder.mark();
       if (jj_scan_token(ORASSIGN) ) {
         jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_325()) {
-        jj_scanpos.rollbackTo();
         return true;
       }
       }
@@ -5741,67 +7100,62 @@ Block();} else
       }
       }
       }
+      }
     }
     return false;
   }
 
-  private boolean jj_3R_242() {
-    if (jj_3R_266()) return true;
+  private boolean jj_3R_256() {
+    if (jj_3R_290()) return true;
     {
       PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_295()) jj_scanpos.rollbackTo();
+      if (jj_3_24()) jj_scanpos.rollbackTo();
     }
     return false;
   }
 
-  private boolean jj_3R_418() {
+  private boolean jj_3R_475() {
     if (jj_scan_token(COMMA)) return true;
-    if (jj_3R_226()) return true;
+    if (jj_3R_269()) return true;
     return false;
   }
 
-  private boolean jj_3R_411() {
-    if (jj_3R_226()) return true;
+  private boolean jj_3R_465() {
+    if (jj_3R_269()) return true;
     while (true) {
       PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_418()) { jj_scanpos.rollbackTo(); break; }
+      if (jj_3R_475()) { jj_scanpos.rollbackTo(); break; }
     }
     return false;
   }
 
-  private boolean jj_3_19() {
+  private boolean jj_3_23() {
     if (jj_scan_token(DOT)) return true;
-    if (jj_3R_233()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_226() {
-    if (jj_3R_233()) return true;
-    while (true) {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3_19()) { jj_scanpos.rollbackTo(); break; }
-    }
+    if (jj_3R_254()) return true;
     return false;
   }
 
   private boolean jj_3R_269() {
-    if (jj_scan_token(LBRACKET)) return true;
-    if (jj_scan_token(RBRACKET)) return true;
+    if (jj_3R_254()) return true;
+    while (true) {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3_23()) { jj_scanpos.rollbackTo(); break; }
+    }
+    return false;
+  }
+
+  private boolean jj_3R_298() {
+    if (jj_3R_246()) return true;
     return false;
   }
 
   private boolean jj_3R_264() {
-    if (jj_3R_244()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_240() {
     {
       PsiBuilder.Marker jj_scanpos = builder.mark();
       if (jj_scan_token(VOID) ) {
         jj_scanpos.rollbackTo();
         jj_scanpos = builder.mark();
-      if (jj_3R_264()) {
+      if (jj_3R_298()) {
         jj_scanpos.rollbackTo();
         return true;
       }
@@ -5810,18 +7164,12 @@ Block();} else
     return false;
   }
 
-  private boolean jj_3R_268() {
-    if (jj_3R_226()) return true;
+  private boolean jj_3_22() {
+    if (jj_3R_253()) return true;
     return false;
   }
 
-  private boolean jj_3R_396() {
-    if (jj_scan_token(THROWS)) return true;
-    if (jj_3R_411()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_238() {
+  private boolean jj_3R_262() {
     {
       PsiBuilder.Marker jj_scanpos = builder.mark();
       if (jj_scan_token(BOOLEAN) ) {
@@ -5860,891 +7208,295 @@ Block();} else
     return false;
   }
 
-  private boolean jj_3R_267() {
-    if (jj_3R_238()) return true;
+  private boolean jj_3R_371() {
+    if (jj_scan_token(COMMA)) return true;
+    if (jj_3R_287()) return true;
     return false;
   }
 
-  private boolean jj_3R_244() {
+  private boolean jj_3_19() {
+    if (jj_scan_token(LBRACKET)) return true;
+    if (jj_scan_token(RBRACKET)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_432() {
+    if (jj_scan_token(SUPER)) return true;
+    if (jj_3R_252()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_418() {
+    if (jj_3R_427()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_427() {
     {
       PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_267()) {
+      if (jj_3R_431()) {
         jj_scanpos.rollbackTo();
         jj_scanpos = builder.mark();
-      if (jj_3R_268()) {
+      if (jj_3R_432()) {
         jj_scanpos.rollbackTo();
         return true;
       }
       }
     }
-    while (true) {
+    return false;
+  }
+
+  private boolean jj_3R_431() {
+    if (jj_scan_token(EXTENDS)) return true;
+    if (jj_3R_252()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_320() {
+    if (jj_scan_token(HOOK)) return true;
+    {
       PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_269()) { jj_scanpos.rollbackTo(); break; }
+      if (jj_3R_418()) jj_scanpos.rollbackTo();
+    }
+    return false;
+  }
+
+  private boolean jj_3_20() {
+    if (jj_3R_253()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_319() {
+    if (jj_3R_252()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_287() {
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_319()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_320()) {
+        jj_scanpos.rollbackTo();
+        return true;
+      }
+      }
     }
     return false;
   }
 
   private boolean jj_3_18() {
-    if (jj_scan_token(THIS)) return true;
-    if (jj_3R_232()) return true;
-    if (jj_scan_token(SEMICOLON)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_222() {
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_scan_token(STATIC) ) jj_scanpos.rollbackTo();
-    }
-    if (jj_3R_249()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_412() {
     if (jj_scan_token(LBRACKET)) return true;
     if (jj_scan_token(RBRACKET)) return true;
-    return false;
-  }
-
-  private boolean jj_3_16() {
-    if (jj_3R_231()) return true;
-    return false;
-  }
-
-  private boolean jj_3_17() {
-    if (jj_3R_214()) return true;
-    if (jj_scan_token(DOT)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_254() {
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3_17()) jj_scanpos.rollbackTo();
-    }
-    if (jj_scan_token(SUPER)) return true;
-    if (jj_3R_232()) return true;
-    if (jj_scan_token(SEMICOLON)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_417() {
-    if (jj_scan_token(COMMA)) return true;
-    if (jj_3R_416()) return true;
     return false;
   }
 
   private boolean jj_3R_253() {
+    if (jj_scan_token(LT)) return true;
+    if (jj_3R_287()) return true;
+    while (true) {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_371()) { jj_scanpos.rollbackTo(); break; }
+    }
+    if (jj_scan_token(GT)) return true;
+    return false;
+  }
+
+  private boolean jj_3_21() {
+    if (jj_scan_token(DOT)) return true;
+    if (jj_scan_token(IDENTIFIER)) return true;
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3_22()) jj_scanpos.rollbackTo();
+    }
+    return false;
+  }
+
+  private boolean jj_3R_318() {
+    if (jj_scan_token(IDENTIFIER)) return true;
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3_20()) jj_scanpos.rollbackTo();
+    }
+    while (true) {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3_21()) { jj_scanpos.rollbackTo(); break; }
+    }
+    return false;
+  }
+
+  private boolean jj_3R_286() {
+    if (jj_3R_318()) return true;
+    while (true) {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3_19()) { jj_scanpos.rollbackTo(); break; }
+    }
+    return false;
+  }
+
+  private boolean jj_3R_285() {
+    if (jj_3R_262()) return true;
+    if (jj_3_18()) return true;
+    while (true) {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3_18()) { jj_scanpos.rollbackTo(); break; }
+    }
+    return false;
+  }
+
+  private boolean jj_3R_252() {
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_285()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_286()) {
+        jj_scanpos.rollbackTo();
+        return true;
+      }
+      }
+    }
+    return false;
+  }
+
+  private boolean jj_3R_451() {
+    if (jj_scan_token(THROWS)) return true;
+    if (jj_3R_465()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_278() {
+    if (jj_3R_262()) return true;
+    return false;
+  }
+
+  private boolean jj_3_17() {
+    if (jj_3R_252()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_246() {
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3_17()) {
+        jj_scanpos.rollbackTo();
+        jj_scanpos = builder.mark();
+      if (jj_3R_278()) {
+        jj_scanpos.rollbackTo();
+        return true;
+      }
+      }
+    }
+    return false;
+  }
+
+  private boolean jj_3_16() {
     if (jj_scan_token(THIS)) return true;
-    if (jj_3R_232()) return true;
+    if (jj_3R_251()) return true;
     if (jj_scan_token(SEMICOLON)) return true;
     return false;
   }
 
-  private boolean jj_3R_231() {
+  private boolean jj_3R_248() {
     {
       PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_253()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_254()) {
-        jj_scanpos.rollbackTo();
-        return true;
-      }
-      }
+      if (jj_scan_token(STATIC) ) jj_scanpos.rollbackTo();
     }
+    if (jj_3R_279()) return true;
     return false;
   }
 
-  private boolean jj_3R_401() {
-    if (jj_scan_token(THROWS)) return true;
-    if (jj_3R_411()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_398() {
-    if (jj_3R_286()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_397() {
-    if (jj_3R_231()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_394() {
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_scan_token(PUBLIC) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(PROTECTED) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(PRIVATE) ) {
-        jj_scanpos.rollbackTo();
-        return true;
-      }
-      }
-      }
-    }
-    return false;
-  }
-
-  private boolean jj_3R_388() {
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_394()) jj_scanpos.rollbackTo();
-    }
-    if (jj_3R_233()) return true;
-    if (jj_3R_395()) return true;
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_396()) jj_scanpos.rollbackTo();
-    }
-    if (jj_scan_token(LBRACE)) return true;
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_397()) jj_scanpos.rollbackTo();
-    }
-    while (true) {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_398()) { jj_scanpos.rollbackTo(); break; }
-    }
-    if (jj_scan_token(RBRACE)) return true;
+  private boolean jj_3_14() {
+    if (jj_3R_250()) return true;
     return false;
   }
 
   private boolean jj_3_15() {
+    if (jj_3R_235()) return true;
+    if (jj_scan_token(DOT)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_283() {
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3_15()) jj_scanpos.rollbackTo();
+    }
+    if (jj_scan_token(SUPER)) return true;
+    if (jj_3R_251()) return true;
+    if (jj_scan_token(SEMICOLON)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_474() {
     if (jj_scan_token(COMMA)) return true;
-    if (jj_3R_230()) return true;
+    if (jj_3R_473()) return true;
     return false;
   }
 
-  private boolean jj_3R_410() {
-    if (jj_3R_416()) return true;
-    while (true) {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_417()) { jj_scanpos.rollbackTo(); break; }
-    }
-    return false;
-  }
-
-  private boolean jj_3R_416() {
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_scan_token(FINAL) ) jj_scanpos.rollbackTo();
-    }
-    if (jj_3R_244()) return true;
-    if (jj_3R_413()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_395() {
-    if (jj_scan_token(LPAREN)) return true;
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_410()) jj_scanpos.rollbackTo();
-    }
-    if (jj_scan_token(RPAREN)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_400() {
-    if (jj_3R_233()) return true;
-    if (jj_3R_395()) return true;
-    while (true) {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_412()) { jj_scanpos.rollbackTo(); break; }
-    }
-    return false;
-  }
-
-  private boolean jj_3R_402() {
-    if (jj_3R_249()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_399() {
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_scan_token(PUBLIC) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(PROTECTED) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(PRIVATE) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(STATIC) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(ABSTRACT) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(FINAL) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(NATIVE) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(SYNCHRONIZED) ) {
-        jj_scanpos.rollbackTo();
-        return true;
-      }
-      }
-      }
-      }
-      }
-      }
-      }
-      }
-    }
-    return false;
-  }
-
-  private boolean jj_3R_370() {
-    if (jj_3R_230()) return true;
-    while (true) {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3_15()) { jj_scanpos.rollbackTo(); break; }
-    }
-    return false;
-  }
-
-  private boolean jj_3R_389() {
-    while (true) {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_399()) { jj_scanpos.rollbackTo(); break; }
-    }
-    if (jj_3R_240()) return true;
-    if (jj_3R_400()) return true;
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_401()) jj_scanpos.rollbackTo();
-    }
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_402()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(SEMICOLON) ) {
-        jj_scanpos.rollbackTo();
-        return true;
-      }
-      }
-    }
-    return false;
-  }
-
-  private boolean jj_3R_414() {
-    if (jj_scan_token(ASSIGN)) return true;
-    if (jj_3R_230()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_419() {
+  private boolean jj_3R_468() {
     if (jj_scan_token(LBRACKET)) return true;
     if (jj_scan_token(RBRACKET)) return true;
     return false;
   }
 
-  private boolean jj_3R_405() {
-    if (jj_scan_token(COMMA)) return true;
-    if (jj_3R_404()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_278() {
-    if (jj_scan_token(LBRACE)) return true;
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_370()) jj_scanpos.rollbackTo();
-    }
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_scan_token(COMMA) ) jj_scanpos.rollbackTo();
-    }
-    if (jj_scan_token(RBRACE)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_252() {
-    if (jj_3R_242()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_251() {
-    if (jj_3R_278()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_230() {
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_251()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_252()) {
-        jj_scanpos.rollbackTo();
-        return true;
-      }
-      }
-    }
-    return false;
-  }
-
-  private boolean jj_3R_413() {
-    if (jj_3R_233()) return true;
-    while (true) {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_419()) { jj_scanpos.rollbackTo(); break; }
-    }
-    return false;
-  }
-
-  private boolean jj_3R_408() {
-    if (jj_scan_token(EXTENDS)) return true;
-    if (jj_3R_411()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_404() {
-    if (jj_3R_413()) return true;
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_414()) jj_scanpos.rollbackTo();
-    }
-    return false;
-  }
-
-  private boolean jj_3_14() {
-    if (jj_3R_227()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_403() {
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_scan_token(PUBLIC) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(PROTECTED) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(PRIVATE) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(STATIC) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(FINAL) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(TRANSIENT) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(VOLATILE) ) {
-        jj_scanpos.rollbackTo();
-        return true;
-      }
-      }
-      }
-      }
-      }
-      }
-      }
-    }
-    return false;
-  }
-
-  private boolean jj_3R_229() {
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_scan_token(STATIC) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(ABSTRACT) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(FINAL) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(PUBLIC) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(PROTECTED) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(PRIVATE) ) {
-        jj_scanpos.rollbackTo();
-        return true;
-      }
-      }
-      }
-      }
-      }
-      }
-    }
-    return false;
-  }
-
-  private boolean jj_3R_390() {
-    while (true) {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_403()) { jj_scanpos.rollbackTo(); break; }
-    }
-    if (jj_3R_244()) return true;
-    if (jj_3R_404()) return true;
-    while (true) {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_405()) { jj_scanpos.rollbackTo(); break; }
-    }
+  private boolean jj_3R_282() {
+    if (jj_scan_token(THIS)) return true;
+    if (jj_3R_251()) return true;
     if (jj_scan_token(SEMICOLON)) return true;
-    return false;
-  }
-
-  private boolean jj_3_13() {
-    while (true) {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_229()) { jj_scanpos.rollbackTo(); break; }
-    }
-    if (jj_scan_token(INTERFACE)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_228() {
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_scan_token(STATIC) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(ABSTRACT) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(FINAL) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(PUBLIC) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(PROTECTED) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(PRIVATE) ) {
-        jj_scanpos.rollbackTo();
-        return true;
-      }
-      }
-      }
-      }
-      }
-      }
-    }
-    return false;
-  }
-
-  private boolean jj_3_12() {
-    while (true) {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_228()) { jj_scanpos.rollbackTo(); break; }
-    }
-    if (jj_scan_token(CLASS)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_424() {
-    if (jj_3R_390()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_423() {
-    if (jj_3R_389()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_422() {
-    if (jj_3R_387()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_409() {
-    if (jj_3R_415()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_415() {
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_421()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_422()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_423()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_424()) {
-        jj_scanpos.rollbackTo();
-        return true;
-      }
-      }
-      }
-      }
-    }
-    return false;
-  }
-
-  private boolean jj_3R_421() {
-    if (jj_3R_386()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_319() {
-    if (jj_scan_token(INTERFACE)) return true;
-    if (jj_3R_233()) return true;
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_408()) jj_scanpos.rollbackTo();
-    }
-    if (jj_scan_token(LBRACE)) return true;
-    while (true) {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_409()) { jj_scanpos.rollbackTo(); break; }
-    }
-    if (jj_scan_token(RBRACE)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_393() {
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_scan_token(STATIC) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(ABSTRACT) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(FINAL) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(PUBLIC) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(PROTECTED) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(PRIVATE) ) {
-        jj_scanpos.rollbackTo();
-        return true;
-      }
-      }
-      }
-      }
-      }
-      }
-    }
-    return false;
-  }
-
-  private boolean jj_3R_387() {
-    while (true) {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_393()) { jj_scanpos.rollbackTo(); break; }
-    }
-    if (jj_3R_319()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_407() {
-    if (jj_scan_token(IMPLEMENTS)) return true;
-    if (jj_3R_411()) return true;
     return false;
   }
 
   private boolean jj_3R_250() {
     {
       PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_scan_token(PUBLIC) ) {
+      if (jj_3R_282()) {
         jj_scanpos.rollbackTo();
         jj_scanpos = builder.mark();
-      if (jj_scan_token(PROTECTED) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(PRIVATE) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(STATIC) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(ABSTRACT) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(FINAL) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(NATIVE) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(SYNCHRONIZED) ) {
+      if (jj_3R_283()) {
         jj_scanpos.rollbackTo();
         return true;
       }
       }
-      }
-      }
-      }
-      }
-      }
-      }
     }
     return false;
   }
 
-  private boolean jj_3_11() {
-    if (jj_3R_227()) return true;
+  private boolean jj_3R_453() {
+    if (jj_3R_331()) return true;
     return false;
   }
 
-  private boolean jj_3R_225() {
+  private boolean jj_3R_452() {
+    if (jj_3R_250()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_449() {
+    if (jj_3R_277()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_441() {
     {
       PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_scan_token(PUBLIC) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(PROTECTED) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(PRIVATE) ) {
-        jj_scanpos.rollbackTo();
-        return true;
-      }
-      }
-      }
+      if (jj_3R_449()) jj_scanpos.rollbackTo();
     }
-    return false;
-  }
-
-  private boolean jj_3R_227() {
-    while (true) {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_250()) { jj_scanpos.rollbackTo(); break; }
-    }
-    if (jj_3R_240()) return true;
-    if (jj_3R_233()) return true;
-    if (jj_scan_token(LPAREN)) return true;
-    return false;
-  }
-
-  private boolean jj_3_10() {
+    if (jj_scan_token(IDENTIFIER)) return true;
+    if (jj_3R_450()) return true;
     {
       PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_225()) jj_scanpos.rollbackTo();
+      if (jj_3R_451()) jj_scanpos.rollbackTo();
     }
-    if (jj_3R_226()) return true;
-    if (jj_scan_token(LPAREN)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_224() {
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_scan_token(STATIC) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(ABSTRACT) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(FINAL) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(PUBLIC) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(PROTECTED) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(PRIVATE) ) {
-        jj_scanpos.rollbackTo();
-        return true;
-      }
-      }
-      }
-      }
-      }
-      }
-    }
-    return false;
-  }
-
-  private boolean jj_3_9() {
-    while (true) {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_224()) { jj_scanpos.rollbackTo(); break; }
-    }
-    if (jj_scan_token(INTERFACE)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_223() {
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_scan_token(STATIC) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(ABSTRACT) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(FINAL) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(PUBLIC) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(PROTECTED) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(PRIVATE) ) {
-        jj_scanpos.rollbackTo();
-        return true;
-      }
-      }
-      }
-      }
-      }
-      }
-    }
-    return false;
-  }
-
-  private boolean jj_3R_384() {
-    if (jj_3R_390()) return true;
-    return false;
-  }
-
-  private boolean jj_3_8() {
-    while (true) {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_223()) { jj_scanpos.rollbackTo(); break; }
-    }
-    if (jj_scan_token(CLASS)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_383() {
-    if (jj_3R_389()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_382() {
-    if (jj_3R_388()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_406() {
-    if (jj_scan_token(EXTENDS)) return true;
-    if (jj_3R_226()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_381() {
-    if (jj_3R_387()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_380() {
-    if (jj_3R_386()) return true;
-    return false;
-  }
-
-  private boolean jj_3_7() {
-    if (jj_3R_222()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_377() {
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3_7()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_380()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_381()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_382()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_383()) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_3R_384()) {
-        jj_scanpos.rollbackTo();
-        return true;
-      }
-      }
-      }
-      }
-      }
-      }
-    }
-    return false;
-  }
-
-  private boolean jj_3R_392() {
-    {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_scan_token(STATIC) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(ABSTRACT) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(FINAL) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(PUBLIC) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(PROTECTED) ) {
-        jj_scanpos.rollbackTo();
-        jj_scanpos = builder.mark();
-      if (jj_scan_token(PRIVATE) ) {
-        jj_scanpos.rollbackTo();
-        return true;
-      }
-      }
-      }
-      }
-      }
-      }
-    }
-    return false;
-  }
-
-  private boolean jj_3R_371() {
-    if (jj_3R_377()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_386() {
-    while (true) {
-      PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_392()) { jj_scanpos.rollbackTo(); break; }
-    }
-    if (jj_3R_318()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_349() {
     if (jj_scan_token(LBRACE)) return true;
+    {
+      PsiBuilder.Marker jj_scanpos = builder.mark();
+      if (jj_3R_452()) jj_scanpos.rollbackTo();
+    }
     while (true) {
       PsiBuilder.Marker jj_scanpos = builder.mark();
-      if (jj_3R_371()) { jj_scanpos.rollbackTo(); break; }
+      if (jj_3R_453()) { jj_scanpos.rollbackTo(); break; }
     }
     if (jj_scan_token(RBRACE)) return true;
     return false;

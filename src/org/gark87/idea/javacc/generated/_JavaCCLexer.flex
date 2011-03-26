@@ -24,11 +24,8 @@ import com.intellij.psi.tree.IElementType;
   public IElementType advance() throws java.io.IOException {
     IElementType result = internalAdvance();
     int start = zzStartRead;
-    while(result != null && (result == JavaCCConstants.MORE || result == JavaCCConstants.SKIP)) {
+    while(result != null && (result == JavaCCConstants.MORE)) 
       result = internalAdvance();
-      if (result == JavaCCConstants.SKIP)
-        start = zzStartRead;
-    }
     zzStartRead = start;
     return result;
   }
@@ -58,6 +55,7 @@ _SKIP="SKIP"
 _TOKEN_MGR_DECLS="TOKEN\u005fMGR\u005fDECLS"
 _EOF="EOF"
 ABSTRACT="abstract"
+ASSERT="assert"
 BOOLEAN="boolean"
 BREAK="break"
 BYTE="byte"
@@ -71,6 +69,7 @@ _DEFAULT="default"
 DO="do"
 DOUBLE="double"
 ELSE="else"
+ENUM="enum"
 EXTENDS="extends"
 FALSE="false"
 FINAL="final"
@@ -95,6 +94,7 @@ PUBLIC="public"
 RETURN="return"
 SHORT="short"
 STATIC="static"
+STRICTFP="strictfp"
 SUPER="super"
 SWITCH="switch"
 SYNCHRONIZED="synchronized"
@@ -111,13 +111,16 @@ INTEGER_LITERAL=(({DECIMAL_LITERAL}([lL])?)|({HEX_LITERAL}([lL])?)|({OCTAL_LITER
 DECIMAL_LITERAL=[1-9]([0-9])*
 HEX_LITERAL="0"[xX]([0-9a-fA-F])+
 OCTAL_LITERAL="0"([0-7])*
-FLOATING_POINT_LITERAL=((([0-9])+"\u002e"([0-9])*({EXPONENT})?([fFdD])?)|("\u002e"([0-9])+({EXPONENT})?([fFdD])?)|(([0-9])+{EXPONENT}([fFdD])?)|(([0-9])+({EXPONENT})?[fFdD]))
-EXPONENT=[eE]([\u002b\u002d])?([0-9])+
+FLOATING_POINT_LITERAL=(({DECIMAL_FLOATING_POINT_LITERAL})|({HEXADECIMAL_FLOATING_POINT_LITERAL}))
+DECIMAL_FLOATING_POINT_LITERAL=((([0-9])+"\u002e"([0-9])*({DECIMAL_EXPONENT})?([fFdD])?)|("\u002e"([0-9])+({DECIMAL_EXPONENT})?([fFdD])?)|(([0-9])+{DECIMAL_EXPONENT}([fFdD])?)|(([0-9])+({DECIMAL_EXPONENT})?[fFdD]))
+DECIMAL_EXPONENT=[eE]([\u002b\u002d])?([0-9])+
+HEXADECIMAL_FLOATING_POINT_LITERAL=(("0"[xX]([0-9a-fA-F])+("\u002e")?{HEXADECIMAL_EXPONENT}([fFdD])?)|("0"[xX]([0-9a-fA-F])*"\u002e"([0-9a-fA-F])+{HEXADECIMAL_EXPONENT}([fFdD])?))
+HEXADECIMAL_EXPONENT=[pP]([\u002b\u002d])?([0-9])+
 CHARACTER_LITERAL="\u0027"(([^\u0027\u005c\u000a\u000d])|("\u005c"(([ntbrf\u005c\u0027\u0022])|([0-7]([0-7])?)|([0-3][0-7][0-7])|("u"([0-9aAbBcCdDeEfF])+))))"\u0027"
 STRING_LITERAL="\u0022"((([^\u0022\u005c\u000a\u000d])|("\u005c"(([ntbrf\u005c\u0027\u0022])|([0-7]([0-7])?)|([0-3][0-7][0-7])|("u"([0-9aAbBcCdDeEfF])+)))))*"\u0022"
-IDENTIFIER={LETTER}((({LETTER})|({DIGIT})))*
-LETTER=[\u0024A-Z\u005fa-zÀ-ÖØ-öø-ÿĀ-\u1fff\u3040-\u318f\u3300-\u337f㐀-㴭一-\u9fff豈-\ufaff]
-DIGIT=[0-9٠-٩۰-۹०-९০-৯੦-੯૦-૯୦-୯௧-௯౦-౯೦-೯൦-൯๐-๙໐-໙၀-၉]
+IDENTIFIER={LETTER}({PART_LETTER})*
+LETTER=[\u0024A-Z\u005fa-z\u00a2-\u00a5ªµºÀ-ÖØ-öø-ȟȢ-ȳɐ-ʭʰ-ʸʻ-ˁː-ˑˠ-ˤˮͺΆΈ-ΊΌΎ-ΡΣ-ώϐ-ϗϚ-ϳЀ-ҁҌ-ӄӇ-ӈӋ-ӌӐ-ӵӸ-ӹԱ-Ֆՙա-ևא-תװ-ײء-غـ-يٱ-ۓەۥ-ۦۺ-ۼܐܒ-ܬހ-ޥअ-हऽॐक़-ॡঅ-ঌএ-ঐও-নপ-রলশ-হড়-ঢ়য়-ৡৰ-\u09f3ਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹਖ਼-ੜਫ਼ੲ-ੴઅ-ઋઍએ-ઑઓ-નપ-રલ-ળવ-હઽૐૠଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଶ-ହଽଡ଼-ଢ଼ୟ-ୡஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-வஷ-ஹఅ-ఌఎ-ఐఒ-నప-ళవ-హౠ-ౡಅ-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹೞೠ-ೡഅ-ഌഎ-ഐഒ-നപ-ഹൠ-ൡඅ-ඖක-නඳ-රලව-ෆก-ะา-ำ\u0e3f-ๆກ-ຂຄງ-ຈຊຍດ-ທນ-ຟມ-ຣລວສ-ຫອ-ະາ-ຳຽເ-ໄໆໜ-ໝༀཀ-ཇཉ-ཪྈ-ྋက-အဣ-ဧဩ-ဪၐ-ၕႠ-Ⴥა-ჶᄀ-ᅙᅟ-ᆢᆨ-ᇹሀ-ሆለ-ቆቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኆኈኊ-ኍነ-ኮኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዎዐ-ዖዘ-ዮደ-ጎጐጒ-ጕጘ-ጞጠ-ፆፈ-ፚᎠ-Ᏼᐁ-ᙬᙯ-ᙶᚁ-ᚚᚠ-ᛪក-ឳ\u17dbᠠ-ᡷᢀ-ᢨḀ-ẛẠ-ỹἀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ᾼιῂ-ῄῆ-ῌῐ-ΐῖ-Ίῠ-Ῥῲ-ῴῶ-ῼ\u203f-\u2040ⁿ\u20a0-\u20afℂℇℊ-ℓℕℙ-ℝℤΩℨK-ℭℯ-ℱℳ-ℹ\u2160-\u2183々-\u3007\u3021-\u3029〱-〵\u3038-\u303aぁ-ゔゝ-ゞァ-ヾㄅ-ㄬㄱ-ㆎㆠ-ㆷ㐀-䶵一-龥ꀀ-ꒌ가-힣豈-鶴ﬀ-ﬆﬓ-ﬗיִײַ-ﬨשׁ-זּטּ-לּמּנּ-סּףּ-פּצּ-ﮱﯓ-ﴽﵐ-ﶏﶒ-ﷇﷰ-ﷻ\ufe33-\ufe34\ufe4d-\ufe4f\ufe69ﹰ-ﹲﹴﹶ-ﻼ\uff04Ａ-Ｚ\uff3fａ-ｚ\uff65-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ\uffe0-\uffe1\uffe5-\uffe6]
+PART_LETTER=[\u0000-\u0008\u000e-\u001b\u00240-9A-Z\u005fa-z\u007f-\u009f\u00a2-\u00a5ªµºÀ-ÖØ-öø-ȟȢ-ȳɐ-ʭʰ-ʸʻ-ˁː-ˑˠ-ˤˮ\u0300-\u034e\u0360-\u0362ͺΆΈ-ΊΌΎ-ΡΣ-ώϐ-ϗϚ-ϳЀ-ҁ\u0483-\u0486Ҍ-ӄӇ-ӈӋ-ӌӐ-ӵӸ-ӹԱ-Ֆՙա-և\u0591-\u05a1\u05a3-\u05b9\u05bb-\u05bd\u05bf\u05c1-\u05c2\u05c4א-תװ-ײء-غـ-\u0655٠-٩\u0670-ۓە-\u06dc\u06df-\u06e8\u06ea-\u06ed۰-ۼ\u070f-ܬ\u0730-\u074aހ-\u07b0\u0901-\u0903अ-ह\u093c-\u094dॐ-\u0954क़-\u0963०-९\u0981-\u0983অ-ঌএ-ঐও-নপ-রলশ-হ\u09bc\u09be-\u09c4\u09c7-\u09c8\u09cb-\u09cd\u09d7ড়-ঢ়য়-\u09e3০-\u09f3\u0a02ਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ\u0a3c\u0a3e-\u0a42\u0a47-\u0a48\u0a4b-\u0a4dਖ਼-ੜਫ਼੦-ੴ\u0a81-\u0a83અ-ઋઍએ-ઑઓ-નપ-રલ-ળવ-હ\u0abc-\u0ac5\u0ac7-\u0ac9\u0acb-\u0acdૐૠ૦-૯\u0b01-\u0b03ଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଶ-ହ\u0b3c-\u0b43\u0b47-\u0b48\u0b4b-\u0b4d\u0b56-\u0b57ଡ଼-ଢ଼ୟ-ୡ୦-୯\u0b82-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-வஷ-ஹ\u0bbe-\u0bc2\u0bc6-\u0bc8\u0bca-\u0bcd\u0bd7௧-௯\u0c01-\u0c03అ-ఌఎ-ఐఒ-నప-ళవ-హ\u0c3e-\u0c44\u0c46-\u0c48\u0c4a-\u0c4d\u0c55-\u0c56ౠ-ౡ౦-౯\u0c82-\u0c83ಅ-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ\u0cbe-\u0cc4\u0cc6-\u0cc8\u0cca-\u0ccd\u0cd5-\u0cd6ೞೠ-ೡ೦-೯\u0d02-\u0d03അ-ഌഎ-ഐഒ-നപ-ഹ\u0d3e-\u0d43\u0d46-\u0d48\u0d4a-\u0d4d\u0d57ൠ-ൡ൦-൯\u0d82-\u0d83අ-ඖක-නඳ-රලව-ෆ\u0dca\u0dcf-\u0dd4\u0dd6\u0dd8-\u0ddf\u0df2-\u0df3ก-\u0e3a\u0e3f-\u0e4e๐-๙ກ-ຂຄງ-ຈຊຍດ-ທນ-ຟມ-ຣລວສ-ຫອ-\u0eb9\u0ebb-ຽເ-ໄໆ\u0ec8-\u0ecd໐-໙ໜ-ໝༀ\u0f18-\u0f19༠-༩\u0f35\u0f37\u0f39\u0f3e-ཇཉ-ཪ\u0f71-\u0f84\u0f86-ྋ\u0f90-\u0f97\u0f99-\u0fbc\u0fc6က-အဣ-ဧဩ-ဪ\u102c-\u1032\u1036-\u1039၀-၉ၐ-\u1059Ⴀ-Ⴥა-ჶᄀ-ᅙᅟ-ᆢᆨ-ᇹሀ-ሆለ-ቆቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኆኈኊ-ኍነ-ኮኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዎዐ-ዖዘ-ዮደ-ጎጐጒ-ጕጘ-ጞጠ-ፆፈ-ፚ፩-፱Ꭰ-Ᏼᐁ-ᙬᙯ-ᙶᚁ-ᚚᚠ-ᛪក-\u17d3\u17db០-៩\u180b-\u180e᠐-᠙ᠠ-ᡷᢀ-\u18a9Ḁ-ẛẠ-ỹἀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ᾼιῂ-ῄῆ-ῌῐ-ΐῖ-Ίῠ-Ῥῲ-ῴῶ-ῼ\u200c-\u200f\u202a-\u202e\u203f-\u2040\u206a-\u206fⁿ\u20a0-\u20af\u20d0-\u20dc\u20e1ℂℇℊ-ℓℕℙ-ℝℤΩℨK-ℭℯ-ℱℳ-ℹ\u2160-\u2183々-\u3007\u3021-\u302f〱-〵\u3038-\u303aぁ-ゔ\u3099-\u309aゝ-ゞァ-ヾㄅ-ㄬㄱ-ㆎㆠ-ㆷ㐀-䶵一-龥ꀀ-ꒌ가-힣豈-鶴ﬀ-ﬆﬓ-ﬗיִ-ﬨשׁ-זּטּ-לּמּנּ-סּףּ-פּצּ-ﮱﯓ-ﴽﵐ-ﶏﶒ-ﷇﷰ-ﷻ\ufe20-\ufe23\ufe33-\ufe34\ufe4d-\ufe4f\ufe69ﹰ-ﹲﹴﹶ-ﻼ\ufeff\uff04０-９Ａ-Ｚ\uff3fａ-ｚ\uff65-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ\uffe0-\uffe1\uffe5-\uffe6\ufff9-\ufffb]
 LPAREN="\u0028"
 RPAREN="\u0029"
 LBRACE="\u007b"
@@ -159,6 +162,9 @@ ORASSIGN="\u007c\u003d"
 XORASSIGN="\u005e\u003d"
 REMASSIGN="\u0025\u003d"
 SHARP="\u0023"
+ELLIPSIS="\u002e\u002e\u002e"
+AT="\u0040"
+ERROR=(.|\n)
 MULTI_LINE_COMMENT="\u002a\u002f"
 SINGLE_LINE_COMMENT=(("\u000a")|("\u000d")|("\u000d\u000a"))
 FORMAL_COMMENT="\u002a\u002f"
@@ -186,6 +192,7 @@ FORMAL_COMMENT="\u002a\u002f"
 <YYINITIAL> "\u002f\u002a\u002a"[\u0000-\u002e0-\uffff] { yybegin(IN_FORMAL_COMMENT);return org.gark87.idea.javacc.generated.JavaCCConstants.MORE; }
 <YYINITIAL> "\u002f\u002a" { yybegin(IN_MULTI_LINE_COMMENT);return org.gark87.idea.javacc.generated.JavaCCConstants.MORE; }
 <YYINITIAL> {ABSTRACT} { return org.gark87.idea.javacc.generated.JavaCCConstants.ABSTRACT; }
+<YYINITIAL> {ASSERT} { return org.gark87.idea.javacc.generated.JavaCCConstants.ASSERT; }
 <YYINITIAL> {BOOLEAN} { return org.gark87.idea.javacc.generated.JavaCCConstants.BOOLEAN; }
 <YYINITIAL> {BREAK} { return org.gark87.idea.javacc.generated.JavaCCConstants.BREAK; }
 <YYINITIAL> {BYTE} { return org.gark87.idea.javacc.generated.JavaCCConstants.BYTE; }
@@ -199,6 +206,7 @@ FORMAL_COMMENT="\u002a\u002f"
 <YYINITIAL> {DO} { return org.gark87.idea.javacc.generated.JavaCCConstants.DO; }
 <YYINITIAL> {DOUBLE} { return org.gark87.idea.javacc.generated.JavaCCConstants.DOUBLE; }
 <YYINITIAL> {ELSE} { return org.gark87.idea.javacc.generated.JavaCCConstants.ELSE; }
+<YYINITIAL> {ENUM} { return org.gark87.idea.javacc.generated.JavaCCConstants.ENUM; }
 <YYINITIAL> {EXTENDS} { return org.gark87.idea.javacc.generated.JavaCCConstants.EXTENDS; }
 <YYINITIAL> {FALSE} { return org.gark87.idea.javacc.generated.JavaCCConstants.FALSE; }
 <YYINITIAL> {FINAL} { return org.gark87.idea.javacc.generated.JavaCCConstants.FINAL; }
@@ -223,6 +231,7 @@ FORMAL_COMMENT="\u002a\u002f"
 <YYINITIAL> {RETURN} { return org.gark87.idea.javacc.generated.JavaCCConstants.RETURN; }
 <YYINITIAL> {SHORT} { return org.gark87.idea.javacc.generated.JavaCCConstants.SHORT; }
 <YYINITIAL> {STATIC} { return org.gark87.idea.javacc.generated.JavaCCConstants.STATIC; }
+<YYINITIAL> {STRICTFP} { return org.gark87.idea.javacc.generated.JavaCCConstants.STRICTFP; }
 <YYINITIAL> {SUPER} { return org.gark87.idea.javacc.generated.JavaCCConstants.SUPER; }
 <YYINITIAL> {SWITCH} { return org.gark87.idea.javacc.generated.JavaCCConstants.SWITCH; }
 <YYINITIAL> {SYNCHRONIZED} { return org.gark87.idea.javacc.generated.JavaCCConstants.SYNCHRONIZED; }
@@ -281,6 +290,9 @@ FORMAL_COMMENT="\u002a\u002f"
 <YYINITIAL> {XORASSIGN} { return org.gark87.idea.javacc.generated.JavaCCConstants.XORASSIGN; }
 <YYINITIAL> {REMASSIGN} { return org.gark87.idea.javacc.generated.JavaCCConstants.REMASSIGN; }
 <YYINITIAL> {SHARP} { return org.gark87.idea.javacc.generated.JavaCCConstants.SHARP; }
+<YYINITIAL> {ELLIPSIS} { return org.gark87.idea.javacc.generated.JavaCCConstants.ELLIPSIS; }
+<YYINITIAL> {AT} { return org.gark87.idea.javacc.generated.JavaCCConstants.AT; }
+<YYINITIAL> {ERROR} { return org.gark87.idea.javacc.generated.JavaCCConstants.ERROR; }
 <IN_MULTI_LINE_COMMENT> {MULTI_LINE_COMMENT} { yybegin(YYINITIAL);return org.gark87.idea.javacc.generated.JavaCCConstants.MULTI_LINE_COMMENT; }
 <IN_MULTI_LINE_COMMENT> (.|\n) { return org.gark87.idea.javacc.generated.JavaCCConstants.MORE; }
 <IN_SINGLE_LINE_COMMENT> {SINGLE_LINE_COMMENT} { yybegin(YYINITIAL);return org.gark87.idea.javacc.generated.JavaCCConstants.SINGLE_LINE_COMMENT; }
