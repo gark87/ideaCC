@@ -1,33 +1,29 @@
 <idea-plugin version="2">
-  <name>JavaCC Plugin</name>
-  <description>Support of JavaCC *.jj files</description>
-  <version>1.0</version>
-  <vendor>gark87</vendor>
-  <idea-version since-build="9000"/>
+    <name>JavaCC Plugin</name>
+    <description>Support of JavaCC *.jj files</description>
+    <version>1.0</version>
+    <vendor>gark87</vendor>
+    <idea-version since-build="9000"/>
 
-  <application-components>
-    <!-- Add your application components here -->
-      <component>
-          <implementation-class>org.gark87.idea.javacc.JavaCCSupportLoader</implementation-class>
-      </component>
-  </application-components>
+    <application-components>
+        <!-- Add your application components here -->
+        <component>
+            <implementation-class>org.gark87.idea.javacc.JavaCCSupportLoader</implementation-class>
+        </component>
+    </application-components>
 
-  <project-components>
-    <!-- Add your project components here -->
-  </project-components>
+    <project-components>
+        <!-- Add your project components here -->
+    </project-components>
 
-  <actions>
-    <!-- Add your actions here -->
-  </actions>
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
 
-  <extensions defaultExtensionNs="com.intellij">
-      <colorSettingsPage implementation="org.gark87.idea.javacc.JavaCCColorsPage" />
-      <lang.parserDefinition language="JAVACC"
-            implementationClass=
-                "org.gark87.idea.javacc.JavaCCParserDefinition"
-         />
-      <annotator language="JAVACC"
-                 implementationClass="org.gark87.idea.javacc.JavaCCAnnotator"/>
-
-  </extensions>
+    <extensions defaultExtensionNs="com.intellij">
+        <colorSettingsPage implementation="org.gark87.idea.javacc.JavaCCColorsPage"/>
+        <lang.parserDefinition language="JAVACC" implementationClass="org.gark87.idea.javacc.JavaCCParserDefinition"/>
+        <annotator language="JAVACC" implementationClass="org.gark87.idea.javacc.JavaCCAnnotator"/>
+        <lang.commenter language="JAVACC" implementationClass="com.intellij.lang.java.JavaCommenter"/>
+    </extensions>
 </idea-plugin>
