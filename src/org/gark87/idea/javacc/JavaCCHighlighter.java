@@ -7,11 +7,11 @@ import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.openapi.fileTypes.SyntaxHighlighterBase;
 import com.intellij.openapi.util.Pair;
 import com.intellij.psi.tree.IElementType;
-import gnu.trove.THashMap;
 import org.gark87.idea.javacc.generated.JavaCCConstants;
 import org.gark87.idea.javacc.generated.JavaCCLexer;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -76,6 +76,12 @@ public class JavaCCHighlighter extends SyntaxHighlighterBase {
             SyntaxHighlighterColors.LINE_COMMENT.getDefaultAttributes()
     );
 
+    public static final TextAttributesKey TOKEN =
+    TextAttributesKey.createTextAttributesKey(
+            "JAVACC.TOKEN",
+            SyntaxHighlighterColors.KEYWORD.getDefaultAttributes()
+    );
+
     public static final TextAttributesKey ERROR =
     TextAttributesKey.createTextAttributesKey(
             "JAVACC.ERROR",
@@ -83,8 +89,8 @@ public class JavaCCHighlighter extends SyntaxHighlighterBase {
     );
 
     static {
-        keys1 = new THashMap<IElementType, TextAttributesKey>();
-        keys2 = new THashMap<IElementType, TextAttributesKey>();
+        keys1 = new HashMap<IElementType, TextAttributesKey>();
+        keys2 = new HashMap<IElementType, TextAttributesKey>();
 
         // comment
         keys1.put(JavaCCConstants.SINGLE_LINE_COMMENT, COMMENT);
@@ -207,6 +213,9 @@ public class JavaCCHighlighter extends SyntaxHighlighterBase {
         // quoted string
         keys1.put(JavaCCConstants.STRING_LITERAL, STRING);
         keys1.put(JavaCCConstants.CHARACTER_LITERAL, STRING);
+
+        // error
+        keys1.put(JavaCCConstants.ERROR, ERROR);
     }
     
 
@@ -221,7 +230,7 @@ public class JavaCCHighlighter extends SyntaxHighlighterBase {
         return pack(keys1.get(tokenType), keys2.get(tokenType));
     }
 
-    public static final Map<TextAttributesKey, Pair<String, HighlightSeverity>> DISPLAY_NAMES = new THashMap<TextAttributesKey, Pair<String, HighlightSeverity>>(6);
+    public static final Map<TextAttributesKey, Pair<String, HighlightSeverity>> DISPLAY_NAMES = new HashMap<TextAttributesKey, Pair<String, HighlightSeverity>>(6);
 
     static {
         DISPLAY_NAMES.put(JAVACC_KEYWORD, new Pair<String, HighlightSeverity>("JavaCC keyword", null));
@@ -235,5 +244,6 @@ public class JavaCCHighlighter extends SyntaxHighlighterBase {
         DISPLAY_NAMES.put(STRING, new Pair<String, HighlightSeverity>("quoted string", null));
         DISPLAY_NAMES.put(COMMENT, new Pair<String, HighlightSeverity>("comment", null));
         DISPLAY_NAMES.put(ERROR, new Pair<String, HighlightSeverity>("error", null));
+        DISPLAY_NAMES.put(TOKEN, new Pair<String, HighlightSeverity>("token", null));
     }
 }

@@ -26,6 +26,8 @@
             implementationClass=
                 "org.gark87.idea.javacc.JavaCCParserDefinition"
          />
+      <annotator language="JAVACC"
+                 implementationClass="org.gark87.idea.javacc.JavaCCAnnotator"/>
 
   </extensions>
 </idea-plugin>
