@@ -22,8 +22,11 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <colorSettingsPage implementation="org.gark87.idea.javacc.JavaCCColorsPage"/>
-        <lang.parserDefinition language="JAVACC" implementationClass="org.gark87.idea.javacc.JavaCCParserDefinition"/>
         <annotator language="JAVACC" implementationClass="org.gark87.idea.javacc.JavaCCAnnotator"/>
+        <lang.parserDefinition language="JAVACC" implementationClass="org.gark87.idea.javacc.JavaCCParserDefinition"/>
         <lang.commenter language="JAVACC" implementationClass="com.intellij.lang.java.JavaCommenter"/>
+        <lang.ast.factory language="JAVACC" implementationClass="org.gark87.idea.javacc.JavaCCASTFactory"/>
+        <lang.elementManipulator forClass="org.gark87.idea.javacc.psi.Identifier"
+                                 implementationClass="org.gark87.idea.javacc.psi.SectionManipulator"/>
     </extensions>
 </idea-plugin>

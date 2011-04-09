@@ -1,21 +1,24 @@
 package org.gark87.idea.javacc;
 
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
-import com.intellij.extapi.psi.PsiFileBase;
 import com.intellij.lang.ASTNode;
 import com.intellij.lang.ParserDefinition;
 import com.intellij.lang.PsiParser;
 import com.intellij.lexer.Lexer;
-import com.intellij.openapi.fileTypes.FileType;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.FileViewProvider;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
+import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.tree.IFileElementType;
 import com.intellij.psi.tree.TokenSet;
 import org.gark87.idea.javacc.generated.JavaCC;
 import org.gark87.idea.javacc.generated.JavaCCElementTypes;
 import org.gark87.idea.javacc.generated.JavaCCLexer;
+import org.gark87.idea.javacc.generated.JavaCCTreeConstants;
+import org.gark87.idea.javacc.psi.BNFProduction;
+import org.gark87.idea.javacc.psi.JavaCCInput;
+import org.gark87.idea.javacc.psi.Production;
 import org.jetbrains.annotations.NotNull;
 
 
@@ -64,6 +67,13 @@ public class JavaCCParserDefinition implements ParserDefinition {
     @NotNull
     @Override
     public PsiElement createElement(ASTNode node) {
+        final IElementType type = node.getElementType();
+        if (type == JavaCCTreeConstants.JJTBNF_PRODUCTION)
+            return new BNFProduction(node);
+        if (type == JavaCCTreeConstants.JJTPRODUCTION)
+            return new Production(node);
+        if (type == JavaCCTreeConstants.JJTJAVACC_INPUT)
+            return new JavaCCInput(node);
         return new ASTWrapperPsiElement(node);
     }
 
@@ -75,17 +85,5 @@ public class JavaCCParserDefinition implements ParserDefinition {
     @Override
     public SpaceRequirements spaceExistanceTypeBetweenTokens(ASTNode astNode, ASTNode astNode1) {
         return SpaceRequirements.MAY;
-    }
-
-    private class JavaCCFileImpl extends PsiFileBase {
-        public JavaCCFileImpl(FileViewProvider provider) {
-            super(provider, JavaCCElementTypes.LANG);
-        }
-
-        @NotNull
-        @Override
-        public FileType getFileType() {
-            return JavaCCSupportLoader.JAVA_CC;
-        }
     }
 }
