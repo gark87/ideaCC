@@ -44,7 +44,7 @@ public class JavaCC/*@bgen(jjtree)*/implements JavaCCTreeConstants, JavaCCConsta
 break label_1;
 }
 }
-assert (builder.eof());
+//assert (builder.eof());
       {
         if (jjtc000) {
           jjtc000 = false;
