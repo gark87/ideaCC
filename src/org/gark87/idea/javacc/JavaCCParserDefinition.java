@@ -16,9 +16,7 @@ import org.gark87.idea.javacc.generated.JavaCC;
 import org.gark87.idea.javacc.generated.JavaCCElementTypes;
 import org.gark87.idea.javacc.generated.JavaCCLexer;
 import org.gark87.idea.javacc.generated.JavaCCTreeConstants;
-import org.gark87.idea.javacc.psi.BNFProduction;
-import org.gark87.idea.javacc.psi.JavaCCInput;
-import org.gark87.idea.javacc.psi.Production;
+import org.gark87.idea.javacc.psi.*;
 import org.jetbrains.annotations.NotNull;
 
 
@@ -74,6 +72,10 @@ public class JavaCCParserDefinition implements ParserDefinition {
             return new Production(node);
         if (type == JavaCCTreeConstants.JJTJAVACC_INPUT)
             return new JavaCCInput(node);
+        if (type == JavaCCTreeConstants.JJTREGULAR_EXPR_PRODUCTION)
+            return new RegExpProduction(node);
+        if (type == JavaCCTreeConstants.JJTREGEXPR_SPEC)
+            return new RegExpSpec(node);
         return new ASTWrapperPsiElement(node);
     }
 

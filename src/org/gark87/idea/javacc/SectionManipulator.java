@@ -1,8 +1,9 @@
-package org.gark87.idea.javacc.psi;
+package org.gark87.idea.javacc;
 
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.AbstractElementManipulator;
 import com.intellij.util.IncorrectOperationException;
+import org.gark87.idea.javacc.psi.Identifier;
 
 /**
  * @author gark87 <arkady.galyash@gmail.com>

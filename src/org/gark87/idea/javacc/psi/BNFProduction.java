@@ -11,11 +11,15 @@ public class BNFProduction extends JavaCCStub {
         super(node);
     }
 
-    public String getProductionName() {
+    public Identifier getProductionName() {
         PsiElement[] children = getChildren();
-        if (children.length >= 3)
-            return children[2].getText();
-        return "";
+        if (children.length >= 3) {
+            PsiElement result = children[2].getFirstChild();
+            if (result instanceof Identifier)
+                return (Identifier) result;
+            return null;
+        }
+        return null;
     }
 
     @Override

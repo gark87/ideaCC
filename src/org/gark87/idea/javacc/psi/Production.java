@@ -19,6 +19,15 @@ public class Production extends JavaCCStub {
         return null;
     }
 
+
+     public RegExpProduction getRegExpProduction() {
+        for (PsiElement child : getChildren()) {
+            if (child instanceof RegExpProduction)
+                return ((RegExpProduction) child);
+        }
+        return null;
+    }
+
     @Override
     public String toString() {
         return "JavaCC Production: " + getText();

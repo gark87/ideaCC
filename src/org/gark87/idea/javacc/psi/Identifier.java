@@ -7,8 +7,13 @@ import com.intellij.psi.impl.source.tree.LeafPsiElement;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.util.IncorrectOperationException;
 import org.gark87.idea.javacc.generated.JavaCCTreeConstants;
+import org.gark87.idea.javacc.psi.reference.NonTerminalReference;
+import org.gark87.idea.javacc.psi.reference.TokenReference;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author gark87 <arkady.galyash@gmail.com>
@@ -34,14 +39,22 @@ public class Identifier extends LeafPsiElement implements PsiNameIdentifierOwner
         PsiElement grandParent = parent.getParent();
         if (grandParent == null)
             return null;
-        if (grandParent.getNode().getElementType() != JavaCCTreeConstants.JJTEXPANSION_UNIT)
-            return null;
-        return new IdentifierPsiReference(this);
+        IElementType elementType = grandParent.getNode().getElementType();
+        if (grandParent instanceof BNFProduction || elementType == JavaCCTreeConstants.JJTEXPANSION_UNIT)
+            return new NonTerminalReference(this);
+        if (elementType == JavaCCTreeConstants.JJTREGULAR_EXPRESSION)
+            return new TokenReference(this);
+        return null;
     }
 
+    @Override
+    @NotNull
+    public String getName() {
+        return getText();
+    }
 
     @Override
     public PsiElement setName(@NonNls @NotNull String s) throws IncorrectOperationException {
-        return null;
+        return this;
     }
 }

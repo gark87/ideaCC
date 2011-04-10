@@ -1,9 +1,10 @@
-package org.gark87.idea.javacc;
+package org.gark87.idea.javacc.psi;
 
 import com.intellij.extapi.psi.PsiFileBase;
 import com.intellij.openapi.fileTypes.FileType;
 import com.intellij.psi.FileViewProvider;
 import com.intellij.psi.PsiElement;
+import org.gark87.idea.javacc.JavaCCSupportLoader;
 import org.gark87.idea.javacc.generated.JavaCCElementTypes;
 import org.gark87.idea.javacc.psi.JavaCCInput;
 import org.jetbrains.annotations.NotNull;
