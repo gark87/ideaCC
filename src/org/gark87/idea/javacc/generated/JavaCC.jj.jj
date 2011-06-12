@@ -2567,12 +2567,12 @@ void AssignmentOperator() :
 /*@egen*/
 }
 
-void ConditionalExpression() :
-{/*@bgen(jjtree) ConditionalExpression */
+void ConditionalExpression()                           :
+{/*@bgen(jjtree) #ConditionalExpression(> 1) */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
 /*@egen*/}
-{/*@bgen(jjtree) ConditionalExpression */
+{/*@bgen(jjtree) #ConditionalExpression(> 1) */
   (
 /*@egen*/
   ConditionalOrExpression() [ "?" Expression() ":" Expression() ]/*@bgen(jjtree)*/
@@ -2587,12 +2587,12 @@ void ConditionalExpression() :
 /*@egen*/
 }
 
-void ConditionalOrExpression() :
-{/*@bgen(jjtree) ConditionalOrExpression */
+void ConditionalOrExpression()                             :
+{/*@bgen(jjtree) #ConditionalOrExpression(> 1) */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
 /*@egen*/}
-{/*@bgen(jjtree) ConditionalOrExpression */
+{/*@bgen(jjtree) #ConditionalOrExpression(> 1) */
   (
 /*@egen*/
   ConditionalAndExpression() ( "||" ConditionalAndExpression() )*/*@bgen(jjtree)*/
@@ -2607,12 +2607,12 @@ void ConditionalOrExpression() :
 /*@egen*/
 }
 
-void ConditionalAndExpression() :
-{/*@bgen(jjtree) ConditionalAndExpression */
+void ConditionalAndExpression()                              :
+{/*@bgen(jjtree) #ConditionalAndExpression(> 1) */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
 /*@egen*/}
-{/*@bgen(jjtree) ConditionalAndExpression */
+{/*@bgen(jjtree) #ConditionalAndExpression(> 1) */
   (
 /*@egen*/
   InclusiveOrExpression() ( "&&" InclusiveOrExpression() )*/*@bgen(jjtree)*/
@@ -2627,12 +2627,12 @@ void ConditionalAndExpression() :
 /*@egen*/
 }
 
-void InclusiveOrExpression() :
-{/*@bgen(jjtree) InclusiveOrExpression */
+void InclusiveOrExpression()                           :
+{/*@bgen(jjtree) #InclusiveOrExpression(> 1) */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
 /*@egen*/}
-{/*@bgen(jjtree) InclusiveOrExpression */
+{/*@bgen(jjtree) #InclusiveOrExpression(> 1) */
   (
 /*@egen*/
   ExclusiveOrExpression() ( "|" ExclusiveOrExpression() )*/*@bgen(jjtree)*/
@@ -2647,12 +2647,12 @@ void InclusiveOrExpression() :
 /*@egen*/
 }
 
-void ExclusiveOrExpression() :
-{/*@bgen(jjtree) ExclusiveOrExpression */
+void ExclusiveOrExpression()                           :
+{/*@bgen(jjtree) #ExclusiveOrExpression(> 1) */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
 /*@egen*/}
-{/*@bgen(jjtree) ExclusiveOrExpression */
+{/*@bgen(jjtree) #ExclusiveOrExpression(> 1) */
   (
 /*@egen*/
   AndExpression() ( "^" AndExpression() )*/*@bgen(jjtree)*/
@@ -2667,12 +2667,12 @@ void ExclusiveOrExpression() :
 /*@egen*/
 }
 
-void AndExpression() :
-{/*@bgen(jjtree) AndExpression */
+void AndExpression()                   :
+{/*@bgen(jjtree) #AndExpression(> 1) */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
 /*@egen*/}
-{/*@bgen(jjtree) AndExpression */
+{/*@bgen(jjtree) #AndExpression(> 1) */
   (
 /*@egen*/
   EqualityExpression() ( "&" EqualityExpression() )*/*@bgen(jjtree)*/
@@ -2687,12 +2687,12 @@ void AndExpression() :
 /*@egen*/
 }
 
-void EqualityExpression() :
-{/*@bgen(jjtree) EqualityExpression */
+void EqualityExpression()                        :
+{/*@bgen(jjtree) #EqualityExpression(> 1) */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
 /*@egen*/}
-{/*@bgen(jjtree) EqualityExpression */
+{/*@bgen(jjtree) #EqualityExpression(> 1) */
   (
 /*@egen*/
   InstanceOfExpression() ( ( "==" | "!=" ) InstanceOfExpression() )*/*@bgen(jjtree)*/
@@ -2707,12 +2707,12 @@ void EqualityExpression() :
 /*@egen*/
 }
 
-void InstanceOfExpression() :
-{/*@bgen(jjtree) InstanceOfExpression */
+void InstanceOfExpression()                          :
+{/*@bgen(jjtree) #InstanceOfExpression(> 1) */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
 /*@egen*/}
-{/*@bgen(jjtree) InstanceOfExpression */
+{/*@bgen(jjtree) #InstanceOfExpression(> 1) */
   (
 /*@egen*/
   RelationalExpression() [ "instanceof" Type() ]/*@bgen(jjtree)*/
@@ -2727,12 +2727,12 @@ void InstanceOfExpression() :
 /*@egen*/
 }
 
-void RelationalExpression() :
-{/*@bgen(jjtree) RelationalExpression */
+void RelationalExpression()                          :
+{/*@bgen(jjtree) #RelationalExpression(> 1) */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
 /*@egen*/}
-{/*@bgen(jjtree) RelationalExpression */
+{/*@bgen(jjtree) #RelationalExpression(> 1) */
   (
 /*@egen*/
   ShiftExpression() ( LOOKAHEAD(2) ( "<" | ">" ) ("=")? ShiftExpression() )*/*@bgen(jjtree)*/
@@ -2747,12 +2747,12 @@ void RelationalExpression() :
 /*@egen*/
 }
 
-void ShiftExpression() :
-{/*@bgen(jjtree) ShiftExpression */
+void ShiftExpression()                     :
+{/*@bgen(jjtree) #ShiftExpression(> 1) */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
 /*@egen*/}
-{/*@bgen(jjtree) ShiftExpression */
+{/*@bgen(jjtree) #ShiftExpression(> 1) */
   (
 /*@egen*/
   AdditiveExpression() ( LOOKAHEAD(2) ( "<" "<" |LOOKAHEAD(3) RUNSIGNEDSHIFT() | RSIGNEDSHIFT() ) AdditiveExpression() )*/*@bgen(jjtree)*/
@@ -2767,12 +2767,12 @@ void ShiftExpression() :
 /*@egen*/
 }
 
-void AdditiveExpression() :
-{/*@bgen(jjtree) AdditiveExpression */
+void AdditiveExpression()                        :
+{/*@bgen(jjtree) #AdditiveExpression(> 1) */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
 /*@egen*/}
-{/*@bgen(jjtree) AdditiveExpression */
+{/*@bgen(jjtree) #AdditiveExpression(> 1) */
   (
 /*@egen*/
   MultiplicativeExpression() ( ( "+" | "-" ) MultiplicativeExpression() )*/*@bgen(jjtree)*/
@@ -2787,12 +2787,12 @@ void AdditiveExpression() :
 /*@egen*/
 }
 
-void MultiplicativeExpression() :
-{/*@bgen(jjtree) MultiplicativeExpression */
+void MultiplicativeExpression()                              :
+{/*@bgen(jjtree) #MultiplicativeExpression(> 1) */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
 /*@egen*/}
-{/*@bgen(jjtree) MultiplicativeExpression */
+{/*@bgen(jjtree) #MultiplicativeExpression(> 1) */
   (
 /*@egen*/
   UnaryExpression() ( ( "*" | "/" | "%" ) UnaryExpression() )*/*@bgen(jjtree)*/
@@ -2927,12 +2927,12 @@ void CastLookahead() :
 /*@egen*/
 }
 
-void PostfixExpression() :
-{/*@bgen(jjtree) PostfixExpression */
+void PostfixExpression()                       :
+{/*@bgen(jjtree) #PostfixExpression(> 1) */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
 /*@egen*/}
-{/*@bgen(jjtree) PostfixExpression */
+{/*@bgen(jjtree) #PostfixExpression(> 1) */
   (
 /*@egen*/
   PrimaryExpression() [ "++" | "--" ]/*@bgen(jjtree)*/
@@ -3106,24 +3106,10 @@ void Literal() :
 /*@egen*/
 }
 
-void IntegerLiteral() :
-{/*@bgen(jjtree) IntegerLiteral */
-  boolean jjtc000 = true;
-  PsiBuilder.Marker jjtn000 = builder.mark();
-/*@egen*/}
-{/*@bgen(jjtree) IntegerLiteral */
-  (
-/*@egen*/
-  <INTEGER_LITERAL>/*@bgen(jjtree)*/
-  ) {
-      {
-        if (jjtc000) {
-          jjtc000 = false;
-          {jjtn000.done(JJTINTEGERLITERAL); }
-        }
-      }
-  }
-/*@egen*/
+void IntegerLiteral()      :
+{}
+{
+  <INTEGER_LITERAL>
 }
 
 void BooleanLiteral() :
@@ -3148,44 +3134,16 @@ void BooleanLiteral() :
 /*@egen*/
 }
 
-void StringLiteral() :
-{/*@bgen(jjtree) StringLiteral */
-  boolean jjtc000 = true;
-  PsiBuilder.Marker jjtn000 = builder.mark();
-/*@egen*/}
-{/*@bgen(jjtree) StringLiteral */
-  (
-/*@egen*/
-  <STRING_LITERAL>/*@bgen(jjtree)*/
-  ) {
-      {
-        if (jjtc000) {
-          jjtc000 = false;
-          {jjtn000.done(JJTSTRINGLITERAL); }
-        }
-      }
-  }
-/*@egen*/
+void StringLiteral()       :
+{}
+{
+  <STRING_LITERAL>
 }
 
-void NullLiteral() :
-{/*@bgen(jjtree) NullLiteral */
-  boolean jjtc000 = true;
-  PsiBuilder.Marker jjtn000 = builder.mark();
-/*@egen*/}
-{/*@bgen(jjtree) NullLiteral */
-  (
-/*@egen*/
-  "null"/*@bgen(jjtree)*/
-  ) {
-      {
-        if (jjtc000) {
-          jjtc000 = false;
-          {jjtn000.done(JJTNULLLITERAL); }
-        }
-      }
-  }
-/*@egen*/
+void NullLiteral()      :
+{}
+{
+  "null"
 }
 
 void Arguments() :
@@ -3292,14 +3250,9 @@ void ArrayDimsAndInits() :
  * Statement syntax follows.
  */
 
-void Statement() :
-{/*@bgen(jjtree) Statement */
-  boolean jjtc000 = true;
-  PsiBuilder.Marker jjtn000 = builder.mark();
-/*@egen*/}
-{/*@bgen(jjtree) Statement */
-  (
-/*@egen*/
+void Statement()      :
+{}
+{
   LOOKAHEAD(2)
   LabeledStatement()
 |
@@ -3331,16 +3284,7 @@ void Statement() :
 |
   SynchronizedStatement()
 |
-  TryStatement()/*@bgen(jjtree)*/
-  ) {
-      {
-        if (jjtc000) {
-          jjtc000 = false;
-          {jjtn000.done(JJTSTATEMENT); }
-        }
-      }
-  }
-/*@egen*/
+  TryStatement()
 }
 
 void AssertStatement() :

@@ -4,8 +4,8 @@ import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 
 /**
- * @author gark87 <arkady.galyash@gmail.com>
- */
+* @author gark87 <arkady.galyash@gmail.com>
+*/
 public class Production extends JavaCCStub {
     public Production(@org.jetbrains.annotations.NotNull ASTNode node) {
         super(node);

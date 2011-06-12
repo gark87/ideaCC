@@ -12,12 +12,10 @@ import org.gark87.idea.javacc.psi.reference.TokenReference;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * @author gark87 <arkady.galyash@gmail.com>
- */
+* @author gark87 <arkady.galyash@gmail.com>
+*/
 public class Identifier extends LeafPsiElement implements PsiNameIdentifierOwner {
 
     public Identifier(IElementType type, CharSequence text) {

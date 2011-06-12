@@ -14,7 +14,6 @@ public class JavaCCParser implements PsiParser {
     @NotNull
     @Override
     public ASTNode parse(IElementType root, PsiBuilder builder) {
-        builder.setDebugMode(true);
         final PsiBuilder.Marker rootMarker = builder.mark();
         JavaCC javacc = new JavaCC(builder);
         while(!builder.eof())

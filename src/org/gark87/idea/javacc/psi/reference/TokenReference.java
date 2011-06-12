@@ -6,8 +6,8 @@ import org.gark87.idea.javacc.psi.*;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * @author gark87 <arkady.galyash@gmail.com>
- */
+* @author gark87 <arkady.galyash@gmail.com>
+*/
 public class TokenReference extends IdentifierReference {
     public TokenReference(@NotNull Identifier element) {
         super(element);

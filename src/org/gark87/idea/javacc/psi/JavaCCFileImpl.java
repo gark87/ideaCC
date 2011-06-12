@@ -6,12 +6,12 @@ import com.intellij.psi.FileViewProvider;
 import com.intellij.psi.PsiElement;
 import org.gark87.idea.javacc.JavaCCSupportLoader;
 import org.gark87.idea.javacc.generated.JavaCCElementTypes;
-import org.gark87.idea.javacc.psi.JavaCCInput;
+//import org.gark87.idea.javacc.psi.JavaCCInput;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * @author gark87 <arkady.galyash@gmail.com>
- */
+* @author gark87 <arkady.galyash@gmail.com>
+*/
 public class JavaCCFileImpl extends PsiFileBase {
     public JavaCCFileImpl(FileViewProvider provider) {
         super(provider, JavaCCElementTypes.LANG);

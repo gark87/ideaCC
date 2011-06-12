@@ -1682,73 +1682,73 @@ void AssignmentOperator() :
   "=" | "*=" | "/=" | "%=" | "+=" | "-=" | "<" "<" "=" | ">" ">" (">")? "=" | "&=" | "^=" | "|="
 }
 
-void ConditionalExpression() :
+void ConditionalExpression() #ConditionalExpression(>1):
 {}
 {
   ConditionalOrExpression() [ "?" Expression() ":" Expression() ]
 }
 
-void ConditionalOrExpression() :
+void ConditionalOrExpression() #ConditionalOrExpression(>1):
 {}
 {
   ConditionalAndExpression() ( "||" ConditionalAndExpression() )*
 }
 
-void ConditionalAndExpression() :
+void ConditionalAndExpression() #ConditionalAndExpression(>1):
 {}
 {
   InclusiveOrExpression() ( "&&" InclusiveOrExpression() )*
 }
 
-void InclusiveOrExpression() :
+void InclusiveOrExpression() #InclusiveOrExpression(>1):
 {}
 {
   ExclusiveOrExpression() ( "|" ExclusiveOrExpression() )*
 }
 
-void ExclusiveOrExpression() :
+void ExclusiveOrExpression() #ExclusiveOrExpression(>1):
 {}
 {
   AndExpression() ( "^" AndExpression() )*
 }
 
-void AndExpression() :
+void AndExpression() #AndExpression(>1):
 {}
 {
   EqualityExpression() ( "&" EqualityExpression() )*
 }
 
-void EqualityExpression() :
+void EqualityExpression() #EqualityExpression(>1):
 {}
 {
   InstanceOfExpression() ( ( "==" | "!=" ) InstanceOfExpression() )*
 }
 
-void InstanceOfExpression() :
+void InstanceOfExpression() #InstanceOfExpression(>1):
 {}
 {
   RelationalExpression() [ "instanceof" Type() ]
 }
 
-void RelationalExpression() :
+void RelationalExpression() #RelationalExpression(>1):
 {}
 {
   ShiftExpression() ( LOOKAHEAD(2) ( "<" | ">" ) ("=")? ShiftExpression() )*
 }
 
-void ShiftExpression() :
+void ShiftExpression() #ShiftExpression(>1):
 {}
 {
   AdditiveExpression() ( LOOKAHEAD(2) ( "<" "<" |LOOKAHEAD(3) RUNSIGNEDSHIFT() | RSIGNEDSHIFT() ) AdditiveExpression() )*
 }
 
-void AdditiveExpression() :
+void AdditiveExpression() #AdditiveExpression(>1):
 {}
 {
   MultiplicativeExpression() ( ( "+" | "-" ) MultiplicativeExpression() )*
 }
 
-void MultiplicativeExpression() :
+void MultiplicativeExpression() #MultiplicativeExpression(>1):
 {}
 {
   UnaryExpression() ( ( "*" | "/" | "%" ) UnaryExpression() )*
@@ -1804,7 +1804,7 @@ void CastLookahead() :
   "(" Type() ")" ( "~" | "!" | "(" | <IDENTIFIER> | "this" | "super" | "new" | Literal() )
 }
 
-void PostfixExpression() :
+void PostfixExpression() #PostfixExpression(>1):
 {}
 {
   PrimaryExpression() [ "++" | "--" ]
@@ -1885,7 +1885,7 @@ void Literal() :
   NullLiteral()
 }
 
-void IntegerLiteral() :
+void IntegerLiteral() #void:
 {}
 {
   <INTEGER_LITERAL>
@@ -1899,13 +1899,13 @@ void BooleanLiteral() :
   "false"
 }
 
-void StringLiteral() :
+void StringLiteral() #void :
 {}
 {
   <STRING_LITERAL>
 }
 
-void NullLiteral() :
+void NullLiteral() #void:
 {}
 {
   "null"
@@ -1959,7 +1959,7 @@ void ArrayDimsAndInits() :
  * Statement syntax follows.
  */
 
-void Statement() :
+void Statement() #void:
 {}
 {
   LOOKAHEAD(2)

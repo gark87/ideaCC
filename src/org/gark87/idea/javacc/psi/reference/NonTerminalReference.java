@@ -1,15 +1,13 @@
 package org.gark87.idea.javacc.psi.reference;
 
-import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
-import com.intellij.psi.PsiReferenceBase;
 import org.gark87.idea.javacc.psi.JavaCCFileImpl;
 import org.gark87.idea.javacc.psi.*;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * @author gark87 <arkady.galyash@gmail.com>
- */
+* @author gark87 <arkady.galyash@gmail.com>
+*/
 public class NonTerminalReference extends IdentifierReference {
 
     public NonTerminalReference(@NotNull Identifier element) {

@@ -91,15 +91,12 @@ public interface JavaCCTreeConstants
   public IElementType JJTPRIMARYPREFIX = new JavaCCElementType("PrimaryPrefix");
   public IElementType JJTPRIMARYSUFFIX = new JavaCCElementType("PrimarySuffix");
   public IElementType JJTLITERAL = new JavaCCElementType("Literal");
-  public IElementType JJTINTEGERLITERAL = new JavaCCElementType("IntegerLiteral");
+  public IElementType JJTVOID = new JavaCCElementType("void");
   public IElementType JJTBOOLEANLITERAL = new JavaCCElementType("BooleanLiteral");
-  public IElementType JJTSTRINGLITERAL = new JavaCCElementType("StringLiteral");
-  public IElementType JJTNULLLITERAL = new JavaCCElementType("NullLiteral");
   public IElementType JJTARGUMENTS = new JavaCCElementType("Arguments");
   public IElementType JJTARGUMENTLIST = new JavaCCElementType("ArgumentList");
   public IElementType JJTALLOCATIONEXPRESSION = new JavaCCElementType("AllocationExpression");
   public IElementType JJTARRAYDIMSANDINITS = new JavaCCElementType("ArrayDimsAndInits");
-  public IElementType JJTSTATEMENT = new JavaCCElementType("Statement");
   public IElementType JJTASSERTSTATEMENT = new JavaCCElementType("AssertStatement");
   public IElementType JJTLABELEDSTATEMENT = new JavaCCElementType("LabeledStatement");
   public IElementType JJTBLOCK = new JavaCCElementType("Block");
@@ -139,4 +136,4 @@ public interface JavaCCTreeConstants
 
 
 }
-/* JavaCC - OriginalChecksum=dd47cd08308038dcaf5d46c208314323 (do not edit this line) */
+/* JavaCC - OriginalChecksum=b131b9cd6d18f43b24388e671861de5c (do not edit this line) */

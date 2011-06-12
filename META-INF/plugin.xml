@@ -27,6 +27,6 @@
         <lang.commenter language="JAVACC" implementationClass="com.intellij.lang.java.JavaCommenter"/>
         <lang.ast.factory language="JAVACC" implementationClass="org.gark87.idea.javacc.JavaCCASTFactory"/>
         <lang.elementManipulator forClass="org.gark87.idea.javacc.psi.Identifier"
-                                 implementationClass="org.gark87.idea.javacc.psi.SectionManipulator"/>
+                                 implementationClass="org.gark87.idea.javacc.SectionManipulator"/>
     </extensions>
 </idea-plugin>

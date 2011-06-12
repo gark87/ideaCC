@@ -5,8 +5,8 @@ import com.intellij.psi.PsiElement;
 import org.gark87.idea.javacc.generated.JavaCCTreeConstants;
 
 /**
- * @author gark87 <arkady.galyash@gmail.com>
- */
+* @author gark87 <arkady.galyash@gmail.com>
+*/
 public class RegExpSpec extends JavaCCStub {
     public RegExpSpec(@org.jetbrains.annotations.NotNull ASTNode node) {
         super(node);

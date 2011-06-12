@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author gark87 <arkady.galyash@gmail.com>
- */
+* @author gark87 <arkady.galyash@gmail.com>
+*/
 public abstract class IdentifierReference extends PsiReferenceBase<Identifier> {
     public IdentifierReference(@org.jetbrains.annotations.NotNull Identifier element) {
         super(element);
