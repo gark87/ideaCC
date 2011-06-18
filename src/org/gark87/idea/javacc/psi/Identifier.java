@@ -32,8 +32,11 @@ public class Identifier extends LeafPsiElement implements PsiNameIdentifierOwner
         PsiElement parent = getParent();
         if (parent == null)
             return null;
-        if (parent.getNode().getElementType() != JavaCCTreeConstants.JJTIDENTIFIER)
-            return null;
+        if (parent.getNode().getElementType() != JavaCCTreeConstants.JJTIDENTIFIER) {
+            IElementType elementType = parent.getNode().getElementType();
+            if (parent instanceof BNFProduction || elementType == JavaCCTreeConstants.JJTEXPANSION_UNIT)
+                return new NonTerminalReference(this);
+        }
         PsiElement grandParent = parent.getParent();
         if (grandParent == null)
             return null;
