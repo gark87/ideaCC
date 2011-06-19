@@ -3226,9 +3226,6 @@ jj_consume_token(RBRACE);
   }
 
   final public void BlockStatement()  {
- /*@bgen(jjtree) BlockStatement */
-  boolean jjtc000 = true;
-  PsiBuilder.Marker jjtn000 = builder.mark();
     do {
     if (jj_2_42(2147483647)) {
       LocalVariableDeclaration();
@@ -3248,12 +3245,6 @@ continue;
 break;
 } while(true);
 
-      {
-        if (jjtc000) {
-          jjtc000 = false;
-          {jjtn000.done(JJTBLOCKSTATEMENT); }
-        }
-      }
   }
 
   final public void LocalVariableDeclaration()  {

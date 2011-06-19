@@ -100,7 +100,6 @@ public interface JavaCCTreeConstants
   public IElementType JJTASSERTSTATEMENT = new JavaCCElementType("AssertStatement");
   public IElementType JJTLABELEDSTATEMENT = new JavaCCElementType("LabeledStatement");
   public IElementType JJTBLOCK = new JavaCCElementType("Block");
-  public IElementType JJTBLOCKSTATEMENT = new JavaCCElementType("BlockStatement");
   public IElementType JJTLOCALVARIABLEDECLARATION = new JavaCCElementType("LocalVariableDeclaration");
   public IElementType JJTEMPTYSTATEMENT = new JavaCCElementType("EmptyStatement");
   public IElementType JJTSTATEMENTEXPRESSION = new JavaCCElementType("StatementExpression");
@@ -136,4 +135,4 @@ public interface JavaCCTreeConstants
 
 
 }
-/* JavaCC - OriginalChecksum=b131b9cd6d18f43b24388e671861de5c (do not edit this line) */
+/* JavaCC - OriginalChecksum=d7c53bc4b72606b8e80f3a6740d67060 (do not edit this line) */

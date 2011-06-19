@@ -68,8 +68,20 @@ public class JavaCCParserDefinition implements ParserDefinition {
         final IElementType type = node.getElementType();
         if (type == JavaCCTreeConstants.JJTBNF_PRODUCTION)
             return new BNFProduction(node);
+        if (type == JavaCCTreeConstants.JJTFORMALPARAMETER)
+            return new FormalParameter(node);
+        if (type == JavaCCTreeConstants.JJTFORMALPARAMETERS)
+            return new FormalParameters(node);
+        if (type == JavaCCTreeConstants.JJTVARIABLEDECLARATORID)
+            return new VariableDeclaratorId(node);
         if (type == JavaCCTreeConstants.JJTPRODUCTION)
             return new Production(node);
+        if (type == JavaCCTreeConstants.JJTBLOCK)
+            return new Block(node);
+        if (type == JavaCCTreeConstants.JJTLOCALVARIABLEDECLARATION || type == JavaCCTreeConstants.JJTFIELDDECLARATION)
+            return new VariableDeclaration(node);
+        if (type == JavaCCTreeConstants.JJTVARIABLEDECLARATOR)
+            return new VariableDeclarator(node);
         if (type == JavaCCTreeConstants.JJTJAVACC_INPUT)
             return new JavaCCInput(node);
         if (type == JavaCCTreeConstants.JJTREGULAR_EXPR_PRODUCTION)

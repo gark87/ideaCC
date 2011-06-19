@@ -7,8 +7,8 @@ import com.intellij.psi.impl.source.tree.LeafPsiElement;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.util.IncorrectOperationException;
 import org.gark87.idea.javacc.generated.JavaCCTreeConstants;
-import org.gark87.idea.javacc.psi.reference.NonTerminalReference;
-import org.gark87.idea.javacc.psi.reference.TokenReference;
+import org.gark87.idea.javacc.psi.reference.IdentifierReference;
+import org.gark87.idea.javacc.psi.reference.JavaCCScopeProcessor;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 
@@ -35,17 +35,17 @@ public class Identifier extends LeafPsiElement implements PsiNameIdentifierOwner
         if (parent.getNode().getElementType() != JavaCCTreeConstants.JJTIDENTIFIER) {
             IElementType elementType = parent.getNode().getElementType();
             if (parent instanceof BNFProduction || elementType == JavaCCTreeConstants.JJTEXPANSION_UNIT)
-                return new NonTerminalReference(this);
+                return new IdentifierReference(this, JavaCCScopeProcessor.NONTERMINAL_OR_VAR);
         }
         PsiElement grandParent = parent.getParent();
         if (grandParent == null)
             return null;
         IElementType elementType = grandParent.getNode().getElementType();
         if (grandParent instanceof BNFProduction || elementType == JavaCCTreeConstants.JJTEXPANSION_UNIT)
-            return new NonTerminalReference(this);
+            return new IdentifierReference(this, JavaCCScopeProcessor.NONTERMINAL);
         if (elementType == JavaCCTreeConstants.JJTREGULAR_EXPRESSION)
-            return new TokenReference(this);
-        return null;
+            return new IdentifierReference(this, JavaCCScopeProcessor.TOKEN);
+        return new IdentifierReference(this, JavaCCScopeProcessor.VARIABLE);
     }
 
     @Override

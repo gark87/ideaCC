@@ -2018,7 +2018,7 @@ void Block() :
   "{" ( BlockStatement() )* "}"
 }
 
-void BlockStatement() :
+void BlockStatement() #void:
 {}
 {
   LOOKAHEAD( Modifiers() Type() <IDENTIFIER> )

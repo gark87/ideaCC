@@ -7,12 +7,12 @@ import org.gark87.idea.javacc.generated.JavaCCTreeConstants;
 /**
 * @author gark87 <arkady.galyash@gmail.com>
 */
-public class RegExpSpec extends JavaCCStub {
+public class RegExpSpec extends JavaCCStub implements Declaration {
     public RegExpSpec(@org.jetbrains.annotations.NotNull ASTNode node) {
         super(node);
     }
 
-     public Identifier getRegExpName() {
+     public Identifier getIdentifier() {
         PsiElement[] children = getChildren();
         if (children.length == 0)
             return null;

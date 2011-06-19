@@ -23,7 +23,6 @@ public class JavaCCFileType extends LanguageFileType {
          });
      }
 
-
     @NotNull
     @Override
     public String getName() {
