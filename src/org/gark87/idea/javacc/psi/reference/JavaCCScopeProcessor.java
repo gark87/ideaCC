@@ -36,8 +36,9 @@ public class JavaCCScopeProcessor implements PsiScopeProcessor {
         if (!(myTypes.contains(declType)))
             return false;
         Declaration decl = (Declaration)element;
-        if (isValid(decl)) {
-            this.candidates.add(decl.getIdentifier());
+        Identifier identifier = decl.getIdentifier();
+        if (identifier != null && isValid(decl)) {
+            this.candidates.add(identifier);
             return !keepLooking(decl);
         }
         return false;
