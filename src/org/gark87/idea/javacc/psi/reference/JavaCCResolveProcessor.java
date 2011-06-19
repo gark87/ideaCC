@@ -26,6 +26,6 @@ public class JavaCCResolveProcessor extends JavaCCScopeProcessor {
     public Identifier getResult() {
         if (candidates.isEmpty())
             return null;
-        return candidates.get(0).getIdentifier();
+        return candidates.get(0);
     }
 }

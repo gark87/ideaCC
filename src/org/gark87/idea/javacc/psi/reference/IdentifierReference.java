@@ -27,7 +27,7 @@ public class IdentifierReference extends PsiReferenceBase<Identifier> {
     @Override
     public Object[] getVariants() {
         JavaCCScopeProcessor processor = new JavaCCScopeProcessor(myTypes);
-        getElement().processDeclarations(processor, ResolveState.initial(), getElement(), getElement());
+        process(processor);
         return processor.getCandidates();
     }
 
@@ -35,9 +35,13 @@ public class IdentifierReference extends PsiReferenceBase<Identifier> {
     public PsiElement resolve() {
         String needle = getCanonicalText();
         JavaCCResolveProcessor processor = new JavaCCResolveProcessor(needle, myTypes);
+        process(processor);
+        return processor.getResult();
+    }
+
+    private void process(JavaCCScopeProcessor processor) {
         Identifier element = getElement();
         PsiElement scope = PsiTreeUtil.getParentOfType(element, JavaCCScope.class, JavaCCFileImpl.class);
         scope.processDeclarations(processor, ResolveState.initial(), element, element);
-        return processor.getResult();
     }
 }

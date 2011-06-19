@@ -4,10 +4,7 @@ import com.intellij.openapi.util.Key;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.ResolveState;
 import com.intellij.psi.scope.PsiScopeProcessor;
-import org.gark87.idea.javacc.psi.Declaration;
-import org.gark87.idea.javacc.psi.FormalParameter;
-import org.gark87.idea.javacc.psi.RegExpSpec;
-import org.gark87.idea.javacc.psi.VariableDeclarator;
+import org.gark87.idea.javacc.psi.*;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
@@ -16,7 +13,7 @@ import java.util.EnumSet;
  * @author gark87 <arkady.galyash@gmail.com>
  */
 public class JavaCCScopeProcessor implements PsiScopeProcessor {
-    ArrayList<Declaration> candidates = new ArrayList<Declaration>();
+    protected final ArrayList<Identifier> candidates = new ArrayList<Identifier>();
     private final EnumSet<DeclarationType> myTypes;
     public static final EnumSet<DeclarationType> NONTERMINAL = EnumSet.of(DeclarationType.NONTERMINAL);
     public static final EnumSet<DeclarationType> NONTERMINAL_OR_VAR =
@@ -40,7 +37,7 @@ public class JavaCCScopeProcessor implements PsiScopeProcessor {
             return false;
         Declaration decl = (Declaration)element;
         if (isValid(decl)) {
-            this.candidates.add(decl);
+            this.candidates.add(decl.getIdentifier());
             return !keepLooking(decl);
         }
         return false;
@@ -71,7 +68,7 @@ public class JavaCCScopeProcessor implements PsiScopeProcessor {
     public void handleEvent(Event event, Object o) {
     }
 
-    public Declaration[] getCandidates() {
-        return candidates.toArray(new Declaration[candidates.size()]);
+    public Identifier[] getCandidates() {
+        return candidates.toArray(new Identifier[candidates.size()]);
     }
 }
