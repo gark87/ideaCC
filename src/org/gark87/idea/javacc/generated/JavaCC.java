@@ -4419,26 +4419,6 @@ break;
     finally { jj_scanpos.rollbackTo(); }
   }
 
-  private boolean jj_3R_468() {
-    if (jj_3R_267()) return true;
-    if (jj_3R_245()) return true;
-    {
-      if (tokens.get(currentIndex) == (ELLIPSIS) )
-        jj_on_la1();
-    }
-    if (jj_3R_461()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_459() {
-    if (jj_3R_468()) return true;
-    while (true) {
-      int jj_scanpos = currentIndex;
-      if (jj_3R_469()) { rollbackTo(jj_scanpos); break; }
-    }
-    return false;
-  }
-
   private boolean jj_3R_453() {
     if (jj_scan_token(THROWS)) return true;
     if (jj_3R_460()) return true;
@@ -7212,6 +7192,26 @@ break;
     return false;
   }
 
+  private boolean jj_3R_468() {
+    if (jj_3R_267()) return true;
+    if (jj_3R_245()) return true;
+    {
+      if (tokens.get(currentIndex) == (ELLIPSIS) )
+        jj_on_la1();
+    }
+    if (jj_3R_461()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_459() {
+    if (jj_3R_468()) return true;
+    while (true) {
+      int jj_scanpos = currentIndex;
+      if (jj_3R_469()) { rollbackTo(jj_scanpos); break; }
+    }
+    return false;
+  }
+
   private final PsiBuilder builder;
   public JavaCC(PsiBuilder builder) {
     this.builder = builder;
@@ -7233,10 +7233,11 @@ break;
   }
   private IElementType jj_consume_token(IElementType type) {
     IElementType actualType = builder.getTokenType();
-    if (actualType == type)
+    if (actualType == type) {
       builder.advanceLexer();
-    else
+    } else {
       builder.error("Expected " + type + ", but get: " + actualType);
+    }
     return type;
   }
 
