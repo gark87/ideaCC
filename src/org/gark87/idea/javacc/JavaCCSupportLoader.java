@@ -8,12 +8,14 @@ import org.jetbrains.annotations.NotNull;
 
 public class JavaCCSupportLoader implements ApplicationComponent {
     public static final LanguageFileType JAVA_CC = new JavaCCFileType();
+    private final String[] EXTENSIONS = {"jj", "jjt"};
 
     public void initComponent() {
         ApplicationManager.getApplication().runWriteAction(
                 new Runnable() {
                     public void run() {
-                        FileTypeManager.getInstance().registerFileType(JAVA_CC, "jj");
+                        for (String extension: EXTENSIONS)
+                            FileTypeManager.getInstance().registerFileType(JAVA_CC, extension);
                     }
                 }
         );
