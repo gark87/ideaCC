@@ -47,8 +47,8 @@ public class JavaCCFileImpl extends PsiFileBase {
                         return false;
                 }
             }
-            BNFProduction bnf = production.getBNFProduction();
-            if (bnf != null && processor.execute(bnf, state))
+            NonTerminalProduction nonTerminal = production.getNonTerminalProduction();
+            if (nonTerminal != null && processor.execute(nonTerminal, state))
                 return false;
         }
         return true;

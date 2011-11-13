@@ -34,18 +34,24 @@ public class Identifier extends LeafPsiElement implements PsiNameIdentifierOwner
             return null;
         if (parent.getNode().getElementType() != JavaCCTreeConstants.JJTIDENTIFIER) {
             IElementType elementType = parent.getNode().getElementType();
-            if (parent instanceof BNFProduction || elementType == JavaCCTreeConstants.JJTEXPANSION_UNIT)
+            if (isNonTerminalProduction(elementType))
                 return new IdentifierReference(this, JavaCCScopeProcessor.NONTERMINAL_OR_VAR);
         }
         PsiElement grandParent = parent.getParent();
         if (grandParent == null)
             return null;
         IElementType elementType = grandParent.getNode().getElementType();
-        if (grandParent instanceof BNFProduction || elementType == JavaCCTreeConstants.JJTEXPANSION_UNIT)
+        if (isNonTerminalProduction(elementType))
             return new IdentifierReference(this, JavaCCScopeProcessor.NONTERMINAL);
         if (elementType == JavaCCTreeConstants.JJTREGULAR_EXPRESSION)
             return new IdentifierReference(this, JavaCCScopeProcessor.TOKEN);
         return new IdentifierReference(this, JavaCCScopeProcessor.VARIABLE);
+    }
+
+    private static boolean isNonTerminalProduction(IElementType elementType) {
+        return elementType == JavaCCTreeConstants.JJTBNF_PRODUCTION ||
+            elementType == JavaCCTreeConstants.JJTJAVACODE_PRODUCTION ||
+            elementType == JavaCCTreeConstants.JJTEXPANSION_UNIT;
     }
 
     @Override

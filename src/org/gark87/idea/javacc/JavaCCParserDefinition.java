@@ -68,6 +68,8 @@ public class JavaCCParserDefinition implements ParserDefinition {
         final IElementType type = node.getElementType();
         if (type == JavaCCTreeConstants.JJTBNF_PRODUCTION)
             return new BNFProduction(node);
+        if (type == JavaCCTreeConstants.JJTJAVACODE_PRODUCTION)
+            return new JavacodeProduction(node);
         if (type == JavaCCTreeConstants.JJTFORMALPARAMETER)
             return new FormalParameter(node);
         if (type == JavaCCTreeConstants.JJTFORMALPARAMETERS)
