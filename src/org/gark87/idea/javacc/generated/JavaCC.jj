@@ -42,7 +42,6 @@ options {
 PARSER_BEGIN(JavaCC)
 
 package org.gark87.idea.javacc.generated;
-import asd.asd.asd.asd;
 
 public class JavaCC {
 
