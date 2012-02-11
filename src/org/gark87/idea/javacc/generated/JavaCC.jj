@@ -42,6 +42,7 @@ options {
 PARSER_BEGIN(JavaCC)
 
 package org.gark87.idea.javacc.generated;
+import asd.asd.asd.asd;
 
 public class JavaCC {
 
@@ -1065,6 +1066,7 @@ void javacode_production() :
   AccessModifier()
   ResultType() identifier() FormalParameters()
   [ "throws" Name() ( "," Name() )* ]
+  [ node_descriptor() ]
   Block()
 }
 
@@ -1073,6 +1075,7 @@ void bnf_production() :
 {
   AccessModifier() ResultType() identifier() FormalParameters()
   [ "throws" Name() ( "," Name() )* ]
+  [ node_descriptor() ]
   ":"
   Block()
   "{" expansion_choices() "}"
@@ -1134,6 +1137,7 @@ void expansion() :
   )?
   ( LOOKAHEAD(0, { notTailOfExpansionUnit() } )
     expansion_unit()
+    [ node_descriptor() ]
   )+
 }
 
@@ -1269,6 +1273,44 @@ void identifier() :
 {
   <IDENTIFIER> | <_OPTIONS>
 }
+
+/**********************************************
+ * THE JJTREE PRODUCTIONS START HERE          *
+ **********************************************/
+
+void node_descriptor() :
+{}
+{
+  "#"
+  ( Name() | <VOID> )
+  [
+   LOOKAHEAD(1)
+   "("
+      [ ">" ]
+      node_descriptor_expression()
+   ")"
+  ]
+}
+
+
+JAVACODE
+void node_descriptor_expression()
+{
+  IElementType kind;
+  int nesting = 1;
+  while (true) {
+    kind = getType();
+    if (kind == JavaCCConstants._EOF)
+      builder.error("Unexpected <EOF>");
+    if (kind == JavaCCConstants.LPAREN) nesting++;
+    if (kind == JavaCCConstants.RPAREN) {
+      nesting--;
+      if (nesting == 0) break;
+    }
+    builder.advanceLexer();
+  }
+}
+
 
 /**********************************************
  * THE JAVA GRAMMAR SPECIFICATION STARTS HERE *

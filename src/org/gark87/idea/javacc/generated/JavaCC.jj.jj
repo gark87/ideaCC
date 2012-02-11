@@ -1129,6 +1129,7 @@ void javacode_production() :
   AccessModifier()
   ResultType() identifier() FormalParameters()
   [ "throws" Name() ( "," Name() )* ]
+  [ node_descriptor() ]
   Block()/*@bgen(jjtree)*/
   ) {
       {
@@ -1151,6 +1152,7 @@ void bnf_production() :
 /*@egen*/
   AccessModifier() ResultType() identifier() FormalParameters()
   [ "throws" Name() ( "," Name() )* ]
+  [ node_descriptor() ]
   ":"
   Block()
   "{" expansion_choices() "}"/*@bgen(jjtree)*/
@@ -1310,6 +1312,7 @@ void expansion() :
   )?
   ( LOOKAHEAD(0, { notTailOfExpansionUnit() } )
     expansion_unit()
+    [ node_descriptor() ]
   )+/*@bgen(jjtree)*/
   ) {
       {
@@ -1580,6 +1583,73 @@ void identifier() :
   }
 /*@egen*/
 }
+
+/**********************************************
+ * THE JJTREE PRODUCTIONS START HERE          *
+ **********************************************/
+
+void node_descriptor() :
+{/*@bgen(jjtree) node_descriptor */
+  boolean jjtc000 = true;
+  PsiBuilder.Marker jjtn000 = builder.mark();
+/*@egen*/}
+{/*@bgen(jjtree) node_descriptor */
+  (
+/*@egen*/
+  "#"
+  ( Name() | <VOID> )
+  [
+   LOOKAHEAD(1)
+   "("
+      [ ">" ]
+      node_descriptor_expression()
+   ")"
+  ]/*@bgen(jjtree)*/
+  ) {
+      {
+        if (jjtc000) {
+          jjtc000 = false;
+          {jjtn000.done(JJTNODE_DESCRIPTOR); }
+        }
+      }
+  }
+/*@egen*/
+}
+
+
+JAVACODE
+void node_descriptor_expression()
+{/*@bgen(jjtree) node_descriptor_expression */
+boolean jjtc000 = true;
+PsiBuilder.Marker jjtn000 = builder.mark();
+try {
+/*@egen*/
+  IElementType kind;
+  int nesting = 1;
+  while (true) {
+    kind = getType();
+    if (kind == JavaCCConstants._EOF)
+      builder.error("Unexpected <EOF>");
+    if (kind == JavaCCConstants.LPAREN) nesting++;
+    if (kind == JavaCCConstants.RPAREN) {
+      nesting--;
+      if (nesting == 0) break;
+    }
+    builder.advanceLexer();
+  }/*@bgen(jjtree)*/
+} finally {
+  if (jjtc000) {
+    {
+      if (jjtc000) {
+        jjtc000 = false;
+        {jjtn000.done(JJTNODE_DESCRIPTOR_EXPRESSION); }
+      }
+    }
+  }
+}
+/*@egen*/
+}
+
 
 /**********************************************
  * THE JAVA GRAMMAR SPECIFICATION STARTS HERE *
