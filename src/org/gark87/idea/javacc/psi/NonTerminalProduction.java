@@ -8,9 +8,9 @@ import com.intellij.psi.util.PsiTreeUtil;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * @author gark87 <arkady.galyash@gmail.com>
+ * @author gark87
  */
-public abstract class NonTerminalProduction extends JavaCCScope implements Declaration {
+public abstract class NonTerminalProduction extends JavaCCScope implements DeclarationForStructureView {
     public NonTerminalProduction(@org.jetbrains.annotations.NotNull ASTNode node) {
         super(node);
     }

@@ -11,7 +11,7 @@ import org.gark87.idea.javacc.generated.JavaCCTreeConstants;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * @author gark87 <arkady.galyash@gmail.com>
+ * @author gark87
  */
 public class JavaCCAnnotator implements Annotator {
     public void annotate(@NotNull PsiElement psiElement, @NotNull AnnotationHolder holder) {

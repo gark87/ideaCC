@@ -6,7 +6,7 @@ import org.gark87.idea.javacc.psi.Identifier;
 import java.util.EnumSet;
 
 /**
- * @author gark87 <arkady.galyash@gmail.com>
+ * @author gark87
  */
 public class JavaCCResolveProcessor extends JavaCCScopeProcessor {
     protected final String myName;

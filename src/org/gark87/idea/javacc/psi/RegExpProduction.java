@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
-* @author gark87 <arkady.galyash@gmail.com>
+* @author gark87
 */
 public class RegExpProduction extends JavaCCStub {
     public RegExpProduction(@org.jetbrains.annotations.NotNull ASTNode node) {

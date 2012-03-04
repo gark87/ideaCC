@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 //import org.gark87.idea.javacc.psi.JavaCCInput;
 
 /**
-* @author gark87 <arkady.galyash@gmail.com>
+* @author gark87
 */
 public class JavaCCFileImpl extends PsiFileBase {
     public JavaCCFileImpl(FileViewProvider provider) {

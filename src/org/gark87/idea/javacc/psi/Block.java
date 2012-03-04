@@ -8,7 +8,7 @@ import com.intellij.psi.util.PsiTreeUtil;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * @author gark87 <arkady.galyash@gmail.com>
+ * @author gark87
  */
 public class Block extends JavaCCScope {
     public Block(@org.jetbrains.annotations.NotNull ASTNode node) {

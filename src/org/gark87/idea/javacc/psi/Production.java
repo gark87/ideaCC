@@ -4,7 +4,7 @@ import com.intellij.lang.ASTNode;
 import com.intellij.psi.util.PsiTreeUtil;
 
 /**
-* @author gark87 <arkady.galyash@gmail.com>
+* @author gark87
 */
 public class Production extends JavaCCStub {
     public Production(@org.jetbrains.annotations.NotNull ASTNode node) {

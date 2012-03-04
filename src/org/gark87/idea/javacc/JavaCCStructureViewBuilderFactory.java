@@ -4,8 +4,13 @@ import com.intellij.ide.structureView.*;
 import com.intellij.ide.structureView.impl.common.PsiTreeElementBase;
 import com.intellij.lang.PsiStructureViewFactory;
 import com.intellij.openapi.util.IconLoader;
+import com.intellij.openapi.util.Key;
+import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.ResolveState;
+import com.intellij.psi.scope.PsiScopeProcessor;
+import com.intellij.psi.util.PsiTreeUtil;
+import org.gark87.idea.javacc.psi.DeclarationForStructureView;
 import org.gark87.idea.javacc.psi.Identifier;
 import org.gark87.idea.javacc.psi.JavaCCFileImpl;
 import org.gark87.idea.javacc.psi.reference.JavaCCScopeProcessor;
@@ -17,18 +22,20 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * @author gark87 <arkady.galyash@gmail.com>
+ * @author gark87
  */
 public class JavaCCStructureViewBuilderFactory implements PsiStructureViewFactory {
-    private static final Icon TERMINAL = IconLoader.getIcon("/icons/terminal.png");
-    private static final Icon NONTERMINAL = IconLoader.getIcon("/icons/nonterminal.png");
-
     @Override
     public StructureViewBuilder getStructureViewBuilder(PsiFile psiFile) {
         if (!(psiFile instanceof JavaCCFileImpl))
             return null;
         final JavaCCFileImpl file = (JavaCCFileImpl) psiFile;
         return new TreeBasedStructureViewBuilder() {
+
+            @Override
+            public boolean isRootNodeShown() {
+                return false;
+            }
 
             @NotNull
             @Override
@@ -43,16 +50,30 @@ public class JavaCCStructureViewBuilderFactory implements PsiStructureViewFactor
 
         protected JavaCCFileTreeElement(JavaCCFileImpl file) {
             super(file);
-            // first tokens
-            JavaCCScopeProcessor tokenProcessor = new JavaCCScopeProcessor(JavaCCScopeProcessor.TOKEN);
-            file.processDeclarations(tokenProcessor, ResolveState.initial(), file, file);
-            for (Identifier id : tokenProcessor.getCandidates())
-                children.add(new JavaCCLeafElement(id, TERMINAL));
-            // then nonterminals
-            JavaCCScopeProcessor nonTerminalProcessor = new JavaCCScopeProcessor(JavaCCScopeProcessor.NONTERMINAL);
-            file.processDeclarations(nonTerminalProcessor, ResolveState.initial(), file, file);
-            for (Identifier id : nonTerminalProcessor.getCandidates())
-                children.add(new JavaCCLeafElement(id, NONTERMINAL));
+            final List<DeclarationForStructureView> result = new ArrayList<DeclarationForStructureView>();
+            file.processDeclarations(new PsiScopeProcessor() {
+                        @Override
+                        public boolean execute(PsiElement psiElement, ResolveState resolveState) {
+                            if (psiElement instanceof DeclarationForStructureView) {
+                                DeclarationForStructureView forStructureView = (DeclarationForStructureView) psiElement;
+                                if (forStructureView.getIdentifier() != null)
+                                    result.add(forStructureView);
+                            }
+                            return false;
+                        }
+
+                        @Override
+                        public <T> T getHint(Key<T> tKey) {
+                            return null;
+                        }
+
+                        @Override
+                        public void handleEvent(Event event, Object o) {
+                            System.err.println(""+event);
+                        }
+                    }, ResolveState.initial(), file, file);
+            for (DeclarationForStructureView id : result)
+                children.add(new JavaCCLeafElement(id));
         }
 
         @NotNull
@@ -68,12 +89,11 @@ public class JavaCCStructureViewBuilderFactory implements PsiStructureViewFactor
     }
 
     private static class JavaCCLeafElement extends PsiTreeElementBase<Identifier> {
-
         private final Icon icon;
 
-        protected JavaCCLeafElement(Identifier psiElement, Icon icon) {
-            super(psiElement);
-            this.icon = icon;
+        protected JavaCCLeafElement(DeclarationForStructureView declaration) {
+            super(declaration.getIdentifier());
+            icon = declaration.getIcon();
         }
 
         @NotNull

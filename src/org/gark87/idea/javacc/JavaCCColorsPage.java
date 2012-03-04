@@ -11,7 +11,7 @@ import javax.swing.*;
 import java.util.Map;
 
 /**
- * @author gark87 <arkady.galyash@gmail.com>
+ * @author gark87
  */
 public class JavaCCColorsPage implements ColorSettingsPage {
       private static final AttributesDescriptor[] ATTRS;

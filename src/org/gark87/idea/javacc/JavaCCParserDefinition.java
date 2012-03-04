@@ -21,7 +21,7 @@ import org.jetbrains.annotations.NotNull;
 
 
 /**
- * @author gark87 <arkady.galyash@gmail.com>
+ * @author gark87
  */
 public class JavaCCParserDefinition implements ParserDefinition {
     private static final TokenSet WHITESPACES = TokenSet.create(JavaCC.SKIP);

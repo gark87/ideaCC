@@ -8,7 +8,7 @@ import org.gark87.idea.javacc.generated.JavaCCElementTypes;
 import org.jetbrains.annotations.NotNull;
 
 /**
-* @author gark87 <arkady.galyash@gmail.com>
+* @author gark87
 */
 public class JavaCCStub<T extends StubElement> extends StubBasedPsiElementBase<T> {
     public JavaCCStub(@org.jetbrains.annotations.NotNull ASTNode node) {

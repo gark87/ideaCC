@@ -28,5 +28,7 @@
         <lang.ast.factory language="JAVACC" implementationClass="org.gark87.idea.javacc.JavaCCASTFactory"/>
         <lang.elementManipulator forClass="org.gark87.idea.javacc.psi.Identifier"
                                  implementationClass="org.gark87.idea.javacc.SectionManipulator"/>
+        <lang.psiStructureViewFactory language="JAVACC"
+                                 implementationClass="org.gark87.idea.javacc.JavaCCStructureViewBuilderFactory" />
     </extensions>
 </idea-plugin>
