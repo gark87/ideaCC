@@ -36,7 +36,7 @@ public class RegExpSpec extends JavaCCStub implements DeclarationForStructureVie
     @Override
     public Icon getIcon() {
         if (ICON == null)
-            ICON = IconLoader.getIcon("/resource/icons/terminal.png");
+            ICON = IconLoader.getIcon("/javacc/icons/terminal.png");
         return ICON;
     }
 }

@@ -23,7 +23,7 @@ public class BNFProduction extends NonTerminalProduction {
     @Override
     public Icon getIcon() {
         if (ICON == null)
-            ICON = IconLoader.getIcon("/resource/icons/nonterminal.png");
+            ICON = IconLoader.getIcon("/javacc/icons/nonterminal.png");
         return ICON;
     }
 }

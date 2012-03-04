@@ -14,7 +14,7 @@ import javax.swing.*;
  * @author gark87
  */
 public class JavaCCFileType extends LanguageFileType {
-    public static final Icon FILE = IconLoader.findIcon("/resource/icons/javacc.png");
+    public static final Icon FILE = IconLoader.findIcon("/javacc/icons/javacc.png");
 
     public JavaCCFileType() {
         super(new JavaCCLanguage());
