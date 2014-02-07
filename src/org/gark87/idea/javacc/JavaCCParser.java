@@ -8,7 +8,7 @@ import org.gark87.idea.javacc.generated.JavaCC;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * @author gark87 <arkady.galyash@gmail.com>
+ * @author gark87
  */
 public class JavaCCParser implements PsiParser {
     @NotNull

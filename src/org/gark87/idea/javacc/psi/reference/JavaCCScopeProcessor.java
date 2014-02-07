@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 
 /**
- * @author gark87 <arkady.galyash@gmail.com>
+ * @author gark87
  */
 public class JavaCCScopeProcessor implements PsiScopeProcessor {
     protected final ArrayList<Identifier> candidates = new ArrayList<Identifier>();
@@ -18,6 +18,8 @@ public class JavaCCScopeProcessor implements PsiScopeProcessor {
     public static final EnumSet<DeclarationType> NONTERMINAL = EnumSet.of(DeclarationType.NONTERMINAL);
     public static final EnumSet<DeclarationType> NONTERMINAL_OR_VAR =
             EnumSet.of(DeclarationType.NONTERMINAL, DeclarationType.VARIABLE);
+    public static final EnumSet<DeclarationType> NONTERMINAL_OR_TOKEN =
+            EnumSet.of(DeclarationType.NONTERMINAL, DeclarationType.TOKEN);
     public static final EnumSet<DeclarationType> TOKEN = EnumSet.of(DeclarationType.TOKEN);
     public static final EnumSet<DeclarationType> VARIABLE = EnumSet.of(DeclarationType.VARIABLE);
 

@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 //import org.gark87.idea.javacc.psi.JavaCCInput;
 
 /**
-* @author gark87 <arkady.galyash@gmail.com>
+* @author gark87
 */
 public class JavaCCFileImpl extends PsiFileBase {
     public JavaCCFileImpl(FileViewProvider provider) {
@@ -47,8 +47,8 @@ public class JavaCCFileImpl extends PsiFileBase {
                         return false;
                 }
             }
-            BNFProduction bnf = production.getBNFProduction();
-            if (bnf != null && processor.execute(bnf, state))
+            NonTerminalProduction nonTerminal = production.getNonTerminalProduction();
+            if (nonTerminal != null && processor.execute(nonTerminal, state))
                 return false;
         }
         return true;

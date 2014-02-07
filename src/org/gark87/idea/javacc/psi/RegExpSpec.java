@@ -1,13 +1,18 @@
 package org.gark87.idea.javacc.psi;
 
 import com.intellij.lang.ASTNode;
+import com.intellij.openapi.util.IconLoader;
 import com.intellij.psi.PsiElement;
 import org.gark87.idea.javacc.generated.JavaCCTreeConstants;
 
+import javax.swing.*;
+
 /**
-* @author gark87 <arkady.galyash@gmail.com>
+* @author gark87
 */
-public class RegExpSpec extends JavaCCStub implements Declaration {
+public class RegExpSpec extends JavaCCStub implements DeclarationForStructureView {
+    private static Icon ICON;
+
     public RegExpSpec(@org.jetbrains.annotations.NotNull ASTNode node) {
         super(node);
     }
@@ -26,5 +31,12 @@ public class RegExpSpec extends JavaCCStub implements Declaration {
             }
         }
         return null;
+    }
+
+    @Override
+    public Icon getIcon() {
+        if (ICON == null)
+            ICON = IconLoader.getIcon("/javacc/icons/terminal.png");
+        return ICON;
     }
 }

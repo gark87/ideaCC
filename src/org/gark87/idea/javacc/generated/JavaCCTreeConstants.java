@@ -26,6 +26,8 @@ public interface JavaCCTreeConstants
   public IElementType JJTCHARACTER_LIST = new JavaCCElementType("character_list");
   public IElementType JJTCHARACTER_DESCRIPTOR = new JavaCCElementType("character_descriptor");
   public IElementType JJTIDENTIFIER = new JavaCCElementType("identifier");
+  public IElementType JJTNODE_DESCRIPTOR = new JavaCCElementType("node_descriptor");
+  public IElementType JJTNODE_DESCRIPTOR_EXPRESSION = new JavaCCElementType("node_descriptor_expression");
   public IElementType JJTJAVAIDENTIFIER = new JavaCCElementType("JavaIdentifier");
   public IElementType JJTCOMPILATIONUNIT = new JavaCCElementType("CompilationUnit");
   public IElementType JJTPACKAGEDECLARATION = new JavaCCElementType("PackageDeclaration");
@@ -135,4 +137,4 @@ public interface JavaCCTreeConstants
 
 
 }
-/* JavaCC - OriginalChecksum=d7c53bc4b72606b8e80f3a6740d67060 (do not edit this line) */
+/* JavaCC - OriginalChecksum=be495ab31e30d79358422dd843ccdbd9 (do not edit this line) */

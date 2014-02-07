@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.EnumSet;
 
 /**
-* @author gark87 <arkady.galyash@gmail.com>
+* @author gark87
 */
 public class IdentifierReference extends PsiReferenceBase<Identifier> {
     private final EnumSet<DeclarationType> myTypes;

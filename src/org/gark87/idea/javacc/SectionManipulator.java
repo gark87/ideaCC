@@ -6,7 +6,7 @@ import com.intellij.util.IncorrectOperationException;
 import org.gark87.idea.javacc.psi.Identifier;
 
 /**
- * @author gark87 <arkady.galyash@gmail.com>
+ * @author gark87
  */
 public class SectionManipulator extends AbstractElementManipulator<Identifier> {
     @Override
