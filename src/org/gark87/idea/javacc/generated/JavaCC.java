@@ -88,7 +88,6 @@ jj_consume_token(RBRACE);} else
  /*@bgen(jjtree) option_binding */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    do {
     IElementType type_6 = getType();
     if ( type_6 == IDENTIFIER) { 
   jj_consume_token(IDENTIFIER);} else if ( type_6 == _LOOKAHEAD) { 
@@ -96,30 +95,25 @@ jj_consume_token(_LOOKAHEAD);} else if ( type_6 == _IGNORE_CASE) {
 jj_consume_token(_IGNORE_CASE);} else if ( type_6 == STATIC) { 
 jj_consume_token(STATIC);} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
 jj_consume_token(ASSIGN);
-do {
 IElementType type_7 = getType();
 if ( type_7 == INTEGER_LITERAL) { 
 IntegerLiteral();} else if ( type_7 == FALSE || type_7 == TRUE) { 
 BooleanLiteral();} else if ( type_7 == STRING_LITERAL) { 
 StringLiteral();} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
 jj_consume_token(SEMICOLON);
       {
         if (jjtc000) {
@@ -133,7 +127,6 @@ jj_consume_token(SEMICOLON);
  /*@bgen(jjtree) production */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    do {
     IElementType type_8 = getType();
     if ( type_8 == _JAVACODE) { 
   javacode_production();} else if ( type_8 == _TOKEN || type_8 == _SPECIAL_TOKEN || type_8 == _MORE || type_8 == _SKIP || type_8 == LT) { 
@@ -141,14 +134,12 @@ regular_expr_production();} else if ( type_8 == _TOKEN_MGR_DECLS) {
 token_manager_decls();} else if ( type_8 == BOOLEAN || type_8 == BYTE || type_8 == CHAR || type_8 == DOUBLE || type_8 == FLOAT || type_8 == INT || type_8 == LONG || type_8 == PRIVATE || type_8 == PROTECTED || type_8 == PUBLIC || type_8 == SHORT || type_8 == VOID || type_8 == IDENTIFIER) { 
 bnf_production();} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
       {
         if (jjtc000) {
           jjtc000 = false;
@@ -250,21 +241,18 @@ jj_consume_token(RBRACE);
   PsiBuilder.Marker jjtn000 = builder.mark();
     IElementType type_18 = getType();
     if ( type_18 == PRIVATE || type_18 == PROTECTED || type_18 == PUBLIC) { 
-do {
 IElementType type_17 = getType();
 if ( type_17 == PUBLIC) { 
 jj_consume_token(PUBLIC);} else if ( type_17 == PROTECTED) { 
 jj_consume_token(PROTECTED);} else if ( type_17 == PRIVATE) { 
 jj_consume_token(PRIVATE);} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-break;
-} while(true);
-} else 
+errorMarker.error("Unexpected token " + text);
+
+}} else 
 {
 ;
 }
@@ -282,7 +270,6 @@ break;
   PsiBuilder.Marker jjtn000 = builder.mark();
     IElementType type_22 = getType();
     if ( type_22 == LT) { 
-  do {
   if (jj_2_1(2)) {
     jj_consume_token(LT);
     jj_consume_token(STAR);
@@ -305,15 +292,13 @@ jj_consume_token(IDENTIFIER);
 }
 jj_consume_token(GT);} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
+errorMarker.error("Unexpected token " + text);
+
 }
-}
-break;
-} while(true);
-} else 
+}} else 
 {
 ;
 }
@@ -368,7 +353,6 @@ jj_consume_token(RBRACE);
  /*@bgen(jjtree) regexpr_kind */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    do {
     IElementType type_26 = getType();
     if ( type_26 == _TOKEN) { 
   jj_consume_token(_TOKEN);} else if ( type_26 == _SPECIAL_TOKEN) { 
@@ -376,14 +360,12 @@ jj_consume_token(_SPECIAL_TOKEN);} else if ( type_26 == _SKIP) {
 jj_consume_token(_SKIP);} else if ( type_26 == _MORE) { 
 jj_consume_token(_MORE);} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
       {
         if (jjtc000) {
           jjtc000 = false;
@@ -526,7 +508,6 @@ if (emptyLA || commaAtEnd) {
  /*@bgen(jjtree) expansion_unit */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    do {
     IElementType type_42 = getType();
     if ( type_42 == _LOOKAHEAD) { 
   jj_consume_token(_LOOKAHEAD);
@@ -571,7 +552,6 @@ jj_consume_token(ASSIGN);
 } else {
 ;
 }
-do {
 if (jj_2_3(2147483647)) {
 identifier();
 Arguments();
@@ -587,15 +567,13 @@ jj_consume_token(IDENTIFIER);} else
 ;
 }} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
+}
 } else {
 IElementType type_43 = getType();
 if ( type_43 == LPAREN) { 
@@ -604,35 +582,30 @@ expansion_choices();
 jj_consume_token(RPAREN);
 IElementType type_41 = getType();
 if ( type_41 == HOOK || type_41 == PLUS || type_41 == STAR) { 
-do {
 IElementType type_40 = getType();
 if ( type_40 == PLUS) { 
 jj_consume_token(PLUS);} else if ( type_40 == STAR) { 
 jj_consume_token(STAR);} else if ( type_40 == HOOK) { 
 jj_consume_token(HOOK);} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-break;
-} while(true);
-} else 
+errorMarker.error("Unexpected token " + text);
+
+}} else 
 {
 ;
 }} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-}
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
+}
+}
       {
         if (jjtc000) {
           jjtc000 = false;
@@ -645,7 +618,6 @@ break;
  /*@bgen(jjtree) regular_expression */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    do {
     IElementType type_46 = getType();
     if ( type_46 == STRING_LITERAL) { 
   StringLiteral();} else 
@@ -678,16 +650,14 @@ jj_consume_token(LT);
 jj_consume_token(_EOF);
 jj_consume_token(GT);} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-}
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
+}
+}
       {
         if (jjtc000) {
           jjtc000 = false;
@@ -746,7 +716,6 @@ break label_50;
  /*@bgen(jjtree) complex_regular_expression_unit */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    do {
     IElementType type_56 = getType();
     if ( type_56 == STRING_LITERAL) { 
   StringLiteral();} else if ( type_56 == LT) { 
@@ -759,7 +728,6 @@ complex_regular_expression_choices();
 jj_consume_token(RPAREN);
 IElementType type_55 = getType();
 if ( type_55 == LBRACE || type_55 == HOOK || type_55 == PLUS || type_55 == STAR) { 
-do {
 IElementType type_54 = getType();
 if ( type_54 == PLUS) { 
 jj_consume_token(PLUS);} else if ( type_54 == STAR) { 
@@ -781,26 +749,22 @@ IntegerLiteral();} else
 }
 jj_consume_token(RBRACE);} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-break;
-} while(true);
-} else 
+errorMarker.error("Unexpected token " + text);
+
+}} else 
 {
 ;
 }} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
       {
         if (jjtc000) {
           jjtc000 = false;
@@ -870,20 +834,17 @@ jj_consume_token(RBRACKET);
  /*@bgen(jjtree) identifier */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    do {
     IElementType type_62 = getType();
     if ( type_62 == IDENTIFIER) { 
   jj_consume_token(IDENTIFIER);} else if ( type_62 == _OPTIONS) { 
 jj_consume_token(_OPTIONS);} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
       {
         if (jjtc000) {
           jjtc000 = false;
@@ -900,20 +861,17 @@ break;
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
     jj_consume_token(SHARP);
-    do {
     IElementType type_63 = getType();
     if ( type_63 == _LOOKAHEAD || type_63 == _IGNORE_CASE || type_63 == _PARSER_BEGIN || type_63 == _PARSER_END || type_63 == _JAVACODE || type_63 == _TOKEN || type_63 == _SPECIAL_TOKEN || type_63 == _MORE || type_63 == _SKIP || type_63 == _TOKEN_MGR_DECLS || type_63 == _EOF || type_63 == IDENTIFIER) { 
 Name();} else if ( type_63 == VOID) { 
 jj_consume_token(VOID);} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
 IElementType type_65 = getType();
 if ( type_65 == LPAREN) { 
 jj_consume_token(LPAREN);
@@ -982,7 +940,6 @@ try {IElementType kind;
  /*@bgen(jjtree) JavaIdentifier */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    do {
     IElementType type_66 = getType();
     if ( type_66 == IDENTIFIER) { 
   jj_consume_token(IDENTIFIER);} else if ( type_66 == _LOOKAHEAD) { 
@@ -998,14 +955,12 @@ jj_consume_token(_SKIP);} else if ( type_66 == _TOKEN_MGR_DECLS) {
 jj_consume_token(_TOKEN_MGR_DECLS);} else if ( type_66 == _EOF) { 
 jj_consume_token(_EOF);} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
       {
         if (jjtc000) {
           jjtc000 = false;
@@ -1114,7 +1069,6 @@ jj_consume_token(SEMICOLON);
       } else {
         break label_73;
       }
-      do {
       IElementType type_74 = getType();
       if ( type_74 == PUBLIC) { 
     jj_consume_token(PUBLIC);} else if ( type_74 == STATIC) { 
@@ -1130,14 +1084,12 @@ jj_consume_token(VOLATILE);} else if ( type_74 == STRICTFP) {
 jj_consume_token(STRICTFP);} else if ( type_74 == AT) { 
 Annotation();} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
 }
      {
        if (jjtc000) {
@@ -1154,35 +1106,29 @@ break;
  /*@bgen(jjtree) TypeDeclaration */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    do {
     IElementType type_76 = getType();
     if ( type_76 == SEMICOLON) { 
   jj_consume_token(SEMICOLON);} else if ( type_76 == ABSTRACT || type_76 == CLASS || type_76 == ENUM || type_76 == FINAL || type_76 == INTERFACE || type_76 == NATIVE || type_76 == PRIVATE || type_76 == PROTECTED || type_76 == PUBLIC || type_76 == STATIC || type_76 == STRICTFP || type_76 == SYNCHRONIZED || type_76 == TRANSIENT || type_76 == VOLATILE || type_76 == AT) { 
 Modifiers();
-do {
 IElementType type_75 = getType();
 if ( type_75 == CLASS || type_75 == INTERFACE) { 
 ClassOrInterfaceDeclaration();} else if ( type_75 == ENUM) { 
 EnumDeclaration();} else if ( type_75 == AT) { 
 AnnotationTypeDeclaration();} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-break;
-} while(true);
-} else 
-{
-builder.error("Unexpected type " + builder.getTokenType());
-builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}} else 
+{
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
+builder.advanceLexer();
+errorMarker.error("Unexpected token " + text);
+
+}
       {
         if (jjtc000) {
           jjtc000 = false;
@@ -1195,20 +1141,17 @@ break;
  /*@bgen(jjtree) ClassOrInterfaceDeclaration */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    do {
     IElementType type_77 = getType();
     if ( type_77 == CLASS) { 
   jj_consume_token(CLASS);} else if ( type_77 == INTERFACE) { 
 jj_consume_token(INTERFACE);} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
 jj_consume_token(IDENTIFIER);
 IElementType type_78 = getType();
 if ( type_78 == LT) { 
@@ -1484,14 +1427,12 @@ jj_consume_token(RBRACE);
  /*@bgen(jjtree) ClassOrInterfaceBodyDeclaration */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    do {
     if (jj_2_12(2)) {
       Initializer();
     } else {
       IElementType type_103 = getType();
       if ( type_103 == ABSTRACT || type_103 == BOOLEAN || type_103 == BYTE || type_103 == CHAR || type_103 == CLASS || type_103 == DOUBLE || type_103 == ENUM || type_103 == FINAL || type_103 == FLOAT || type_103 == INT || type_103 == INTERFACE || type_103 == LONG || type_103 == NATIVE || type_103 == PRIVATE || type_103 == PROTECTED || type_103 == PUBLIC || type_103 == SHORT || type_103 == STATIC || type_103 == STRICTFP || type_103 == SYNCHRONIZED || type_103 == TRANSIENT || type_103 == VOID || type_103 == VOLATILE || type_103 == IDENTIFIER || type_103 == LT || type_103 == AT) { 
 Modifiers();
-do {
 IElementType type_101 = getType();
 if ( type_101 == CLASS || type_101 == INTERFACE) { 
 ClassOrInterfaceDeclaration();} else if ( type_101 == ENUM) { 
@@ -1506,27 +1447,23 @@ IElementType type_102 = getType();
 if ( type_102 == BOOLEAN || type_102 == BYTE || type_102 == CHAR || type_102 == DOUBLE || type_102 == FLOAT || type_102 == INT || type_102 == LONG || type_102 == SHORT || type_102 == VOID || type_102 == IDENTIFIER || type_102 == LT) { 
 MethodDeclaration();} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
+errorMarker.error("Unexpected token " + text);
+
 }
 }
-}
-break;
-} while(true);
-} else if ( type_103 == SEMICOLON) { 
+}} else if ( type_103 == SEMICOLON) { 
 jj_consume_token(SEMICOLON);} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
+}
       {
         if (jjtc000) {
           jjtc000 = false;
@@ -1609,20 +1546,17 @@ jj_consume_token(SEMICOLON);
  /*@bgen(jjtree) VariableInitializer */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    do {
     IElementType type_109 = getType();
     if ( type_109 == LBRACE) { 
   ArrayInitializer();} else if ( type_109 == _LOOKAHEAD || type_109 == _IGNORE_CASE || type_109 == _PARSER_BEGIN || type_109 == _PARSER_END || type_109 == _JAVACODE || type_109 == _TOKEN || type_109 == _SPECIAL_TOKEN || type_109 == _MORE || type_109 == _SKIP || type_109 == _TOKEN_MGR_DECLS || type_109 == _EOF || type_109 == BOOLEAN || type_109 == BYTE || type_109 == CHAR || type_109 == DOUBLE || type_109 == FALSE || type_109 == FLOAT || type_109 == INT || type_109 == LONG || type_109 == NEW || type_109 == NULL || type_109 == SHORT || type_109 == SUPER || type_109 == THIS || type_109 == TRUE || type_109 == VOID || type_109 == INTEGER_LITERAL || type_109 == FLOATING_POINT_LITERAL || type_109 == CHARACTER_LITERAL || type_109 == STRING_LITERAL || type_109 == IDENTIFIER || type_109 == LPAREN || type_109 == BANG || type_109 == TILDE || type_109 == INCR || type_109 == DECR || type_109 == PLUS || type_109 == MINUS) { 
 Expression();} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
       {
         if (jjtc000) {
           jjtc000 = false;
@@ -1686,20 +1620,17 @@ NameList();} else
 {
 ;
 }
-do {
 IElementType type_115 = getType();
 if ( type_115 == LBRACE) { 
 Block();} else if ( type_115 == SEMICOLON) { 
 jj_consume_token(SEMICOLON);} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
       {
         if (jjtc000) {
           jjtc000 = false;
@@ -1833,7 +1764,6 @@ jj_consume_token(RBRACE);
  /*@bgen(jjtree) ExplicitConstructorInvocation */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    do {
     if (jj_2_16(2147483647)) {
       jj_consume_token(THIS);
       Arguments();
@@ -1851,15 +1781,13 @@ jj_consume_token(SUPER);
 Arguments();
 jj_consume_token(SEMICOLON);} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
+}
       {
         if (jjtc000) {
           jjtc000 = false;
@@ -1894,7 +1822,6 @@ Block();
  /*@bgen(jjtree) Type */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    do {
     if (jj_2_17(2)) {
       ReferenceType();
     } else {
@@ -1902,15 +1829,13 @@ Block();
       if ( type_128 == BOOLEAN || type_128 == BYTE || type_128 == CHAR || type_128 == DOUBLE || type_128 == FLOAT || type_128 == INT || type_128 == LONG || type_128 == SHORT) { 
 PrimitiveType();} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
+}
        {
          if (jjtc000) {
            jjtc000 = false;
@@ -1923,7 +1848,6 @@ break;
  /*@bgen(jjtree) ReferenceType */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    do {
     IElementType type_131 = getType();
     if ( type_131 == BOOLEAN || type_131 == BYTE || type_131 == CHAR || type_131 == DOUBLE || type_131 == FLOAT || type_131 == INT || type_131 == LONG || type_131 == SHORT) { 
 PrimitiveType();
@@ -1949,14 +1873,12 @@ jj_consume_token(LBRACKET);
 jj_consume_token(RBRACKET);
 }} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
        {
          if (jjtc000) {
            jjtc000 = false;
@@ -2028,7 +1950,6 @@ jj_consume_token(GT);
  /*@bgen(jjtree) TypeArgument */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    do {
     IElementType type_136 = getType();
     if ( type_136 == BOOLEAN || type_136 == BYTE || type_136 == CHAR || type_136 == DOUBLE || type_136 == FLOAT || type_136 == INT || type_136 == LONG || type_136 == SHORT || type_136 == IDENTIFIER) { 
 ReferenceType();} else if ( type_136 == HOOK) { 
@@ -2040,14 +1961,12 @@ WildcardBounds();} else
 ;
 }} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
        {
          if (jjtc000) {
            jjtc000 = false;
@@ -2060,7 +1979,6 @@ break;
  /*@bgen(jjtree) WildcardBounds */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    do {
     IElementType type_137 = getType();
     if ( type_137 == EXTENDS) { 
   jj_consume_token(EXTENDS);
@@ -2068,14 +1986,12 @@ break;
 jj_consume_token(SUPER);
 ReferenceType();} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
        {
          if (jjtc000) {
            jjtc000 = false;
@@ -2088,7 +2004,6 @@ break;
  /*@bgen(jjtree) PrimitiveType */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    do {
     IElementType type_138 = getType();
     if ( type_138 == BOOLEAN) { 
   jj_consume_token(BOOLEAN);} else if ( type_138 == CHAR) { 
@@ -2100,14 +2015,12 @@ jj_consume_token(LONG);} else if ( type_138 == FLOAT) {
 jj_consume_token(FLOAT);} else if ( type_138 == DOUBLE) { 
 jj_consume_token(DOUBLE);} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
       {
         if (jjtc000) {
           jjtc000 = false;
@@ -2120,20 +2033,17 @@ break;
  /*@bgen(jjtree) ResultType */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    do {
     IElementType type_139 = getType();
     if ( type_139 == VOID) { 
   jj_consume_token(VOID);} else if ( type_139 == BOOLEAN || type_139 == BYTE || type_139 == CHAR || type_139 == DOUBLE || type_139 == FLOAT || type_139 == INT || type_139 == LONG || type_139 == SHORT || type_139 == IDENTIFIER) { 
 Type();} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
       {
         if (jjtc000) {
           jjtc000 = false;
@@ -2215,7 +2125,6 @@ break;
  /*@bgen(jjtree) AssignmentOperator */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    do {
     IElementType type_144 = getType();
     if ( type_144 == ASSIGN) { 
   jj_consume_token(ASSIGN);} else if ( type_144 == STARASSIGN) { 
@@ -2240,14 +2149,12 @@ jj_consume_token(ANDASSIGN);} else if ( type_144 == XORASSIGN) {
 jj_consume_token(XORASSIGN);} else if ( type_144 == ORASSIGN) { 
 jj_consume_token(ORASSIGN);} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
       {
         if (jjtc000) {
           jjtc000 = false;
@@ -2411,20 +2318,17 @@ break;
 {
   break label_156;
 }
-do {
 IElementType type_158 = getType();
 if ( type_158 == EQ) { 
 jj_consume_token(EQ);} else if ( type_158 == NE) { 
 jj_consume_token(NE);} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
 InstanceOfExpression();
 }
       {
@@ -2467,20 +2371,17 @@ InstanceOfExpression();
       } else {
         break label_160;
       }
-      do {
       IElementType type_161 = getType();
       if ( type_161 == LT) { 
     jj_consume_token(LT);} else if ( type_161 == GT) { 
   jj_consume_token(GT);} else 
 {
-  builder.error("Unexpected type " + builder.getTokenType());
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
   builder.advanceLexer();
-  if (!builder.eof())
-  continue;
+  errorMarker.error("Unexpected token " + text);
+  
 }
-break;
-} while(true);
-
 IElementType type_162 = getType();
 if ( type_162 == ASSIGN) { 
 jj_consume_token(ASSIGN);} else 
@@ -2509,7 +2410,6 @@ ShiftExpression();
       } else {
         break label_163;
       }
-      do {
       IElementType type_164 = getType();
       if ( type_164 == LT) { 
     jj_consume_token(LT);
@@ -2522,16 +2422,14 @@ ShiftExpression();
       if ( type_165 == GT) { 
     RSIGNEDSHIFT();} else 
   {
-    builder.error("Unexpected type " + builder.getTokenType());
+    PsiBuilder.Marker errorMarker = builder.mark();
+    String text = builder.getTokenText();
     builder.advanceLexer();
-    if (!builder.eof())
-    continue;
+    errorMarker.error("Unexpected token " + text);
+    
   }
 }
 }
-break;
-} while(true);
-
 AdditiveExpression();
 }
       {
@@ -2555,20 +2453,17 @@ AdditiveExpression();
 {
   break label_166;
 }
-do {
 IElementType type_168 = getType();
 if ( type_168 == PLUS) { 
 jj_consume_token(PLUS);} else if ( type_168 == MINUS) { 
 jj_consume_token(MINUS);} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
 MultiplicativeExpression();
 }
       {
@@ -2592,21 +2487,18 @@ MultiplicativeExpression();
 {
 break label_169;
 }
-do {
 IElementType type_171 = getType();
 if ( type_171 == STAR) { 
 jj_consume_token(STAR);} else if ( type_171 == SLASH) { 
 jj_consume_token(SLASH);} else if ( type_171 == REM) { 
 jj_consume_token(REM);} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
 UnaryExpression();
 }
       {
@@ -2621,36 +2513,30 @@ UnaryExpression();
  /*@bgen(jjtree) UnaryExpression */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    do {
     IElementType type_173 = getType();
     if ( type_173 == PLUS || type_173 == MINUS) { 
-do {
 IElementType type_172 = getType();
 if ( type_172 == PLUS) { 
 jj_consume_token(PLUS);} else if ( type_172 == MINUS) { 
 jj_consume_token(MINUS);} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
 UnaryExpression();} else if ( type_173 == INCR) { 
 PreIncrementExpression();} else if ( type_173 == DECR) { 
 PreDecrementExpression();} else if ( type_173 == _LOOKAHEAD || type_173 == _IGNORE_CASE || type_173 == _PARSER_BEGIN || type_173 == _PARSER_END || type_173 == _JAVACODE || type_173 == _TOKEN || type_173 == _SPECIAL_TOKEN || type_173 == _MORE || type_173 == _SKIP || type_173 == _TOKEN_MGR_DECLS || type_173 == _EOF || type_173 == BOOLEAN || type_173 == BYTE || type_173 == CHAR || type_173 == DOUBLE || type_173 == FALSE || type_173 == FLOAT || type_173 == INT || type_173 == LONG || type_173 == NEW || type_173 == NULL || type_173 == SHORT || type_173 == SUPER || type_173 == THIS || type_173 == TRUE || type_173 == VOID || type_173 == INTEGER_LITERAL || type_173 == FLOATING_POINT_LITERAL || type_173 == CHARACTER_LITERAL || type_173 == STRING_LITERAL || type_173 == IDENTIFIER || type_173 == LPAREN || type_173 == BANG || type_173 == TILDE) { 
 UnaryExpressionNotPlusMinus();} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
       {
         if (jjtc000) {
           jjtc000 = false;
@@ -2691,23 +2577,19 @@ break;
  /*@bgen(jjtree) UnaryExpressionNotPlusMinus */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    do {
     IElementType type_175 = getType();
     if ( type_175 == BANG || type_175 == TILDE) { 
-do {
 IElementType type_174 = getType();
 if ( type_174 == TILDE) { 
 jj_consume_token(TILDE);} else if ( type_174 == BANG) { 
 jj_consume_token(BANG);} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
 UnaryExpression();} else 
 {
 if (jj_2_28(2147483647)) {
@@ -2717,16 +2599,14 @@ IElementType type_176 = getType();
 if ( type_176 == _LOOKAHEAD || type_176 == _IGNORE_CASE || type_176 == _PARSER_BEGIN || type_176 == _PARSER_END || type_176 == _JAVACODE || type_176 == _TOKEN || type_176 == _SPECIAL_TOKEN || type_176 == _MORE || type_176 == _SKIP || type_176 == _TOKEN_MGR_DECLS || type_176 == _EOF || type_176 == BOOLEAN || type_176 == BYTE || type_176 == CHAR || type_176 == DOUBLE || type_176 == FALSE || type_176 == FLOAT || type_176 == INT || type_176 == LONG || type_176 == NEW || type_176 == NULL || type_176 == SHORT || type_176 == SUPER || type_176 == THIS || type_176 == TRUE || type_176 == VOID || type_176 == INTEGER_LITERAL || type_176 == FLOATING_POINT_LITERAL || type_176 == CHARACTER_LITERAL || type_176 == STRING_LITERAL || type_176 == IDENTIFIER || type_176 == LPAREN) { 
 PostfixExpression();} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-}
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
+}
+}
       {
         if (jjtc000) {
           jjtc000 = false;
@@ -2742,7 +2622,6 @@ break;
  /*@bgen(jjtree) CastLookahead */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    do {
     if (jj_2_29(2)) {
       jj_consume_token(LPAREN);
       PrimitiveType();
@@ -2757,7 +2636,6 @@ break;
     jj_consume_token(LPAREN);
     Type();
     jj_consume_token(RPAREN);
-    do {
     IElementType type_177 = getType();
     if ( type_177 == TILDE) { 
   jj_consume_token(TILDE);} else if ( type_177 == BANG) { 
@@ -2769,24 +2647,20 @@ jj_consume_token(SUPER);} else if ( type_177 == NEW) {
 jj_consume_token(NEW);} else if ( type_177 == FALSE || type_177 == NULL || type_177 == TRUE || type_177 == INTEGER_LITERAL || type_177 == FLOATING_POINT_LITERAL || type_177 == CHARACTER_LITERAL || type_177 == STRING_LITERAL) { 
 Literal();} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-break;
-} while(true);
-} else 
-{
-builder.error("Unexpected type " + builder.getTokenType());
-builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}} else 
+{
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
+builder.advanceLexer();
+errorMarker.error("Unexpected token " + text);
+
+}
+}
       {
         if (jjtc000) {
           jjtc000 = false;
@@ -2802,20 +2676,17 @@ break;
     PrimaryExpression();
     IElementType type_180 = getType();
     if ( type_180 == INCR || type_180 == DECR) { 
-do {
 IElementType type_179 = getType();
 if ( type_179 == INCR) { 
 jj_consume_token(INCR);} else if ( type_179 == DECR) { 
 jj_consume_token(DECR);} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-break;
-} while(true);
-} else 
+errorMarker.error("Unexpected token " + text);
+
+}} else 
 {
 ;
 }
@@ -2831,7 +2702,6 @@ break;
  /*@bgen(jjtree) CastExpression */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    do {
     if (jj_2_31(2147483647)) {
       jj_consume_token(LPAREN);
       Type();
@@ -2845,15 +2715,13 @@ break;
     jj_consume_token(RPAREN);
     UnaryExpressionNotPlusMinus();} else 
   {
-    builder.error("Unexpected type " + builder.getTokenType());
+    PsiBuilder.Marker errorMarker = builder.mark();
+    String text = builder.getTokenText();
     builder.advanceLexer();
-    if (!builder.eof())
-    continue;
+    errorMarker.error("Unexpected token " + text);
+    
   }
 }
-break;
-} while(true);
-
       {
         if (jjtc000) {
           jjtc000 = false;
@@ -2903,7 +2771,6 @@ break;
  /*@bgen(jjtree) PrimaryPrefix */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    do {
     IElementType type_183 = getType();
     if ( type_183 == FALSE || type_183 == NULL || type_183 == TRUE || type_183 == INTEGER_LITERAL || type_183 == FLOATING_POINT_LITERAL || type_183 == CHARACTER_LITERAL || type_183 == STRING_LITERAL) { 
 Literal();} else if ( type_183 == THIS) { 
@@ -2925,16 +2792,14 @@ IElementType type_184 = getType();
 if ( type_184 == _LOOKAHEAD || type_184 == _IGNORE_CASE || type_184 == _PARSER_BEGIN || type_184 == _PARSER_END || type_184 == _JAVACODE || type_184 == _TOKEN || type_184 == _SPECIAL_TOKEN || type_184 == _MORE || type_184 == _SKIP || type_184 == _TOKEN_MGR_DECLS || type_184 == _EOF || type_184 == IDENTIFIER) { 
 Name();} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-}
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
+}
+}
       {
         if (jjtc000) {
           jjtc000 = false;
@@ -2947,7 +2812,6 @@ break;
  /*@bgen(jjtree) PrimarySuffix */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    do {
     if (jj_2_34(2)) {
       jj_consume_token(DOT);
       jj_consume_token(THIS);
@@ -2966,15 +2830,13 @@ break;
   jj_consume_token(IDENTIFIER);} else if ( type_185 == LPAREN) { 
 Arguments();} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
+}
       {
         if (jjtc000) {
           jjtc000 = false;
@@ -2987,7 +2849,6 @@ break;
  /*@bgen(jjtree) Literal */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    do {
     IElementType type_186 = getType();
     if ( type_186 == INTEGER_LITERAL) { 
   jj_consume_token(INTEGER_LITERAL);} else if ( type_186 == FLOATING_POINT_LITERAL) { 
@@ -2997,14 +2858,12 @@ jj_consume_token(STRING_LITERAL);} else if ( type_186 == FALSE || type_186 == TR
 BooleanLiteral();} else if ( type_186 == NULL) { 
 NullLiteral();} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
       {
         if (jjtc000) {
           jjtc000 = false;
@@ -3021,20 +2880,17 @@ break;
  /*@bgen(jjtree) BooleanLiteral */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    do {
     IElementType type_187 = getType();
     if ( type_187 == TRUE) { 
   jj_consume_token(TRUE);} else if ( type_187 == FALSE) { 
 jj_consume_token(FALSE);} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
       {
         if (jjtc000) {
           jjtc000 = false;
@@ -3099,7 +2955,6 @@ jj_consume_token(RPAREN);
  /*@bgen(jjtree) AllocationExpression */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    do {
     if (jj_2_37(2)) {
       jj_consume_token(NEW);
       PrimitiveType();
@@ -3115,7 +2970,6 @@ jj_consume_token(RPAREN);
 {
   ;
 }
-do {
 IElementType type_193 = getType();
 if ( type_193 == LBRACKET) { 
 ArrayDimsAndInits();} else if ( type_193 == LPAREN) { 
@@ -3127,24 +2981,20 @@ ClassOrInterfaceBody();} else
 ;
 }} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-break;
-} while(true);
-} else 
-{
-builder.error("Unexpected type " + builder.getTokenType());
-builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}} else 
+{
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
+builder.advanceLexer();
+errorMarker.error("Unexpected token " + text);
+
+}
+}
       {
         if (jjtc000) {
           jjtc000 = false;
@@ -3161,7 +3011,6 @@ break;
  /*@bgen(jjtree) ArrayDimsAndInits */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    do {
     if (jj_2_40(2)) {
       label_195:
       while (true) {
@@ -3200,15 +3049,13 @@ break;
 }
 ArrayInitializer();} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
+}
       {
         if (jjtc000) {
           jjtc000 = false;
@@ -3221,7 +3068,6 @@ break;
  * Statement syntax follows.
  */
   final public void Statement()  {
-    do {
     if (jj_2_41(2)) {
       LabeledStatement();
     } else {
@@ -3244,15 +3090,13 @@ ThrowStatement();} else if ( type_200 == SYNCHRONIZED) {
 SynchronizedStatement();} else if ( type_200 == TRY) { 
 TryStatement();} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
+}
   }
 
   final public void AssertStatement()  {
@@ -3317,7 +3161,6 @@ jj_consume_token(RBRACE);
   }
 
   final public void BlockStatement()  {
-    do {
     if (jj_2_42(2147483647)) {
       LocalVariableDeclaration();
       jj_consume_token(SEMICOLON);
@@ -3327,15 +3170,13 @@ jj_consume_token(RBRACE);
 Statement();} else if ( type_204 == CLASS || type_204 == INTERFACE) { 
 ClassOrInterfaceDeclaration();} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
+}
   }
 
   final public void LocalVariableDeclaration()  {
@@ -3381,7 +3222,6 @@ break;
  /*@bgen(jjtree) StatementExpression */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    do {
     IElementType type_209 = getType();
     if ( type_209 == INCR) { 
   PreIncrementExpression();} else if ( type_209 == DECR) { 
@@ -3389,7 +3229,6 @@ PreDecrementExpression();} else if ( type_209 == _LOOKAHEAD || type_209 == _IGNO
 PrimaryExpression();
 IElementType type_208 = getType();
 if ( type_208 == ASSIGN || type_208 == GT || type_208 == LT || type_208 == INCR || type_208 == DECR || type_208 == PLUSASSIGN || type_208 == MINUSASSIGN || type_208 == STARASSIGN || type_208 == SLASHASSIGN || type_208 == ANDASSIGN || type_208 == ORASSIGN || type_208 == XORASSIGN || type_208 == REMASSIGN) { 
-do {
 IElementType type_207 = getType();
 if ( type_207 == INCR) { 
 jj_consume_token(INCR);} else if ( type_207 == DECR) { 
@@ -3397,26 +3236,22 @@ jj_consume_token(DECR);} else if ( type_207 == ASSIGN || type_207 == GT || type_
 AssignmentOperator();
 Expression();} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-break;
-} while(true);
-} else 
+errorMarker.error("Unexpected token " + text);
+
+}} else 
 {
 ;
 }} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
       {
         if (jjtc000) {
           jjtc000 = false;
@@ -3467,7 +3302,6 @@ jj_consume_token(RBRACE);
  /*@bgen(jjtree) SwitchLabel */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    do {
     IElementType type_214 = getType();
     if ( type_214 == CASE) { 
   jj_consume_token(CASE);
@@ -3476,14 +3310,12 @@ jj_consume_token(RBRACE);
 jj_consume_token(_DEFAULT);
 jj_consume_token(COLON);} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
       {
         if (jjtc000) {
           jjtc000 = false;
@@ -3558,7 +3390,6 @@ break;
   PsiBuilder.Marker jjtn000 = builder.mark();
     jj_consume_token(FOR);
     jj_consume_token(LPAREN);
-    do {
     if (jj_2_43(2147483647)) {
       Modifiers();
       Type();
@@ -3589,15 +3420,13 @@ ForUpdate();} else
 ;
 }} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
+}
 jj_consume_token(RPAREN);
 Statement();
       {
@@ -3612,7 +3441,6 @@ Statement();
  /*@bgen(jjtree) ForInit */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    do {
     if (jj_2_44(2147483647)) {
       LocalVariableDeclaration();
     } else {
@@ -3620,15 +3448,13 @@ Statement();
       if ( type_220 == _LOOKAHEAD || type_220 == _IGNORE_CASE || type_220 == _PARSER_BEGIN || type_220 == _PARSER_END || type_220 == _JAVACODE || type_220 == _TOKEN || type_220 == _SPECIAL_TOKEN || type_220 == _MORE || type_220 == _SKIP || type_220 == _TOKEN_MGR_DECLS || type_220 == _EOF || type_220 == BOOLEAN || type_220 == BYTE || type_220 == CHAR || type_220 == DOUBLE || type_220 == FALSE || type_220 == FLOAT || type_220 == INT || type_220 == LONG || type_220 == NEW || type_220 == NULL || type_220 == SHORT || type_220 == SUPER || type_220 == THIS || type_220 == TRUE || type_220 == VOID || type_220 == INTEGER_LITERAL || type_220 == FLOATING_POINT_LITERAL || type_220 == CHARACTER_LITERAL || type_220 == STRING_LITERAL || type_220 == IDENTIFIER || type_220 == LPAREN || type_220 == INCR || type_220 == DECR) { 
 StatementExpressionList();} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
+}
       {
         if (jjtc000) {
           jjtc000 = false;
@@ -3838,7 +3664,6 @@ Block();} else
  /*@bgen(jjtree) Annotation */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    do {
     if (jj_2_45(2147483647)) {
       NormalAnnotation();
     } else if (jj_2_46(2147483647)) {
@@ -3848,15 +3673,13 @@ Block();} else
       if ( type_229 == AT) { 
     MarkerAnnotation();} else 
   {
-    builder.error("Unexpected type " + builder.getTokenType());
+    PsiBuilder.Marker errorMarker = builder.mark();
+    String text = builder.getTokenText();
     builder.advanceLexer();
-    if (!builder.eof())
-    continue;
+    errorMarker.error("Unexpected token " + text);
+    
   }
 }
-break;
-} while(true);
-
        {
          if (jjtc000) {
            jjtc000 = false;
@@ -3961,21 +3784,18 @@ jj_consume_token(RPAREN);
  /*@bgen(jjtree) MemberValue */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    do {
     IElementType type_233 = getType();
     if ( type_233 == AT) { 
   Annotation();} else if ( type_233 == LBRACE) { 
 MemberValueArrayInitializer();} else if ( type_233 == _LOOKAHEAD || type_233 == _IGNORE_CASE || type_233 == _PARSER_BEGIN || type_233 == _PARSER_END || type_233 == _JAVACODE || type_233 == _TOKEN || type_233 == _SPECIAL_TOKEN || type_233 == _MORE || type_233 == _SKIP || type_233 == _TOKEN_MGR_DECLS || type_233 == _EOF || type_233 == BOOLEAN || type_233 == BYTE || type_233 == CHAR || type_233 == DOUBLE || type_233 == FALSE || type_233 == FLOAT || type_233 == INT || type_233 == LONG || type_233 == NEW || type_233 == NULL || type_233 == SHORT || type_233 == SUPER || type_233 == THIS || type_233 == TRUE || type_233 == VOID || type_233 == INTEGER_LITERAL || type_233 == FLOATING_POINT_LITERAL || type_233 == CHARACTER_LITERAL || type_233 == STRING_LITERAL || type_233 == IDENTIFIER || type_233 == LPAREN || type_233 == BANG || type_233 == TILDE || type_233 == INCR || type_233 == DECR || type_233 == PLUS || type_233 == MINUS) { 
 ConditionalExpression();} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
        {
          if (jjtc000) {
            jjtc000 = false;
@@ -4060,11 +3880,9 @@ jj_consume_token(RBRACE);
  /*@bgen(jjtree) AnnotationTypeMemberDeclaration */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-    do {
     IElementType type_240 = getType();
     if ( type_240 == ABSTRACT || type_240 == BOOLEAN || type_240 == BYTE || type_240 == CHAR || type_240 == CLASS || type_240 == DOUBLE || type_240 == ENUM || type_240 == FINAL || type_240 == FLOAT || type_240 == INT || type_240 == INTERFACE || type_240 == LONG || type_240 == NATIVE || type_240 == PRIVATE || type_240 == PROTECTED || type_240 == PUBLIC || type_240 == SHORT || type_240 == STATIC || type_240 == STRICTFP || type_240 == SYNCHRONIZED || type_240 == TRANSIENT || type_240 == VOLATILE || type_240 == IDENTIFIER || type_240 == AT) { 
 Modifiers();
-do {
 if (jj_2_48(2147483647)) {
 Type();
 jj_consume_token(IDENTIFIER);
@@ -4085,25 +3903,21 @@ EnumDeclaration();} else if ( type_239 == AT) {
 AnnotationTypeDeclaration();} else if ( type_239 == BOOLEAN || type_239 == BYTE || type_239 == CHAR || type_239 == DOUBLE || type_239 == FLOAT || type_239 == INT || type_239 == LONG || type_239 == SHORT || type_239 == IDENTIFIER) { 
 FieldDeclaration();} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
+errorMarker.error("Unexpected token " + text);
+
 }
-}
-break;
-} while(true);
-} else if ( type_240 == SEMICOLON) { 
+}} else if ( type_240 == SEMICOLON) { 
 jj_consume_token(SEMICOLON);} else 
 {
-builder.error("Unexpected type " + builder.getTokenType());
+PsiBuilder.Marker errorMarker = builder.mark();
+String text = builder.getTokenText();
 builder.advanceLexer();
-if (!builder.eof())
-continue;
-}
-break;
-} while(true);
+errorMarker.error("Unexpected token " + text);
 
+}
      {
        if (jjtc000) {
          jjtc000 = false;
@@ -4508,6 +4322,21 @@ break;
     try { boolean result =  !jj_3_48(); return result;}
     catch(LookaheadSuccess ls) { return true; }
     finally { jj_scanpos.rollbackTo(); }
+  }
+
+  private boolean jj_3R_328() {
+    if (jj_scan_token(LBRACE)) return true;
+    if (jj_3R_276()) return true;
+    while (true) {
+      int jj_scanpos = currentIndex;
+      if (jj_3_47()) { rollbackTo(jj_scanpos); break; }
+    }
+    {
+      if (tokens.get(currentIndex) == (COMMA) )
+        jj_on_la1();
+    }
+    if (jj_scan_token(RBRACE)) return true;
+    return false;
   }
 
   private boolean jj_3R_375() {
@@ -6244,14 +6073,14 @@ break;
     return false;
   }
 
-  private boolean jj_3R_264() {
-    if (jj_3R_296()) return true;
-    return false;
-  }
-
   private boolean jj_3_1() {
     if (jj_scan_token(LT)) return true;
     if (jj_scan_token(STAR)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_264() {
+    if (jj_3R_296()) return true;
     return false;
   }
 
@@ -7288,21 +7117,6 @@ break;
     return false;
   }
 
-  private boolean jj_3R_328() {
-    if (jj_scan_token(LBRACE)) return true;
-    if (jj_3R_276()) return true;
-    while (true) {
-      int jj_scanpos = currentIndex;
-      if (jj_3_47()) { rollbackTo(jj_scanpos); break; }
-    }
-    {
-      if (tokens.get(currentIndex) == (COMMA) )
-        jj_on_la1();
-    }
-    if (jj_scan_token(RBRACE)) return true;
-    return false;
-  }
-
   private final PsiBuilder builder;
   public JavaCC(PsiBuilder builder) {
     this.builder = builder;
@@ -7327,7 +7141,10 @@ break;
     if (actualType == type) {
       builder.advanceLexer();
     } else {
-      builder.error("Expected " + type + ", but get: " + actualType);
+      PsiBuilder.Marker errorMarker = builder.mark();
+      String text = builder.getTokenText();
+      builder.advanceLexer();
+      errorMarker.error("Expected " + type + ", but get: " + text);
     }
     return type;
   }

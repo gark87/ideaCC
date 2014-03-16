@@ -1303,14 +1303,13 @@ void expansion() :
 {/*@bgen(jjtree) expansion */
   boolean jjtc000 = true;
   PsiBuilder.Marker jjtn000 = builder.mark();
-/*@egen*/}
-{/*@bgen(jjtree) expansion */
+/*@egen*/}{/*@bgen(jjtree) expansion */
   (
 /*@egen*/
   ( LOOKAHEAD(1)
     "LOOKAHEAD" "(" local_lookahead() ")"
   )?
-  ( LOOKAHEAD(0, { notTailOfExpansionUnit() } )
+  ( LOOKAHEAD(0, {notTailOfExpansionUnit() } )
     expansion_unit()
     [ node_descriptor() ]
   )+/*@bgen(jjtree)*/

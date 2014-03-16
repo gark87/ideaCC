@@ -1129,12 +1129,11 @@ void expansion_choices() :
 }
 
 void expansion() :
-{}
-{
+{}{
   ( LOOKAHEAD(1)
     "LOOKAHEAD" "(" local_lookahead() ")"
   )?
-  ( LOOKAHEAD(0, { notTailOfExpansionUnit() } )
+  ( LOOKAHEAD(0, {notTailOfExpansionUnit() } )
     expansion_unit()
     [ node_descriptor() ]
   )+
