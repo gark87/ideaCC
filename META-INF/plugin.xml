@@ -1,7 +1,7 @@
 <idea-plugin version="2">
     <name>JavaCC Plugin</name>
     <description>Support of JavaCC *.jj files</description>
-    <version>1.0.2</version>
+    <version>1.0.3-dirty</version>
     <vendor>gark87</vendor>
     <idea-version since-build="9000"/>
 
