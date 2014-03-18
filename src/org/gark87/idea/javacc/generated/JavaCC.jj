@@ -52,7 +52,7 @@ public class JavaCC {
   private boolean notTailOfExpansionUnit() {
     IElementType t;
     t = getTokenType(1);
-    if (t == BIT_OR || t == COMMA || t == RPAREN || t == RBRACE || t == RBRACKET) return false;
+    if (t == BIT_OR || t == COMMA || t == RPAREN || t == RBRACE || t == RBRACKET || t == null) return false;
     return true;
   }
 

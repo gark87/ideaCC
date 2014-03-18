@@ -14,7 +14,7 @@ public class JavaCC/*@bgen(jjtree)*/implements JavaCCTreeConstants, JavaCCConsta
   private boolean notTailOfExpansionUnit() {
     IElementType t;
     t = getTokenType(1);
-    if (t == BIT_OR || t == COMMA || t == RPAREN || t == RBRACE || t == RBRACKET) return false;
+    if (t == BIT_OR || t == COMMA || t == RPAREN || t == RBRACE || t == RBRACKET || t == null) return false;
     return true;
   }
 
@@ -95,10 +95,14 @@ jj_consume_token(_LOOKAHEAD);} else if ( type_6 == _IGNORE_CASE) {
 jj_consume_token(_IGNORE_CASE);} else if ( type_6 == STATIC) { 
 jj_consume_token(STATIC);} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
 jj_consume_token(ASSIGN);
@@ -108,10 +112,14 @@ IntegerLiteral();} else if ( type_7 == FALSE || type_7 == TRUE) {
 BooleanLiteral();} else if ( type_7 == STRING_LITERAL) { 
 StringLiteral();} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
 jj_consume_token(SEMICOLON);
@@ -134,10 +142,14 @@ regular_expr_production();} else if ( type_8 == _TOKEN_MGR_DECLS) {
 token_manager_decls();} else if ( type_8 == BOOLEAN || type_8 == BYTE || type_8 == CHAR || type_8 == DOUBLE || type_8 == FLOAT || type_8 == INT || type_8 == LONG || type_8 == PRIVATE || type_8 == PROTECTED || type_8 == PUBLIC || type_8 == SHORT || type_8 == VOID || type_8 == IDENTIFIER) { 
 bnf_production();} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
       {
@@ -247,10 +259,14 @@ jj_consume_token(PUBLIC);} else if ( type_17 == PROTECTED) {
 jj_consume_token(PROTECTED);} else if ( type_17 == PRIVATE) { 
 jj_consume_token(PRIVATE);} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }} else 
 {
@@ -292,10 +308,14 @@ jj_consume_token(IDENTIFIER);
 }
 jj_consume_token(GT);} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
 }} else 
@@ -360,10 +380,14 @@ jj_consume_token(_SPECIAL_TOKEN);} else if ( type_26 == _SKIP) {
 jj_consume_token(_SKIP);} else if ( type_26 == _MORE) { 
 jj_consume_token(_MORE);} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
       {
@@ -567,10 +591,14 @@ jj_consume_token(IDENTIFIER);} else
 ;
 }} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
 }
@@ -588,20 +616,28 @@ jj_consume_token(PLUS);} else if ( type_40 == STAR) {
 jj_consume_token(STAR);} else if ( type_40 == HOOK) { 
 jj_consume_token(HOOK);} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }} else 
 {
 ;
 }} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
 }
@@ -650,10 +686,14 @@ jj_consume_token(LT);
 jj_consume_token(_EOF);
 jj_consume_token(GT);} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
 }
@@ -749,20 +789,28 @@ IntegerLiteral();} else
 }
 jj_consume_token(RBRACE);} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }} else 
 {
 ;
 }} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
       {
@@ -839,10 +887,14 @@ jj_consume_token(RBRACKET);
   jj_consume_token(IDENTIFIER);} else if ( type_62 == _OPTIONS) { 
 jj_consume_token(_OPTIONS);} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
       {
@@ -866,10 +918,14 @@ errorMarker.error("Unexpected token " + text);
 Name();} else if ( type_63 == VOID) { 
 jj_consume_token(VOID);} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
 IElementType type_65 = getType();
@@ -955,10 +1011,14 @@ jj_consume_token(_SKIP);} else if ( type_66 == _TOKEN_MGR_DECLS) {
 jj_consume_token(_TOKEN_MGR_DECLS);} else if ( type_66 == _EOF) { 
 jj_consume_token(_EOF);} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
       {
@@ -1084,10 +1144,14 @@ jj_consume_token(VOLATILE);} else if ( type_74 == STRICTFP) {
 jj_consume_token(STRICTFP);} else if ( type_74 == AT) { 
 Annotation();} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
 }
@@ -1116,17 +1180,25 @@ ClassOrInterfaceDeclaration();} else if ( type_75 == ENUM) {
 EnumDeclaration();} else if ( type_75 == AT) { 
 AnnotationTypeDeclaration();} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
       {
@@ -1146,10 +1218,14 @@ errorMarker.error("Unexpected token " + text);
   jj_consume_token(CLASS);} else if ( type_77 == INTERFACE) { 
 jj_consume_token(INTERFACE);} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
 jj_consume_token(IDENTIFIER);
@@ -1447,20 +1523,28 @@ IElementType type_102 = getType();
 if ( type_102 == BOOLEAN || type_102 == BYTE || type_102 == CHAR || type_102 == DOUBLE || type_102 == FLOAT || type_102 == INT || type_102 == LONG || type_102 == SHORT || type_102 == VOID || type_102 == IDENTIFIER || type_102 == LT) { 
 MethodDeclaration();} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
 }
 }} else if ( type_103 == SEMICOLON) { 
 jj_consume_token(SEMICOLON);} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
 }
@@ -1551,10 +1635,14 @@ jj_consume_token(SEMICOLON);
   ArrayInitializer();} else if ( type_109 == _LOOKAHEAD || type_109 == _IGNORE_CASE || type_109 == _PARSER_BEGIN || type_109 == _PARSER_END || type_109 == _JAVACODE || type_109 == _TOKEN || type_109 == _SPECIAL_TOKEN || type_109 == _MORE || type_109 == _SKIP || type_109 == _TOKEN_MGR_DECLS || type_109 == _EOF || type_109 == BOOLEAN || type_109 == BYTE || type_109 == CHAR || type_109 == DOUBLE || type_109 == FALSE || type_109 == FLOAT || type_109 == INT || type_109 == LONG || type_109 == NEW || type_109 == NULL || type_109 == SHORT || type_109 == SUPER || type_109 == THIS || type_109 == TRUE || type_109 == VOID || type_109 == INTEGER_LITERAL || type_109 == FLOATING_POINT_LITERAL || type_109 == CHARACTER_LITERAL || type_109 == STRING_LITERAL || type_109 == IDENTIFIER || type_109 == LPAREN || type_109 == BANG || type_109 == TILDE || type_109 == INCR || type_109 == DECR || type_109 == PLUS || type_109 == MINUS) { 
 Expression();} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
       {
@@ -1625,10 +1713,14 @@ if ( type_115 == LBRACE) {
 Block();} else if ( type_115 == SEMICOLON) { 
 jj_consume_token(SEMICOLON);} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
       {
@@ -1781,10 +1873,14 @@ jj_consume_token(SUPER);
 Arguments();
 jj_consume_token(SEMICOLON);} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
 }
@@ -1829,10 +1925,14 @@ Block();
       if ( type_128 == BOOLEAN || type_128 == BYTE || type_128 == CHAR || type_128 == DOUBLE || type_128 == FLOAT || type_128 == INT || type_128 == LONG || type_128 == SHORT) { 
 PrimitiveType();} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
 }
@@ -1873,10 +1973,14 @@ jj_consume_token(LBRACKET);
 jj_consume_token(RBRACKET);
 }} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
        {
@@ -1961,10 +2065,14 @@ WildcardBounds();} else
 ;
 }} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
        {
@@ -1986,10 +2094,14 @@ errorMarker.error("Unexpected token " + text);
 jj_consume_token(SUPER);
 ReferenceType();} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
        {
@@ -2015,10 +2127,14 @@ jj_consume_token(LONG);} else if ( type_138 == FLOAT) {
 jj_consume_token(FLOAT);} else if ( type_138 == DOUBLE) { 
 jj_consume_token(DOUBLE);} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
       {
@@ -2038,10 +2154,14 @@ errorMarker.error("Unexpected token " + text);
   jj_consume_token(VOID);} else if ( type_139 == BOOLEAN || type_139 == BYTE || type_139 == CHAR || type_139 == DOUBLE || type_139 == FLOAT || type_139 == INT || type_139 == LONG || type_139 == SHORT || type_139 == IDENTIFIER) { 
 Type();} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
       {
@@ -2149,10 +2269,14 @@ jj_consume_token(ANDASSIGN);} else if ( type_144 == XORASSIGN) {
 jj_consume_token(XORASSIGN);} else if ( type_144 == ORASSIGN) { 
 jj_consume_token(ORASSIGN);} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
       {
@@ -2323,10 +2447,14 @@ if ( type_158 == EQ) {
 jj_consume_token(EQ);} else if ( type_158 == NE) { 
 jj_consume_token(NE);} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
 InstanceOfExpression();
@@ -2376,10 +2504,14 @@ InstanceOfExpression();
     jj_consume_token(LT);} else if ( type_161 == GT) { 
   jj_consume_token(GT);} else 
 {
-  PsiBuilder.Marker errorMarker = builder.mark();
-  String text = builder.getTokenText();
-  builder.advanceLexer();
-  errorMarker.error("Unexpected token " + text);
+  if (!builder.eof()) {
+    PsiBuilder.Marker errorMarker = builder.mark();
+    String text = builder.getTokenText();
+    builder.advanceLexer();
+    errorMarker.error("Unexpected token " + text);
+  } else {
+    builder.error("Unexpected end of file");
+  }
   
 }
 IElementType type_162 = getType();
@@ -2422,10 +2554,14 @@ ShiftExpression();
       if ( type_165 == GT) { 
     RSIGNEDSHIFT();} else 
   {
-    PsiBuilder.Marker errorMarker = builder.mark();
-    String text = builder.getTokenText();
-    builder.advanceLexer();
-    errorMarker.error("Unexpected token " + text);
+    if (!builder.eof()) {
+      PsiBuilder.Marker errorMarker = builder.mark();
+      String text = builder.getTokenText();
+      builder.advanceLexer();
+      errorMarker.error("Unexpected token " + text);
+    } else {
+      builder.error("Unexpected end of file");
+    }
     
   }
 }
@@ -2458,10 +2594,14 @@ if ( type_168 == PLUS) {
 jj_consume_token(PLUS);} else if ( type_168 == MINUS) { 
 jj_consume_token(MINUS);} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
 MultiplicativeExpression();
@@ -2493,10 +2633,14 @@ jj_consume_token(STAR);} else if ( type_171 == SLASH) {
 jj_consume_token(SLASH);} else if ( type_171 == REM) { 
 jj_consume_token(REM);} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
 UnaryExpression();
@@ -2520,10 +2664,14 @@ if ( type_172 == PLUS) {
 jj_consume_token(PLUS);} else if ( type_172 == MINUS) { 
 jj_consume_token(MINUS);} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
 UnaryExpression();} else if ( type_173 == INCR) { 
@@ -2531,10 +2679,14 @@ PreIncrementExpression();} else if ( type_173 == DECR) {
 PreDecrementExpression();} else if ( type_173 == _LOOKAHEAD || type_173 == _IGNORE_CASE || type_173 == _PARSER_BEGIN || type_173 == _PARSER_END || type_173 == _JAVACODE || type_173 == _TOKEN || type_173 == _SPECIAL_TOKEN || type_173 == _MORE || type_173 == _SKIP || type_173 == _TOKEN_MGR_DECLS || type_173 == _EOF || type_173 == BOOLEAN || type_173 == BYTE || type_173 == CHAR || type_173 == DOUBLE || type_173 == FALSE || type_173 == FLOAT || type_173 == INT || type_173 == LONG || type_173 == NEW || type_173 == NULL || type_173 == SHORT || type_173 == SUPER || type_173 == THIS || type_173 == TRUE || type_173 == VOID || type_173 == INTEGER_LITERAL || type_173 == FLOATING_POINT_LITERAL || type_173 == CHARACTER_LITERAL || type_173 == STRING_LITERAL || type_173 == IDENTIFIER || type_173 == LPAREN || type_173 == BANG || type_173 == TILDE) { 
 UnaryExpressionNotPlusMinus();} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
       {
@@ -2584,10 +2736,14 @@ if ( type_174 == TILDE) {
 jj_consume_token(TILDE);} else if ( type_174 == BANG) { 
 jj_consume_token(BANG);} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
 UnaryExpression();} else 
@@ -2599,10 +2755,14 @@ IElementType type_176 = getType();
 if ( type_176 == _LOOKAHEAD || type_176 == _IGNORE_CASE || type_176 == _PARSER_BEGIN || type_176 == _PARSER_END || type_176 == _JAVACODE || type_176 == _TOKEN || type_176 == _SPECIAL_TOKEN || type_176 == _MORE || type_176 == _SKIP || type_176 == _TOKEN_MGR_DECLS || type_176 == _EOF || type_176 == BOOLEAN || type_176 == BYTE || type_176 == CHAR || type_176 == DOUBLE || type_176 == FALSE || type_176 == FLOAT || type_176 == INT || type_176 == LONG || type_176 == NEW || type_176 == NULL || type_176 == SHORT || type_176 == SUPER || type_176 == THIS || type_176 == TRUE || type_176 == VOID || type_176 == INTEGER_LITERAL || type_176 == FLOATING_POINT_LITERAL || type_176 == CHARACTER_LITERAL || type_176 == STRING_LITERAL || type_176 == IDENTIFIER || type_176 == LPAREN) { 
 PostfixExpression();} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
 }
@@ -2647,17 +2807,25 @@ jj_consume_token(SUPER);} else if ( type_177 == NEW) {
 jj_consume_token(NEW);} else if ( type_177 == FALSE || type_177 == NULL || type_177 == TRUE || type_177 == INTEGER_LITERAL || type_177 == FLOATING_POINT_LITERAL || type_177 == CHARACTER_LITERAL || type_177 == STRING_LITERAL) { 
 Literal();} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
 }
@@ -2681,10 +2849,14 @@ if ( type_179 == INCR) {
 jj_consume_token(INCR);} else if ( type_179 == DECR) { 
 jj_consume_token(DECR);} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }} else 
 {
@@ -2715,10 +2887,14 @@ errorMarker.error("Unexpected token " + text);
     jj_consume_token(RPAREN);
     UnaryExpressionNotPlusMinus();} else 
   {
-    PsiBuilder.Marker errorMarker = builder.mark();
-    String text = builder.getTokenText();
-    builder.advanceLexer();
-    errorMarker.error("Unexpected token " + text);
+    if (!builder.eof()) {
+      PsiBuilder.Marker errorMarker = builder.mark();
+      String text = builder.getTokenText();
+      builder.advanceLexer();
+      errorMarker.error("Unexpected token " + text);
+    } else {
+      builder.error("Unexpected end of file");
+    }
     
   }
 }
@@ -2792,10 +2968,14 @@ IElementType type_184 = getType();
 if ( type_184 == _LOOKAHEAD || type_184 == _IGNORE_CASE || type_184 == _PARSER_BEGIN || type_184 == _PARSER_END || type_184 == _JAVACODE || type_184 == _TOKEN || type_184 == _SPECIAL_TOKEN || type_184 == _MORE || type_184 == _SKIP || type_184 == _TOKEN_MGR_DECLS || type_184 == _EOF || type_184 == IDENTIFIER) { 
 Name();} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
 }
@@ -2830,10 +3010,14 @@ errorMarker.error("Unexpected token " + text);
   jj_consume_token(IDENTIFIER);} else if ( type_185 == LPAREN) { 
 Arguments();} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
 }
@@ -2858,10 +3042,14 @@ jj_consume_token(STRING_LITERAL);} else if ( type_186 == FALSE || type_186 == TR
 BooleanLiteral();} else if ( type_186 == NULL) { 
 NullLiteral();} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
       {
@@ -2885,10 +3073,14 @@ errorMarker.error("Unexpected token " + text);
   jj_consume_token(TRUE);} else if ( type_187 == FALSE) { 
 jj_consume_token(FALSE);} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
       {
@@ -2981,17 +3173,25 @@ ClassOrInterfaceBody();} else
 ;
 }} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
 }
@@ -3049,10 +3249,14 @@ errorMarker.error("Unexpected token " + text);
 }
 ArrayInitializer();} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
 }
@@ -3090,10 +3294,14 @@ ThrowStatement();} else if ( type_200 == SYNCHRONIZED) {
 SynchronizedStatement();} else if ( type_200 == TRY) { 
 TryStatement();} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
 }
@@ -3170,10 +3378,14 @@ jj_consume_token(RBRACE);
 Statement();} else if ( type_204 == CLASS || type_204 == INTERFACE) { 
 ClassOrInterfaceDeclaration();} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
 }
@@ -3236,20 +3448,28 @@ jj_consume_token(DECR);} else if ( type_207 == ASSIGN || type_207 == GT || type_
 AssignmentOperator();
 Expression();} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }} else 
 {
 ;
 }} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
       {
@@ -3310,10 +3530,14 @@ jj_consume_token(RBRACE);
 jj_consume_token(_DEFAULT);
 jj_consume_token(COLON);} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
       {
@@ -3420,10 +3644,14 @@ ForUpdate();} else
 ;
 }} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
 }
@@ -3448,10 +3676,14 @@ Statement();
       if ( type_220 == _LOOKAHEAD || type_220 == _IGNORE_CASE || type_220 == _PARSER_BEGIN || type_220 == _PARSER_END || type_220 == _JAVACODE || type_220 == _TOKEN || type_220 == _SPECIAL_TOKEN || type_220 == _MORE || type_220 == _SKIP || type_220 == _TOKEN_MGR_DECLS || type_220 == _EOF || type_220 == BOOLEAN || type_220 == BYTE || type_220 == CHAR || type_220 == DOUBLE || type_220 == FALSE || type_220 == FLOAT || type_220 == INT || type_220 == LONG || type_220 == NEW || type_220 == NULL || type_220 == SHORT || type_220 == SUPER || type_220 == THIS || type_220 == TRUE || type_220 == VOID || type_220 == INTEGER_LITERAL || type_220 == FLOATING_POINT_LITERAL || type_220 == CHARACTER_LITERAL || type_220 == STRING_LITERAL || type_220 == IDENTIFIER || type_220 == LPAREN || type_220 == INCR || type_220 == DECR) { 
 StatementExpressionList();} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
 }
@@ -3673,10 +3905,14 @@ Block();} else
       if ( type_229 == AT) { 
     MarkerAnnotation();} else 
   {
-    PsiBuilder.Marker errorMarker = builder.mark();
-    String text = builder.getTokenText();
-    builder.advanceLexer();
-    errorMarker.error("Unexpected token " + text);
+    if (!builder.eof()) {
+      PsiBuilder.Marker errorMarker = builder.mark();
+      String text = builder.getTokenText();
+      builder.advanceLexer();
+      errorMarker.error("Unexpected token " + text);
+    } else {
+      builder.error("Unexpected end of file");
+    }
     
   }
 }
@@ -3790,10 +4026,14 @@ jj_consume_token(RPAREN);
 MemberValueArrayInitializer();} else if ( type_233 == _LOOKAHEAD || type_233 == _IGNORE_CASE || type_233 == _PARSER_BEGIN || type_233 == _PARSER_END || type_233 == _JAVACODE || type_233 == _TOKEN || type_233 == _SPECIAL_TOKEN || type_233 == _MORE || type_233 == _SKIP || type_233 == _TOKEN_MGR_DECLS || type_233 == _EOF || type_233 == BOOLEAN || type_233 == BYTE || type_233 == CHAR || type_233 == DOUBLE || type_233 == FALSE || type_233 == FLOAT || type_233 == INT || type_233 == LONG || type_233 == NEW || type_233 == NULL || type_233 == SHORT || type_233 == SUPER || type_233 == THIS || type_233 == TRUE || type_233 == VOID || type_233 == INTEGER_LITERAL || type_233 == FLOATING_POINT_LITERAL || type_233 == CHARACTER_LITERAL || type_233 == STRING_LITERAL || type_233 == IDENTIFIER || type_233 == LPAREN || type_233 == BANG || type_233 == TILDE || type_233 == INCR || type_233 == DECR || type_233 == PLUS || type_233 == MINUS) { 
 ConditionalExpression();} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
        {
@@ -3903,19 +4143,27 @@ EnumDeclaration();} else if ( type_239 == AT) {
 AnnotationTypeDeclaration();} else if ( type_239 == BOOLEAN || type_239 == BYTE || type_239 == CHAR || type_239 == DOUBLE || type_239 == FLOAT || type_239 == INT || type_239 == LONG || type_239 == SHORT || type_239 == IDENTIFIER) { 
 FieldDeclaration();} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
 }} else if ( type_240 == SEMICOLON) { 
 jj_consume_token(SEMICOLON);} else 
 {
-PsiBuilder.Marker errorMarker = builder.mark();
-String text = builder.getTokenText();
-builder.advanceLexer();
-errorMarker.error("Unexpected token " + text);
+if (!builder.eof()) {
+  PsiBuilder.Marker errorMarker = builder.mark();
+  String text = builder.getTokenText();
+  builder.advanceLexer();
+  errorMarker.error("Unexpected token " + text);
+} else {
+  builder.error("Unexpected end of file");
+}
 
 }
      {
@@ -7125,6 +7373,7 @@ errorMarker.error("Unexpected token " + text);
   private ArrayList<IElementType> tokens = new ArrayList<IElementType>();
   private int currentIndex = 0;
   private int maxIndex = 0;
+  private boolean reportEof = false;
 
   private void rollbackTo(int scanpos) {
     currentIndex = scanpos;
@@ -7141,10 +7390,17 @@ errorMarker.error("Unexpected token " + text);
     if (actualType == type) {
       builder.advanceLexer();
     } else {
-      PsiBuilder.Marker errorMarker = builder.mark();
-      String text = builder.getTokenText();
-      builder.advanceLexer();
-      errorMarker.error("Expected " + type + ", but get: " + text);
+      if (builder.eof()) {
+        if (!reportEof) {
+          reportEof = true;
+          builder.error("Unexpected end of file");
+        }
+      } else {
+        PsiBuilder.Marker errorMarker = builder.mark();
+        String text = builder.getTokenText();
+        builder.advanceLexer();
+        errorMarker.error("Expected " + type + ", but get: " + text);
+      }
     }
     return type;
   }

@@ -16,8 +16,13 @@ public class JavaCCParser implements PsiParser {
     public ASTNode parse(IElementType root, PsiBuilder builder) {
         final PsiBuilder.Marker rootMarker = builder.mark();
         JavaCC javacc = new JavaCC(builder);
-        while(!builder.eof())
-            javacc.javacc_input();
+        javacc.javacc_input();
+        if (!builder.eof()) {
+            PsiBuilder.Marker errorMark = builder.mark();
+            while (!builder.eof())
+                builder.advanceLexer();
+            errorMark.error("Extra text");
+        }
         rootMarker.done(root);
         return builder.getTreeBuilt();
     }
