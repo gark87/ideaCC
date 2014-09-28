@@ -6,11 +6,10 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/icons" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/javacc" type="java-resource" />
     </content>
-    <orderEntry type="jdk" jdkName="IDEA IC-107.105" jdkType="IDEA JDK" />
+    <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="idea-impl" level="application" />
   </component>
 </module>
 
