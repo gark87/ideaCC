@@ -1774,7 +1774,7 @@ void InstanceOfExpression() #InstanceOfExpression(>1):
 void RelationalExpression() #RelationalExpression(>1):
 {}
 {
-  ShiftExpression() ( LOOKAHEAD(2) ( "<" | ">" ) ("=")? ShiftExpression() )*
+  ShiftExpression() ( LOOKAHEAD(2) (<GE> | <LE> | <GT> | <LT>) ShiftExpression() )*
 }
 
 void ShiftExpression() #ShiftExpression(>1):

@@ -2805,7 +2805,7 @@ void RelationalExpression()                          :
 {/*@bgen(jjtree) #RelationalExpression(> 1) */
   (
 /*@egen*/
-  ShiftExpression() ( LOOKAHEAD(2) ( "<" | ">" ) ("=")? ShiftExpression() )*/*@bgen(jjtree)*/
+  ShiftExpression() ( LOOKAHEAD(2) (<GE> | <LE> | <GT> | <LT>) ShiftExpression() )*/*@bgen(jjtree)*/
   ) {
       {
         if (jjtc000) {
