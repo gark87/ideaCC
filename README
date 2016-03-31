@@ -1,3 +1,5 @@
 This is JavaCC plugin for Intellij IDEA.
-For any suggestion, comment or question, please, contact 
-gark87<gark87@mail.ru>
+
+This JavaCC plugin is pretty dummy: 
+* only helps editingand navigating over JavaCC grammars
+* does not generate *.java files from JavaCC grammar
