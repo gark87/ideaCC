@@ -1,5 +1,5 @@
 This is JavaCC plugin for Intellij IDEA.
 
 This JavaCC plugin is pretty dummy: 
-* only helps editingand navigating over JavaCC grammars
+* only helps editing and navigating over JavaCC grammars
 * does not generate *.java files from JavaCC grammar
