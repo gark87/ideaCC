@@ -89,11 +89,9 @@ public class JavaCCStructureViewBuilderFactory implements PsiStructureViewFactor
     }
 
     private static class JavaCCLeafElement extends PsiTreeElementBase<Identifier> {
-        private final Icon icon;
 
         protected JavaCCLeafElement(DeclarationForStructureView declaration) {
             super(declaration.getIdentifier());
-            icon = declaration.getIcon();
         }
 
         @NotNull
@@ -108,11 +106,6 @@ public class JavaCCStructureViewBuilderFactory implements PsiStructureViewFactor
             if (element == null)
                 return "";
             return element.getName();
-        }
-
-        @Override
-        public Icon getIcon(boolean open) {
-            return icon;
         }
     }
 }
