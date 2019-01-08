@@ -6,6 +6,7 @@ import com.intellij.openapi.fileTypes.SyntaxHighlighter;
 import com.intellij.openapi.fileTypes.SyntaxHighlighterFactory;
 import com.intellij.openapi.util.IconLoader;
 import org.gark87.idea.javacc.generated.JavaCCLanguage;
+import org.gark87.idea.javacc.util.JavaCCIcons;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
@@ -14,7 +15,6 @@ import javax.swing.*;
  * @author gark87
  */
 public class JavaCCFileType extends LanguageFileType {
-    public static final Icon FILE = IconLoader.findIcon("/javacc/icons/javacc.png");
 
     public JavaCCFileType() {
         super(new JavaCCLanguage());
@@ -46,6 +46,6 @@ public class JavaCCFileType extends LanguageFileType {
 
     @Override
     public Icon getIcon() {
-        return FILE;
+        return JavaCCIcons.JAVACC_FILE.getIcon();
     }
 }

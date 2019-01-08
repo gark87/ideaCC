@@ -5,11 +5,13 @@ import com.intellij.openapi.util.IconLoader;
 
 import javax.swing.*;
 
+import org.gark87.idea.javacc.util.JavaCCIcons;
+
+
 /**
  * @author gark87
  */
 public class BNFProduction extends NonTerminalProduction {
-    private static Icon ICON;
 
     public BNFProduction(@org.jetbrains.annotations.NotNull ASTNode node) {
         super(node);
@@ -22,8 +24,6 @@ public class BNFProduction extends NonTerminalProduction {
 
     @Override
     public Icon getIcon() {
-        if (ICON == null)
-            ICON = IconLoader.getIcon("/javacc/icons/nonterminal.png");
-        return ICON;
+        return JavaCCIcons.NONTERMINAL.getIcon();
     }
 }
