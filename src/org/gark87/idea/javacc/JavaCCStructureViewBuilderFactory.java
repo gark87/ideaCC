@@ -3,18 +3,17 @@ package org.gark87.idea.javacc;
 import com.intellij.ide.structureView.*;
 import com.intellij.ide.structureView.impl.common.PsiTreeElementBase;
 import com.intellij.lang.PsiStructureViewFactory;
-import com.intellij.openapi.util.IconLoader;
+import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.util.Key;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.ResolveState;
 import com.intellij.psi.scope.PsiScopeProcessor;
-import com.intellij.psi.util.PsiTreeUtil;
 import org.gark87.idea.javacc.psi.DeclarationForStructureView;
 import org.gark87.idea.javacc.psi.Identifier;
 import org.gark87.idea.javacc.psi.JavaCCFileImpl;
-import org.gark87.idea.javacc.psi.reference.JavaCCScopeProcessor;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -39,8 +38,8 @@ public class JavaCCStructureViewBuilderFactory implements PsiStructureViewFactor
 
             @NotNull
             @Override
-            public StructureViewModel createStructureViewModel() {
-                return new StructureViewModelBase(file, new JavaCCFileTreeElement(file));
+            public StructureViewModel createStructureViewModel(@Nullable Editor editor) {
+                return new StructureViewModelBase(file, editor, new JavaCCFileTreeElement(file));
             }
         };
     }
